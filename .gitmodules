@@ -4,3 +4,7 @@
 [submodule "reveal.js-plugins"]
 	path = reveal.js-plugins
 	url = https://github.com/rajgoel/reveal.js-plugins.git
+[submodule "public"]
+	path = public
+	url = https://github.com/matthewturk/matthewturk.github.io.git
+	branch = master
