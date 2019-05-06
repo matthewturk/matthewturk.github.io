@@ -3,9 +3,9 @@ title = "CIRSS Seminar: Open Source in the Teen Years"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2019-04-30T17:34:14-05:00
+date = 2019-03-29T16:00:00-05:00
 #date_end = 2019-04-30T17:34:14-05:00
-all_day = false
+all_day = true
 
 # Schedule page publish date (NOT talk date).
 publishDate = 2019-04-30T17:34:14-05:00

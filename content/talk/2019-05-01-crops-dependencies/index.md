@@ -1,11 +1,11 @@
 +++
-title = "2019 05 01 Crops Dependencies"
+title = "Crops-in-Silico Collaboration and Dependencies"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
 date = 2019-05-01T13:54:16-05:00
-date_end = 2019-05-01T13:54:16-05:00
-all_day = false
+#date_end = 2019-05-01T13:54:16-05:00
+all_day = true
 
 # Schedule page publish date (NOT talk date).
 publishDate = 2019-05-01T13:54:16-05:00
@@ -21,7 +21,7 @@ event = ""
 event_url = ""
 
 # Abstract. What's your talk about?
-abstract = ""
+abstract = "This is a brief overview of how we can think about dependencies in the Crops in Silico project, and how we can use that to organize our work and collaboration."
 
 # Summary. An optional shortened abstract.
 summary = ""
@@ -42,7 +42,7 @@ tags = []
 slides = ""
 
 # Optional filename of your slides within your talk folder or a URL.
-url_slides = ""
+url_slides = "https://matthewturk.github.io/2019-05-01-crops-dependencies/"
 
 # Projects (optional).
 #   Associate this talk with one or more of your projects.

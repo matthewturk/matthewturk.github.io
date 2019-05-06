@@ -1,11 +1,11 @@
 +++
-title = "2019 04 24 Ddd Update"
+title = "DDD Update"
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-date = 2019-05-01T13:52:48-05:00
-date_end = 2019-05-01T13:52:48-05:00
-all_day = false
+date = 2019-04-24
+#date_end = 2019-05-01T13:52:48-05:00
+all_day = true
 
 # Schedule page publish date (NOT talk date).
 publishDate = 2019-05-01T13:52:48-05:00
