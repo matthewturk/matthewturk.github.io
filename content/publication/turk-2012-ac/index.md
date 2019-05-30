@@ -1,0 +1,13 @@
+---
+title: "MAGNETIC FIELDS IN POPULATION III STAR FORMATION"
+date: 2012-01-01
+publishDate: 2019-05-30T20:07:09.382091Z
+authors: ["Matthew J Turk", "Jeffrey S Oishi", "Tom Abel", "Greg L Bryan"]
+publication_types: ["2"]
+abstract: "We study the buildup of magnetic fields during the formation of Population III star-forming regions by conducting cosmological simulations from realistic initial conditions and varying the Jeans resolution. To investigate this in detail, we start simulations from identical initial conditions, mandating 16, 32, and 64 zones per Jeans length, and study the variation in their magnetic field amplification. We find that, while compression results in some amplification, turbulent velocity fluctuations driven by the collapse can further amplify an initially weak seed field via dynamo action, provided there is sufficient numerical resolution to capture vortical motions (we find this requirement to be 64 zones per Jeans length, slightly larger than but consistent with previous work run with more idealized collapse scenarios). We explore saturation of amplification of the magnetic field, which could potentially become dynamically important in subsequent, fully resolved calculations. We have also identified a relatively surprising phenomenon that is purely hydrodynamic: the higher-resolved simulations possess substantially different characteristics, including higher infall velocity, increased temperatures inside 1000 AU, and decreased molecular hydrogen content in the innermost region. Furthermore, we find that disk formation is suppressed in higher-resolution calculations, at least at the times that we can follow the calculation. We discuss the effect this may have on the buildup of disks over the accretion history of the first clump to form as well as the potential for gravitational instabilities to develop and induce fragmentation."
+featured: false
+publication: "*ApJ*"
+tags: ["Authorship"]
+url_pdf: "https://iopscience.iop.org/article/10.1088/0004-637X/745/2/154/meta"
+---
+

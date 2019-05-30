@@ -1,0 +1,13 @@
+---
+title: "THREE MODES OF METAL-ENRICHED STAR FORMATION IN THE EARLY UNIVERSE"
+date: 2009-01-01
+publishDate: 2019-05-30T20:07:09.384512Z
+authors: ["Britton D Smith", "Matthew J Turk", "Steinn Sigurdsson", "Brian W O'Shea", "Michael L Norman"]
+publication_types: ["2"]
+abstract: "Simulations of the formation of Population III (Pop III) stars suggest that they were much more massive than the Pop II and Pop I stars observed today. This is due to the collapse dynamics of metal-free gas, which is regulated by the radiative cooling of molecular hydrogen. We study how the collapse of gas clouds is altered by the addition of metals to the star-forming environment by performing a series of simulations of pre-enriched star formation at various metallicities. To make a clean comparison with metal-free star formation, we use initial conditions identical to a Pop III star formation simulation, with low ionization and no external radiation other than the cosmic microwave background (CMB). For metallicities below the critical metallicity, Z cr, collapse proceeds similar to the metal-free case, and only massive objects form. For metallicities well above Z cr, efficient cooling rapidly lowers the gas temperature to the temperature of the CMB. The gas is unable to radiatively cool below the CMB temperature, and becomes thermally stable. For high metallicities, Z ≳ 10--2.5 Z ☉, this occurs early in the evolution of the gas cloud, when the density is still relatively low. The resulting cloud cores show little or no fragmentation, and would most likely form massive stars. If the metallicity is not vastly above Z cr, the cloud cools efficiently but does not reach the CMB temperature, and fragmentation into multiple objects occurs. We conclude that there were three distinct modes of star formation at high redshift (z ≳ 4): a ``primordial'' mode, producing massive stars (10s to 100s of M ☉) at very low metallicities (Z ≲ 10--3.75 Z ☉); a CMB-regulated mode, producing moderate mass (10s of M ☉) stars at high metallicities (Z ≳ 10--2.5 Z ☉ at redshift z∼ 15-20); and a low-mass (a few M ☉) mode existing between these two metallicities. As the universe ages and the CMB temperature decreases, the range of the low-mass mode extends to higher metallicities, eventually becoming the only mode of star formation."
+featured: false
+publication: "*ApJ*"
+tags: ["Authorship"]
+url_pdf: "https://iopscience.iop.org/article/10.1088/0004-637X/691/1/441/meta"
+---
+

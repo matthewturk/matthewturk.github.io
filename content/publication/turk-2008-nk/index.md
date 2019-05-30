@@ -1,0 +1,13 @@
+---
+title: "Towards Forming a Primordial Protostar in a Cosmological AMR Simulation"
+date: 2008-03-01
+publishDate: 2019-05-30T20:07:09.363676Z
+authors: ["Matthew J Turk", "Tom Abel", "Brian W O'Shea"]
+publication_types: ["2"]
+abstract: "Modeling the formation of the first stars in the universe is a well?posed problem and ideally suited for computational investigation.We have conducted high?resolution numerical studies of the formation of primordial stars. Beginning with primordial initial conditions appropriate for a ?CDM model, we used the Eulerian adaptive mesh refinement code (Enzo) to achieve unprecedented numerical resolution, resolving cosmological scales as well as sub?stellar scales simultaneously. Building on the work of Abel, Bryan and Norman (2002), we followed the evolution of the first collapsing cloud until molecular hydrogen is optically thick to cooling radiation. In addition, the calculations account for the process of collision?induced emission (CIE) and add approximations to the optical depth in both molecular hydrogen roto?vibrational cooling and CIE. Also considered are the effects of chemical heating/cooling from the formation/destruction of molecular hydrogen. We present the results of these simulations, showing the formation of a 10 Jupiter?mass protostellar core bounded by a strongly aspherical accretion shock. Accretion rates are found to be as high as one solar mass per year."
+featured: false
+publication: "*AIP Conf. Proc.*"
+tags: ["Authorship"]
+url_pdf: "https://aip.scitation.org/doi/abs/10.1063/1.2905532"
+---
+
