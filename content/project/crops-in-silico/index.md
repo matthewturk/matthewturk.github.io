@@ -1,6 +1,6 @@
 +++
-title = "yt"
-date = 2019-05-06T16:10:39-05:00
+title = "Crops in Silico"
+date = 2019-02-01T15:16:19-05:00
 draft = false
 
 # Tags: can be used for filtering projects.
@@ -8,7 +8,7 @@ draft = false
 tags = []
 
 # Project summary to display on homepage.
-summary = "yt is an open-source python package for analyzing and visualizing volumetric data."
+summary = "Crops in Silico is an integrative and multi-scale modeling platform to combine modeling efforts toward the generation of virtual crops, open and accessible to the global community."
 
 # Slides (optional).
 #   Associate this page with Markdown slides.
@@ -19,11 +19,11 @@ summary = "yt is an open-source python package for analyzing and visualizing vol
 slides = ""
 
 # Optional external URL for project (replaces project detail page).
-external_link = "https://yt-project.org/"
+external_link = "https://cropsinsilico.org/"
 
 # Links (optional).
 url_pdf = ""
-url_code = ""
+url_code = "https://github.com/cropsinsilico/"
 url_dataset = ""
 url_slides = ""
 url_video = ""
@@ -31,8 +31,7 @@ url_poster = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
- links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com/yt_astro"},
-          {icon_pack = "fas", icon="code-branch", name="Code", url = "https://github.com/yt-project/"}]
+# links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com"}]
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
@@ -42,5 +41,5 @@ url_poster = ""
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  focal_point = "TopLeft"
+  focal_point = ""
 +++

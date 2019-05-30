@@ -1,6 +1,6 @@
 +++
-title = "yt"
-date = 2019-05-06T16:10:39-05:00
+title = "Whole Tale"
+date = 2019-01-30T15:16:29-05:00
 draft = false
 
 # Tags: can be used for filtering projects.
@@ -8,7 +8,7 @@ draft = false
 tags = []
 
 # Project summary to display on homepage.
-summary = "yt is an open-source python package for analyzing and visualizing volumetric data."
+summary = "Whole Tale is an initiative to build a scalable, open source, web-based, multi-user platform for reproducible research."
 
 # Slides (optional).
 #   Associate this page with Markdown slides.
@@ -19,7 +19,7 @@ summary = "yt is an open-source python package for analyzing and visualizing vol
 slides = ""
 
 # Optional external URL for project (replaces project detail page).
-external_link = "https://yt-project.org/"
+external_link = "https://wholetale.org/"
 
 # Links (optional).
 url_pdf = ""
@@ -31,8 +31,8 @@ url_poster = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
- links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com/yt_astro"},
-          {icon_pack = "fas", icon="code-branch", name="Code", url = "https://github.com/yt-project/"}]
+ links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com/wholetale"},
+          {icon_pack = "fas", icon="code-branch", name="Code", url = "https://github.com/whole-tale/"}]
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
