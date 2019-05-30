@@ -31,7 +31,7 @@ url_poster = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-# links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com"}]
+ links = [{icon_pack = "fab", icon="twitter", name="Follow", url = "https://twitter.com/yt_astro"}]
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
