@@ -14,23 +14,6 @@ subtitle = ""
 # 
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 
-[[feature]]
-  icon = "python"
-  icon_pack = "fab"
-  name = "Python"
-  description = ""
-  
-[[feature]]
-  icon = "seedling"
-  icon_pack = "fas"
-  name = "Sustainability"
-  description = ""
-  
-[[feature]]
-  icon = "hands-helping"
-  icon_pack = "fas"
-  name = "Collaboration"
-  description = ""
 
 [[feature]]
   icon = "draw-polygon"
@@ -44,4 +27,28 @@ subtitle = ""
   name = "Data Viz"
   description = ""
 
+[[feature]]
+  icon = "book-reader"
+  icon_pack = "fas"
+  name = "Storytelling"
+  description = ""
+
+[[feature]]
+  icon = "seedling"
+  icon_pack = "fas"
+  name = "Sustainability"
+  description = ""
+  
+[[feature]]
+  icon = "hands-helping"
+  icon_pack = "fas"
+  name = "Collaboration"
+  description = ""
+
+[[feature]]
+  icon = "terminal"
+  icon_pack = "fas"
+  name = "Scientific Computing"
+  description = ""
+  
 +++

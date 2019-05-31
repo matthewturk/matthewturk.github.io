@@ -14,6 +14,7 @@ role = "Assistant Professor of Information Sciences"
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
 organizations = [ { name = "University of Illinois", url = "https://ischool.illinois.edu/" },
+#{ name = "Data Exploration Lab", url = "https://data-exp-lab.github.io/"},
                   { name = "National Center for Supercomputing Applications", url = "https://ncsa.illinois.edu/"} ]
 
 # Short bio (displayed in user profile at end of posts)
@@ -79,5 +80,12 @@ interests = [
 
 +++
 
-Matthew Turk is an assistant professor in the School of Information Sciences and also holds an appointment with the Department of Astronomy in the College of Liberal Arts and Sciences. His research is focused on how individuals interact with data and how that data is processed and understood. He received his doctoral degree in physics from Stanford University in 2009. He completed postdoctoral work at the University of California at San Diego and an NSF Fellowship in Transformative Computational Science at Columbia University. He came to Illinois in 2014 to work as a research scientist at the National Center for Supercomputing Applications and as a research assistant professor in the Department of Astronomy.
+Matthew Turk is an assistant professor in the School of Information Sciences
+and also holds an appointment with the Department of Astronomy in the College
+of Liberal Arts and Sciences. His research is focused on how individuals
+interact with data and how that data is processed and understood. 
+
+At the University of Illinois, he leads the [Data Exploration
+Lab](https://data-exp-lab.github.io/) and teaches in Data Visualization, Data
+Storytelling, and Computational Astrophysics.
 

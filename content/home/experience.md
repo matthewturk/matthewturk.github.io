@@ -79,7 +79,6 @@ date_format = "Jan 2006"
   date_start = "2004-08-01"
   date_end = "2009-06-30"
   description = """
-  I worked as a postdoc with Prof Mike Norman at the Center for Astrophysics and Space Sciences at UCSD.
   """
 
 

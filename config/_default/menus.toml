@@ -8,10 +8,10 @@
   url = "#about"
   weight = 10
 
-[[main]]
-  name = "Posts"
-  url = "#posts"
-  weight = 20
+#[[main]]
+  #name = "Posts"
+  #url = "#posts"
+  #weight = 20
 
 [[main]]
   name = "Projects"
@@ -19,19 +19,29 @@
   weight = 30
 
 [[main]]
-  name = "Publications"
-  url = "#featured"
+  name = "Courses"
+  url = "#courses"
+  weight = 35
+
+[[main]]
+  name = "Talks"
+  url = "#talks"
   weight = 40
 
 [[main]]
-  name = "Tutorials"
-  url = "/tutorial/"
+  name = "Publications"
+  url = "#publications"
   weight = 50
 
 [[main]]
   name = "Contact"
   url = "#contact"
   weight = 60
+
+[[main]]
+  name = "Research Group"
+  url = "https://data-exp-lab.github.io/"
+  weight = 70
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
