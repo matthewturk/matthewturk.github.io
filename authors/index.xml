@@ -1,14 +1,1077 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors on Academic</title>
+    <title>Authors on mjt</title>
     <link>https://matthewturk.github.io/authors/</link>
-    <description>Recent content in Authors on Academic</description>
+    <description>Recent content in Authors on mjt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 01 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://matthewturk.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adam Brinckman</title>
+      <link>https://matthewturk.github.io/authors/adam-brinckman/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/adam-brinckman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bertram Ludäscher</title>
+      <link>https://matthewturk.github.io/authors/bertram-lud%C3%A4scher/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/bertram-lud%C3%A4scher/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bryce D Mecum</title>
+      <link>https://matthewturk.github.io/authors/bryce-d-mecum/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/bryce-d-mecum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ian J Taylor</title>
+      <link>https://matthewturk.github.io/authors/ian-j-taylor/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/ian-j-taylor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jarek Nabrzyski</title>
+      <link>https://matthewturk.github.io/authors/jarek-nabrzyski/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/jarek-nabrzyski/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kacper Kowalik</title>
+      <link>https://matthewturk.github.io/authors/kacper-kowalik/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/kacper-kowalik/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kandace Turner</title>
+      <link>https://matthewturk.github.io/authors/kandace-turner/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/kandace-turner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kyle Chard</title>
+      <link>https://matthewturk.github.io/authors/kyle-chard/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/kyle-chard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matthew B Jones</title>
+      <link>https://matthewturk.github.io/authors/matthew-b-jones/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/matthew-b-jones/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matthew J Turk</title>
+      <link>https://matthewturk.github.io/authors/matthew-j-turk/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/matthew-j-turk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mihael Hategan</title>
+      <link>https://matthewturk.github.io/authors/mihael-hategan/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/mihael-hategan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Niall Gaffney</title>
+      <link>https://matthewturk.github.io/authors/niall-gaffney/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/niall-gaffney/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sivakumar Kulasekaran</title>
+      <link>https://matthewturk.github.io/authors/sivakumar-kulasekaran/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/sivakumar-kulasekaran/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Victoria Stodden</title>
+      <link>https://matthewturk.github.io/authors/victoria-stodden/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/victoria-stodden/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Anna L Rosen</title>
+      <link>https://matthewturk.github.io/authors/anna-l-rosen/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/anna-l-rosen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>John A ZuHone</title>
+      <link>https://matthewturk.github.io/authors/john-a-zuhone/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/john-a-zuhone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nathan J Goldbaum</title>
+      <link>https://matthewturk.github.io/authors/nathan-j-goldbaum/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/nathan-j-goldbaum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Chin-Yu Cheng</title>
+      <link>https://matthewturk.github.io/authors/chin-yu-cheng/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/chin-yu-cheng/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hsi-Yu Schive</title>
+      <link>https://matthewturk.github.io/authors/hsi-yu-schive/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/hsi-yu-schive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Massimo Gaspari</title>
+      <link>https://matthewturk.github.io/authors/massimo-gaspari/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/massimo-gaspari/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A J Christensen</title>
+      <link>https://matthewturk.github.io/authors/a-j-christensen/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/a-j-christensen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Amy Marshall-Colon</title>
+      <link>https://matthewturk.github.io/authors/amy-marshall-colon/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/amy-marshall-colon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Andrew J Millar</title>
+      <link>https://matthewturk.github.io/authors/andrew-j-millar/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/andrew-j-millar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Balaji Panneerselvam</title>
+      <link>https://matthewturk.github.io/authors/balaji-panneerselvam/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/balaji-panneerselvam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bedrich Benes</title>
+      <link>https://matthewturk.github.io/authors/bedrich-benes/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/bedrich-benes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Daniel A Beard</title>
+      <link>https://matthewturk.github.io/authors/daniel-a-beard/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/daniel-a-beard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Daniel S Katz</title>
+      <link>https://matthewturk.github.io/authors/daniel-s-katz/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/daniel-s-katz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>David Raila</title>
+      <link>https://matthewturk.github.io/authors/david-raila/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/david-raila/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Diwakar Shukla</title>
+      <link>https://matthewturk.github.io/authors/diwakar-shukla/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/diwakar-shukla/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Donna J Cox</title>
+      <link>https://matthewturk.github.io/authors/donna-j-cox/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/donna-j-cox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Douglas K Allen</title>
+      <link>https://matthewturk.github.io/authors/douglas-k-allen/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/douglas-k-allen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eberhard O Voit</title>
+      <link>https://matthewturk.github.io/authors/eberhard-o-voit/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/eberhard-o-voit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gabrielle Allen</title>
+      <link>https://matthewturk.github.io/authors/gabrielle-allen/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/gabrielle-allen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>John C Hart</title>
+      <link>https://matthewturk.github.io/authors/john-c-hart/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/john-c-hart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jonathan P Lynch</title>
+      <link>https://matthewturk.github.io/authors/jonathan-p-lynch/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/jonathan-p-lynch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kavya Kannan</title>
+      <link>https://matthewturk.github.io/authors/kavya-kannan/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/kavya-kannan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mark Stitt</title>
+      <link>https://matthewturk.github.io/authors/mark-stitt/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/mark-stitt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nathan D Price</title>
+      <link>https://matthewturk.github.io/authors/nathan-d-price/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/nathan-d-price/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Peter M Hirst</title>
+      <link>https://matthewturk.github.io/authors/peter-m-hirst/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/peter-m-hirst/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Przemyslaw Prusinkiewicz</title>
+      <link>https://matthewturk.github.io/authors/przemyslaw-prusinkiewicz/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/przemyslaw-prusinkiewicz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rachel G Shekar</title>
+      <link>https://matthewturk.github.io/authors/rachel-g-shekar/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/rachel-g-shekar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stephen P Long</title>
+      <link>https://matthewturk.github.io/authors/stephen-p-long/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/stephen-p-long/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stuti Shrivastava</title>
+      <link>https://matthewturk.github.io/authors/stuti-shrivastava/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/stuti-shrivastava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Susanne von Caemmerer</title>
+      <link>https://matthewturk.github.io/authors/susanne-von-caemmerer/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/susanne-von-caemmerer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Venkatraman Srinivasan</title>
+      <link>https://matthewturk.github.io/authors/venkatraman-srinivasan/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/venkatraman-srinivasan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xin-Guang Zhu</title>
+      <link>https://matthewturk.github.io/authors/xin-guang-zhu/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/xin-guang-zhu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xinyou Yin</title>
+      <link>https://matthewturk.github.io/authors/xinyou-yin/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/xinyou-yin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yu Wang</title>
+      <link>https://matthewturk.github.io/authors/yu-wang/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/yu-wang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Andrew Emerick</title>
+      <link>https://matthewturk.github.io/authors/andrew-emerick/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/andrew-emerick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Brian W O&#39;Shea</title>
+      <link>https://matthewturk.github.io/authors/brian-w-oshea/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/brian-w-oshea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Britton D Smith</title>
+      <link>https://matthewturk.github.io/authors/britton-d-smith/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/britton-d-smith/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cameron B Hummels</title>
+      <link>https://matthewturk.github.io/authors/cameron-b-hummels/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/cameron-b-hummels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Greg L Bryan</title>
+      <link>https://matthewturk.github.io/authors/greg-l-bryan/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/greg-l-bryan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>John H Wise</title>
+      <link>https://matthewturk.github.io/authors/john-h-wise/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/john-h-wise/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>John Regan</title>
+      <link>https://matthewturk.github.io/authors/john-regan/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/john-regan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Peter Anninos</title>
+      <link>https://matthewturk.github.io/authors/peter-anninos/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/peter-anninos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sadegh Khochfar</title>
+      <link>https://matthewturk.github.io/authors/sadegh-khochfar/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/sadegh-khochfar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Simon C O Glover</title>
+      <link>https://matthewturk.github.io/authors/simon-c-o-glover/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/simon-c-o-glover/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tom Abel</title>
+      <link>https://matthewturk.github.io/authors/tom-abel/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/tom-abel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Harshil M Kamdar</title>
+      <link>https://matthewturk.github.io/authors/harshil-m-kamdar/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/harshil-m-kamdar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Robert J Brunner</title>
+      <link>https://matthewturk.github.io/authors/robert-j-brunner/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/robert-j-brunner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Christopher Hayward</title>
+      <link>https://matthewturk.github.io/authors/christopher-hayward/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/christopher-hayward/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Claude-André Faucher-Giguère</title>
+      <link>https://matthewturk.github.io/authors/claude-andr%C3%A9-faucher-gigu%C3%A8re/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/claude-andr%C3%A9-faucher-gigu%C3%A8re/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>David Ball</title>
+      <link>https://matthewturk.github.io/authors/david-ball/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/david-ball/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Desika Narayanan</title>
+      <link>https://matthewturk.github.io/authors/desika-narayanan/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/desika-narayanan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dušan Kereš</title>
+      <link>https://matthewturk.github.io/authors/du%C5%A1an-kere%C5%A1/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/du%C5%A1an-kere%C5%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matthew Turk</title>
+      <link>https://matthewturk.github.io/authors/matthew-turk/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/matthew-turk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Philip Hopkins</title>
+      <link>https://matthewturk.github.io/authors/philip-hopkins/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/philip-hopkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Robert Feldmann</title>
+      <link>https://matthewturk.github.io/authors/robert-feldmann/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/robert-feldmann/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Robert Thompson</title>
+      <link>https://matthewturk.github.io/authors/robert-thompson/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/robert-thompson/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Thomas Robitaille</title>
+      <link>https://matthewturk.github.io/authors/thomas-robitaille/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/thomas-robitaille/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>M Turk</title>
+      <link>https://matthewturk.github.io/authors/m-turk/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/m-turk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Daniel E Holz</title>
+      <link>https://matthewturk.github.io/authors/daniel-e-holz/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/daniel-e-holz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Michael S Warren</title>
+      <link>https://matthewturk.github.io/authors/michael-s-warren/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/michael-s-warren/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>P M Sutter</title>
+      <link>https://matthewturk.github.io/authors/p-m-sutter/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/p-m-sutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Risa H Wechsler</title>
+      <link>https://matthewturk.github.io/authors/risa-h-wechsler/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/risa-h-wechsler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Samuel W Skillman</title>
+      <link>https://matthewturk.github.io/authors/samuel-w-skillman/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/samuel-w-skillman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Benjamin Holtzman</title>
+      <link>https://matthewturk.github.io/authors/benjamin-holtzman/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/benjamin-holtzman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Daniel Peter</title>
+      <link>https://matthewturk.github.io/authors/daniel-peter/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/daniel-peter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jason Candler</title>
+      <link>https://matthewturk.github.io/authors/jason-candler/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/jason-candler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>K C Yu</title>
+      <link>https://matthewturk.github.io/authors/k-c-yu/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/k-c-yu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T Kwasnitschka</title>
+      <link>https://matthewturk.github.io/authors/t-kwasnitschka/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/t-kwasnitschka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ji-Hoon Kim</title>
+      <link>https://matthewturk.github.io/authors/ji-hoon-kim/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/ji-hoon-kim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mark R Krumholz</title>
+      <link>https://matthewturk.github.io/authors/mark-r-krumholz/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/mark-r-krumholz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alexei G Kritsuk</title>
+      <link>https://matthewturk.github.io/authors/alexei-g-kritsuk/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/alexei-g-kritsuk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Britton Smith</title>
+      <link>https://matthewturk.github.io/authors/britton-smith/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/britton-smith/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cameron Hummels</title>
+      <link>https://matthewturk.github.io/authors/cameron-hummels/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/cameron-hummels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Christine M Simpson</title>
+      <link>https://matthewturk.github.io/authors/christine-m-simpson/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/christine-m-simpson/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Daniel R Reynolds</title>
+      <link>https://matthewturk.github.io/authors/daniel-r-reynolds/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/daniel-r-reynolds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>David C Collins</title>
+      <link>https://matthewturk.github.io/authors/david-c-collins/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/david-c-collins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elizabeth Tasker</title>
+      <link>https://matthewturk.github.io/authors/elizabeth-tasker/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/elizabeth-tasker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fen Zhao</title>
+      <link>https://matthewturk.github.io/authors/fen-zhao/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/fen-zhao/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geoffrey C So</title>
+      <link>https://matthewturk.github.io/authors/geoffrey-c-so/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/geoffrey-c-so/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hao Xu</title>
+      <link>https://matthewturk.github.io/authors/hao-xu/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/hao-xu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>James Bordner</title>
+      <link>https://matthewturk.github.io/authors/james-bordner/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/james-bordner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jeffrey S Oishi</title>
+      <link>https://matthewturk.github.io/authors/jeffrey-s-oishi/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/jeffrey-s-oishi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Michael Kuhlen</title>
+      <link>https://matthewturk.github.io/authors/michael-kuhlen/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/michael-kuhlen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Michael L Norman</title>
+      <link>https://matthewturk.github.io/authors/michael-l-norman/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/michael-l-norman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nathan Goldbaum</title>
+      <link>https://matthewturk.github.io/authors/nathan-goldbaum/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/nathan-goldbaum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oliver Hahn</title>
+      <link>https://matthewturk.github.io/authors/oliver-hahn/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/oliver-hahn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Peng Wang</title>
+      <link>https://matthewturk.github.io/authors/peng-wang/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/peng-wang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Renyue Cen</title>
+      <link>https://matthewturk.github.io/authors/renyue-cen/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/renyue-cen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Robert P Harkness</title>
+      <link>https://matthewturk.github.io/authors/robert-p-harkness/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/robert-p-harkness/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stephen Skory</title>
+      <link>https://matthewturk.github.io/authors/stephen-skory/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/stephen-skory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Enzo Collaboration</title>
+      <link>https://matthewturk.github.io/authors/the-enzo-collaboration/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/the-enzo-collaboration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yuan Li</title>
+      <link>https://matthewturk.github.io/authors/yuan-li/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/yuan-li/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>M J Turk</title>
+      <link>https://matthewturk.github.io/authors/m-j-turk/</link>
+      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/m-j-turk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>B D Smith</title>
+      <link>https://matthewturk.github.io/authors/b-d-smith/</link>
+      <pubDate>Sat, 01 Jan 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/b-d-smith/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paul Clark</title>
+      <link>https://matthewturk.github.io/authors/paul-clark/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/paul-clark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ralf Klessen</title>
+      <link>https://matthewturk.github.io/authors/ralf-klessen/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/ralf-klessen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>S C O Glover</title>
+      <link>https://matthewturk.github.io/authors/s-c-o-glover/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/s-c-o-glover/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>T H Greif</title>
+      <link>https://matthewturk.github.io/authors/t-h-greif/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/t-h-greif/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Volker Bromm</title>
+      <link>https://matthewturk.github.io/authors/volker-bromm/</link>
+      <pubDate>Wed, 01 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/volker-bromm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A L Coil</title>
+      <link>https://matthewturk.github.io/authors/a-l-coil/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/a-l-coil/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>M L Norman</title>
+      <link>https://matthewturk.github.io/authors/m-l-norman/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/m-l-norman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>S Skory</title>
+      <link>https://matthewturk.github.io/authors/s-skory/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/s-skory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Brian O&#39;Shea</title>
+      <link>https://matthewturk.github.io/authors/brian-oshea/</link>
+      <pubDate>Wed, 01 Jul 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/brian-oshea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Steinn Sigurdsson</title>
+      <link>https://matthewturk.github.io/authors/steinn-sigurdsson/</link>
+      <pubDate>Thu, 01 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/authors/steinn-sigurdsson/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>admin</title>

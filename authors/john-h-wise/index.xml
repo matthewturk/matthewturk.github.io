@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>John H Wise on mjt</title>
+    <link>https://matthewturk.github.io/authors/john-h-wise/</link>
+    <description>Recent content in John H Wise on mjt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://matthewturk.github.io/authors/john-h-wise/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>grackle: a chemistry and cooling library for astrophysics</title>
+      <link>https://matthewturk.github.io/publication/smith-2017-za/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/smith-2017-za/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DWARF GALAXIES WITH IONIZING RADIATION FEEDBACK. II. SPATIALLY RESOLVED STAR FORMATION RELATION</title>
+      <link>https://matthewturk.github.io/publication/kim-2013-ac/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/kim-2013-ac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DWARF GALAXIES WITH IONIZING RADIATION FEEDBACK. I. ESCAPE OF IONIZING PHOTONS</title>
+      <link>https://matthewturk.github.io/publication/kim-2013-jy/</link>
+      <pubDate>Sun, 01 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/kim-2013-jy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Enzo: An Adaptive Mesh Refinement Code for Astrophysics</title>
+      <link>https://matthewturk.github.io/publication/the-enzo-collaboration-2013-es/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/the-enzo-collaboration-2013-es/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The imprint of pop III stars on the first galaxies</title>
+      <link>https://matthewturk.github.io/publication/wise-2012-kl/</link>
+      <pubDate>Sat, 01 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/wise-2012-kl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The birth of a galaxy--II. The role of radiation pressure</title>
+      <link>https://matthewturk.github.io/publication/wise-2012-dn/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/wise-2012-dn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>THE BIRTH OF A GALAXY: PRIMORDIAL METAL ENRICHMENT AND STELLAR POPULATIONS</title>
+      <link>https://matthewturk.github.io/publication/wise-2011-ph/</link>
+      <pubDate>Thu, 01 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/wise-2011-ph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Resolving the Formation of Protogalaxies. II. Central Gravitational Collapse</title>
+      <link>https://matthewturk.github.io/publication/wise-2008-gl/</link>
+      <pubDate>Mon, 01 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/wise-2008-gl/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

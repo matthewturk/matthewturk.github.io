@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hsi-Yu Schive on mjt</title>
+    <link>https://matthewturk.github.io/authors/hsi-yu-schive/</link>
+    <description>Recent content in Hsi-Yu Schive on mjt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://matthewturk.github.io/authors/hsi-yu-schive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GAMER-2: a GPU-accelerated adaptive mesh refinement code -- accuracy, performance, and scalability</title>
+      <link>https://matthewturk.github.io/publication/schive-2017-ep/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/schive-2017-ep/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grackle: a chemistry and cooling library for astrophysics</title>
+      <link>https://matthewturk.github.io/publication/smith-2017-za/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/smith-2017-za/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

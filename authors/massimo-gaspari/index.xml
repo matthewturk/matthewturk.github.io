@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Massimo Gaspari on mjt</title>
+    <link>https://matthewturk.github.io/authors/massimo-gaspari/</link>
+    <description>Recent content in Massimo Gaspari on mjt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://matthewturk.github.io/authors/massimo-gaspari/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GAMER-2: a GPU-accelerated adaptive mesh refinement code -- accuracy, performance, and scalability</title>
+      <link>https://matthewturk.github.io/publication/schive-2017-ep/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/schive-2017-ep/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

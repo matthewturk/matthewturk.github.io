@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jason Candler on mjt</title>
+    <link>https://matthewturk.github.io/authors/jason-candler/</link>
+    <description>Recent content in Jason Candler on mjt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://matthewturk.github.io/authors/jason-candler/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Seismic Sound Lab: Sights, Sounds and Perception of the Earth as an Acoustic Space</title>
+      <link>https://matthewturk.github.io/publication/holtzman-2014-wb/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/holtzman-2014-wb/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brian W O&#39;Shea on mjt</title>
+    <link>https://matthewturk.github.io/authors/brian-w-oshea/</link>
+    <description>Recent content in Brian W O&#39;Shea on mjt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://matthewturk.github.io/authors/brian-w-oshea/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>grackle: a chemistry and cooling library for astrophysics</title>
+      <link>https://matthewturk.github.io/publication/smith-2017-za/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/smith-2017-za/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Enzo: An Adaptive Mesh Refinement Code for Astrophysics</title>
+      <link>https://matthewturk.github.io/publication/the-enzo-collaboration-2013-es/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/the-enzo-collaboration-2013-es/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>THREE MODES OF METAL-ENRICHED STAR FORMATION IN THE EARLY UNIVERSE</title>
+      <link>https://matthewturk.github.io/publication/smith-2009-dp/</link>
+      <pubDate>Thu, 01 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/smith-2009-dp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards Forming a Primordial Protostar in a Cosmological AMR Simulation</title>
+      <link>https://matthewturk.github.io/publication/turk-2008-nk/</link>
+      <pubDate>Sat, 01 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/publication/turk-2008-nk/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
