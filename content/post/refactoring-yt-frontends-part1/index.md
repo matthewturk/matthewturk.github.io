@@ -176,29 +176,29 @@ YTSelectionContainer.chunks??
 ```
 
 
-    [0;31mSignature:[0m [0mYTSelectionContainer[0m[0;34m.[0m[0mchunks[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfields[0m[0;34m,[0m [0mchunking_style[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mDocstring:[0m <no docstring>
-    [0;31mSource:[0m   
-        [0;32mdef[0m [0mchunks[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfields[0m[0;34m,[0m [0mchunking_style[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m        [0;31m# This is an iterator that will yield the necessary chunks.[0m[0;34m[0m
-    [0;34m[0m        [0mself[0m[0;34m.[0m[0mget_data[0m[0;34m([0m[0;34m)[0m [0;31m# Ensure we have built ourselves[0m[0;34m[0m
-    [0;34m[0m        [0;32mif[0m [0mfields[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m [0mfields[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m
-    [0;34m[0m        [0;31m# chunk_ind can be supplied in the keyword arguments.  If it's a[0m[0;34m[0m
-    [0;34m[0m        [0;31m# scalar, that'll be the only chunk that gets returned; if it's a list,[0m[0;34m[0m
-    [0;34m[0m        [0;31m# those are the ones that will be.[0m[0;34m[0m
-    [0;34m[0m        [0mchunk_ind[0m [0;34m=[0m [0mkwargs[0m[0;34m.[0m[0mpop[0m[0;34m([0m[0;34m"chunk_ind"[0m[0;34m,[0m [0;32mNone[0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m        [0;32mif[0m [0mchunk_ind[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m            [0mchunk_ind[0m [0;34m=[0m [0mensure_list[0m[0;34m([0m[0mchunk_ind[0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m        [0;32mfor[0m [0mci[0m[0;34m,[0m [0mchunk[0m [0;32min[0m [0menumerate[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0m_chunk[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mchunking_style[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m                                   [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m            [0;32mif[0m [0mchunk_ind[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m [0;32mand[0m [0mci[0m [0;32mnot[0m [0;32min[0m [0mchunk_ind[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m                [0;32mcontinue[0m[0;34m[0m
-    [0;34m[0m            [0;32mwith[0m [0mself[0m[0;34m.[0m[0m_chunked_read[0m[0;34m([0m[0mchunk[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m                [0mself[0m[0;34m.[0m[0mget_data[0m[0;34m([0m[0mfields[0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m                [0;31m# NOTE: we yield before releasing the context[0m[0;34m[0m
-    [0;34m[0m                [0;32myield[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mFile:[0m      ~/yt/yt/yt/data_objects/data_containers.py
-    [0;31mType:[0m      function
+    Signature: YTSelectionContainer.chunks(self, fields, chunking_style, **kwargs)
+    Docstring: <no docstring>
+    Source:   
+        def chunks(self, fields, chunking_style, **kwargs):
+            # This is an iterator that will yield the necessary chunks.
+            self.get_data() # Ensure we have built ourselves
+            if fields is None: fields = []
+            # chunk_ind can be supplied in the keyword arguments.  If it's a
+            # scalar, that'll be the only chunk that gets returned; if it's a list,
+            # those are the ones that will be.
+            chunk_ind = kwargs.pop("chunk_ind", None)
+            if chunk_ind is not None:
+                chunk_ind = ensure_list(chunk_ind)
+            for ci, chunk in enumerate(self.index._chunk(self, chunking_style,
+                                       **kwargs)):
+                if chunk_ind is not None and ci not in chunk_ind:
+                    continue
+                with self._chunked_read(chunk):
+                    self.get_data(fields)
+                    # NOTE: we yield before releasing the context
+                    yield self
+    File:      ~/yt/yt/yt/data_objects/data_containers.py
+    Type:      function
 
 
 
@@ -210,30 +210,30 @@ YTSelectionContainer._chunked_read??
 ```
 
 
-    [0;31mSignature:[0m [0mYTSelectionContainer[0m[0;34m.[0m[0m_chunked_read[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mchunk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mDocstring:[0m <no docstring>
-    [0;31mSource:[0m   
-        [0;34m@[0m[0mcontextmanager[0m[0;34m[0m
-    [0;34m[0m    [0;32mdef[0m [0m_chunked_read[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mchunk[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m        [0;31m# There are several items that need to be swapped out[0m[0;34m[0m
-    [0;34m[0m        [0;31m# field_data, size, shape[0m[0;34m[0m
-    [0;34m[0m        [0mobj_field_data[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m
-    [0;34m[0m        [0;32mif[0m [0mhasattr[0m[0;34m([0m[0mchunk[0m[0;34m,[0m [0;34m'objs'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m            [0;32mfor[0m [0mobj[0m [0;32min[0m [0mchunk[0m[0;34m.[0m[0mobjs[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m                [0mobj_field_data[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mobj[0m[0;34m.[0m[0mfield_data[0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m                [0mobj[0m[0;34m.[0m[0mfield_data[0m [0;34m=[0m [0mYTFieldData[0m[0;34m([0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m        [0mold_field_data[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mfield_data[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mfield_data[0m[0;34m,[0m [0mYTFieldData[0m[0;34m([0m[0;34m)[0m[0;34m[0m
-    [0;34m[0m        [0mold_chunk[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_current_chunk[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_current_chunk[0m[0;34m,[0m [0mchunk[0m[0;34m[0m
-    [0;34m[0m        [0mold_locked[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_locked[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_locked[0m[0;34m,[0m [0;32mFalse[0m[0;34m[0m
-    [0;34m[0m        [0;32myield[0m[0;34m[0m
-    [0;34m[0m        [0mself[0m[0;34m.[0m[0mfield_data[0m [0;34m=[0m [0mold_field_data[0m[0;34m[0m
-    [0;34m[0m        [0mself[0m[0;34m.[0m[0m_current_chunk[0m [0;34m=[0m [0mold_chunk[0m[0;34m[0m
-    [0;34m[0m        [0mself[0m[0;34m.[0m[0m_locked[0m [0;34m=[0m [0mold_locked[0m[0;34m[0m
-    [0;34m[0m        [0;32mif[0m [0mhasattr[0m[0;34m([0m[0mchunk[0m[0;34m,[0m [0;34m'objs'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m            [0;32mfor[0m [0mobj[0m [0;32min[0m [0mchunk[0m[0;34m.[0m[0mobjs[0m[0;34m:[0m[0;34m[0m
-    [0;34m[0m                [0mobj[0m[0;34m.[0m[0mfield_data[0m [0;34m=[0m [0mobj_field_data[0m[0;34m.[0m[0mpop[0m[0;34m([0m[0;36m0[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mFile:[0m      ~/yt/yt/yt/data_objects/data_containers.py
-    [0;31mType:[0m      function
+    Signature: YTSelectionContainer._chunked_read(self, chunk)
+    Docstring: <no docstring>
+    Source:   
+        @contextmanager
+        def _chunked_read(self, chunk):
+            # There are several items that need to be swapped out
+            # field_data, size, shape
+            obj_field_data = []
+            if hasattr(chunk, 'objs'):
+                for obj in chunk.objs:
+                    obj_field_data.append(obj.field_data)
+                    obj.field_data = YTFieldData()
+            old_field_data, self.field_data = self.field_data, YTFieldData()
+            old_chunk, self._current_chunk = self._current_chunk, chunk
+            old_locked, self._locked = self._locked, False
+            yield
+            self.field_data = old_field_data
+            self._current_chunk = old_chunk
+            self._locked = old_locked
+            if hasattr(chunk, 'objs'):
+                for obj in chunk.objs:
+                    obj.field_data = obj_field_data.pop(0)
+    File:      ~/yt/yt/yt/data_objects/data_containers.py
+    Type:      function
 
 
 
