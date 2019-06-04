@@ -6,10 +6,19 @@
     <description>Recent content on mjt</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 May 2019 17:06:12 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2019 14:46:23 -0700</lastBuildDate>
     
 	    <atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>yt: Hard Questions</title>
+      <link>https://matthewturk.github.io/talk/2019-06-04-odia-yt/</link>
+      <pubDate>Tue, 04 Jun 2019 14:46:23 -0700</pubDate>
+      
+      <guid>https://matthewturk.github.io/talk/2019-06-04-odia-yt/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Refactoring yt Frontends - Part 1</title>
@@ -336,7 +345,7 @@ sp2 =&amp;gt;  12 3673 480 29 146 200 77 419 3697 400
     <item>
       <title>DDD Update</title>
       <link>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 -0700</pubDate>
       
       <guid>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</guid>
       <description></description>

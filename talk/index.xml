@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>yt: Hard Questions</title>
+      <link>https://matthewturk.github.io/talk/2019-06-04-odia-yt/</link>
+      <pubDate>Tue, 04 Jun 2019 14:46:23 -0700</pubDate>
+      
+      <guid>https://matthewturk.github.io/talk/2019-06-04-odia-yt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Crops-in-Silico Collaboration and Dependencies</title>
       <link>https://matthewturk.github.io/talk/2019-05-01-crops-dependencies/</link>
       <pubDate>Wed, 01 May 2019 13:54:16 -0500</pubDate>
@@ -22,7 +31,7 @@
     <item>
       <title>DDD Update</title>
       <link>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 -0700</pubDate>
       
       <guid>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</guid>
       <description>My &amp;lsquo;update&amp;rsquo; talk at the Moore Data Driven Discovery Investigator Symposium in April, 2019.</description>
