@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://matthewturk.github.io/post/refactoring-yt-frontends-part2/</loc>
+    <lastmod>2019-06-10T13:04:50-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://matthewturk.github.io/</loc>
-    <lastmod>2019-06-04T14:49:29-07:00</lastmod>
+    <lastmod>2019-06-10T13:04:50-05:00</lastmod>
     <priority>0</priority>
   </url>
   

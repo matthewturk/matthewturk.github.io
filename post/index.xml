@@ -11,6 +11,16 @@
     
     
     <item>
+      <title>Refactoring yt Frontends - Part 2</title>
+      <link>https://matthewturk.github.io/post/refactoring-yt-frontends-part2/</link>
+      <pubDate>Mon, 10 Jun 2019 12:59:33 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part2/</guid>
+      <description>SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &amp;hellip; didn&amp;rsquo;t! So it looks like there&amp;rsquo;ll be a part three in the series.
+Operations on Data Objects In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the &amp;quot;io&amp;quot; style of chunking, where the order in which data arrives is not important.</description>
+    </item>
+    
+    <item>
       <title>Refactoring yt Frontends - Part 1</title>
       <link>https://matthewturk.github.io/post/refactoring-yt-frontends-part1/</link>
       <pubDate>Fri, 31 May 2019 17:06:12 -0500</pubDate>
