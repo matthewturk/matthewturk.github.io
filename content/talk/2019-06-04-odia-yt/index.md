@@ -54,7 +54,7 @@ projects = []
 
 # Links (optional).
 url_pdf = ""
-url_video = ""
+url_video = "http://online.kitp.ucsb.edu/online/odia19/turk/"
 url_code = ""
 
 # Featured image
