@@ -3,14 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</loc>
-    <lastmod>2019-06-17T22:32:09-04:00</lastmod>
+    <loc>https://matthewturk.github.io/talk/2019-06-18-oshiw-numfocus/</loc>
+    <lastmod>2019-06-18T13:07:59-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/</loc>
-    <lastmod>2019-06-17T22:32:09-04:00</lastmod>
+    <lastmod>2019-06-18T13:07:59-04:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</loc>
+    <lastmod>2019-06-17T22:38:01-04:00</lastmod>
   </url>
   
   <url>

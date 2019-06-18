@@ -6,10 +6,19 @@
     <description>Recent content on mjt</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jun 2019 22:32:09 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jun 2019 13:06:02 -0400</lastBuildDate>
     
 	    <atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OSHIW: NumFOCUS Sustainability</title>
+      <link>https://matthewturk.github.io/talk/2019-06-18-oshiw-numfocus/</link>
+      <pubDate>Tue, 18 Jun 2019 13:06:02 -0400</pubDate>
+      
+      <guid>https://matthewturk.github.io/talk/2019-06-18-oshiw-numfocus/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Refactoring yt Frontends - Part 3</title>
