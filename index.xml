@@ -6,10 +6,386 @@
     <description>Recent content on mjt</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Jun 2019 12:59:33 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jun 2019 22:32:09 -0400</lastBuildDate>
     
 	    <atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Refactoring yt Frontends - Part 3</title>
+      <link>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</link>
+      <pubDate>Mon, 17 Jun 2019 22:32:09 -0400</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</guid>
+      <description>
+
+&lt;p&gt;Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things!  This time, I am going to describe what &amp;ldquo;chunks&amp;rdquo; of data (&lt;code&gt;YTDataChunk&lt;/code&gt;) in yt are, and a few characteristics of them that wouldn&amp;rsquo;t be obvious from the previous blog posts.&lt;/p&gt;
+
+&lt;h3 id=&#34;chunks-have-spatial-attributes&#34;&gt;Chunks have spatial attributes&lt;/h3&gt;
+
+&lt;p&gt;Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.&lt;/p&gt;
+
+&lt;p&gt;(This is as good a time as any to note to myself that I should probably write up a blog post about how coordinate handling works, as opposed to index handling.)&lt;/p&gt;
+
+&lt;p&gt;When you receive a chunk of a data object, that chunk will have with it information about the coordinate space of the data contained within it &amp;ndash; specifically, if it is a dataset that is volumetrically discretized in some regular way, it will have information about the centers of the individual grid cells, the sizes of those cells, and some measure of their resolution.&lt;/p&gt;
+
+&lt;p&gt;For a grid dataset specifically, these attributes will always exist on a data chunk:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fcoords&lt;/code&gt; - the centers of the grid cells, of shape &lt;code&gt;(..., 3)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fwidth&lt;/code&gt; - the &amp;ldquo;width&amp;rdquo; of the grid cells, of shape &lt;code&gt;(..., 3)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;icoords&lt;/code&gt; - the &lt;em&gt;integer&lt;/em&gt; coordinates, with respect to the &lt;em&gt;current&lt;/em&gt; resolution, of the grid cells, of shape &lt;code&gt;(..., 3)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ires&lt;/code&gt; - the &amp;ldquo;level of resolution&amp;rdquo; of a given cell; this mostly makes sense for datasets where there is some universal refinement ratio and a fixed value for the domain dimensions, of shape &lt;code&gt;(...,)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are a couple more that are specific to the individual data selection operation &amp;ndash; for instance, &lt;code&gt;tcoords&lt;/code&gt; only makes sense if there is a parameterized vector being pushed through the domain.  There&amp;rsquo;s also &lt;code&gt;fcoords_vertex&lt;/code&gt; but it is seldom used except in unstructured mesh datasets.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at these values, and how they correspond to grid attributes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import yt
+ds = yt.load(&amp;quot;data/IsolatedGalaxy/galaxy0030/galaxy0030&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;/home/matthewturk/conda-py3/lib/python3.7/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 88 from C header, got 96 from PyObject
+  return f(*args, **kwds)
+yt : [INFO     ] 2019-06-17 22:23:02,723 Parameters: current_time              = 0.0060000200028298
+yt : [INFO     ] 2019-06-17 22:23:02,724 Parameters: domain_dimensions         = [32 32 32]
+yt : [INFO     ] 2019-06-17 22:23:02,726 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2019-06-17 22:23:02,728 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2019-06-17 22:23:02,734 Parameters: cosmological_simulation   = 0.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What yt is doing here is taking an individual, in-memory &lt;em&gt;sparse&lt;/em&gt; index and then &lt;em&gt;expanding&lt;/em&gt; that index into a fully-fledged array.  Internally, when we ask for any of these attributes, yt iterates over all the objects that belong in a given chunk and then it expands the values associated with those objects.&lt;/p&gt;
+
+&lt;p&gt;We can see this if we poke a little closer at the &lt;code&gt;Grid&lt;/code&gt; objects in this case.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;for g in ds.index.grids:
+    pass
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Parsing Hierarchy : 100%|██████████| 173/173 [00:00&amp;lt;00:00, 3064.43it/s]
+yt : [INFO     ] 2019-06-17 22:23:02,831 Gathering a field list (this may take a moment.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is used internally in yt whenever we want to deal with a geometric selection, or when we apply geometric processing.  For instance, the &amp;ldquo;projection&amp;rdquo; operator can use the integer coordinate system to very rapidly insert values into a &lt;a href=&#34;https://en.wikipedia.org/wiki/Quadtree&#34; target=&#34;_blank&#34;&gt;quadtree&lt;/a&gt;.  yt can iterate over all of the chunks that belong to a data object and insert them into the quadtree based on their &lt;code&gt;icoords&lt;/code&gt;, and it can refine nodes by bit shifting the appropriate amount.&lt;/p&gt;
+
+&lt;p&gt;For grid data, &lt;code&gt;icoords&lt;/code&gt; also gives us some handy things for evaluating relationships between objects.  For instance, we might have a root grid with one child grid.  We can figure out their relationship by looking at their &lt;code&gt;icoords&lt;/code&gt;, &lt;code&gt;ires&lt;/code&gt; and the result of &lt;code&gt;get_global_startindex()&lt;/code&gt;.  In our sample dataset, let&amp;rsquo;s look at some random grid &amp;ndash; I happen to know the first level 8 grid is index 27, so let&amp;rsquo;s use that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;child = ds.index.grids[27]
+parent = child.Parent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;parent.icoords
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;array([[2048, 2048, 2048],
+       [2048, 2048, 2049],
+       [2048, 2048, 2050],
+       ...,
+       [2087, 2089, 2069],
+       [2087, 2089, 2070],
+       [2087, 2089, 2071]])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;child.icoords
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;array([[4096, 4096, 4096],
+       [4096, 4096, 4097],
+       [4096, 4096, 4098],
+       ...,
+       [4133, 4129, 4119],
+       [4133, 4129, 4120],
+       [4133, 4129, 4121]])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;parent.LeftEdge, child.LeftEdge
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;(YTArray([0.5, 0.5, 0.5]) code_length, YTArray([0.5, 0.5, 0.5]) code_length)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They both start at the same place &amp;ndash; so that would suggest that their minimum icoords should refer to the same location.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;difference = child.ires.min() - parent.ires.max()
+left_edge_child = child.icoords.min(axis=0)
+left_edge_parent = parent.icoords.min(axis=0)
+(left_edge_child - left_edge_parent)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;array([2048, 2048, 2048])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This seems odd until we recognize that &lt;code&gt;ires&lt;/code&gt; differs between the two, and in this case refers to the bit shifting we need to do to match them up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;(left_edge_child &amp;gt;&amp;gt; difference) - left_edge_parent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;array([0, 0, 0])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can do this with the next grid up, as well.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;left_edge_gparent = parent.Parent.icoords.min(axis=0)
+difference_g = child.ires.min() - parent.Parent.ires.max()
+(left_edge_child &amp;gt;&amp;gt; difference_g) - left_edge_gparent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;array([0, 0, 0])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There&amp;rsquo;s more to this story &amp;ndash; for instance, non-power-of-two differences, but the idea is consistent; both integer and float positioning can be used between chunks, sub-chunks, and so on.&lt;/p&gt;
+
+&lt;p&gt;We can also pretty easily get cell positions, and if we access data objects, we receive all the values across all sub-objects.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sp = ds.sphere(&amp;quot;c&amp;quot;, 0.1)
+print(sp.fwidth)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[[0.00024414 0.00024414 0.00024414]
+ [0.00024414 0.00024414 0.00024414]
+ [0.00024414 0.00024414 0.00024414]
+ ...
+ [0.00012207 0.00012207 0.00012207]
+ [0.00012207 0.00012207 0.00012207]
+ [0.00012207 0.00012207 0.00012207]] code_length
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;chunks-can-be-sub-chunked&#34;&gt;Chunks can be sub-chunked&lt;/h3&gt;
+
+&lt;p&gt;The other main advantage of chunks is that they can be sub-chunked.  Usually this only means up to one level, but it means that we could in principle do something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dd = ds.all_data()
+for i, chunk1 in enumerate(dd.chunks([], &amp;quot;io&amp;quot;)):
+    print(&amp;quot;Chunk &amp;quot;, i, len(chunk1._current_chunk.objs))
+    print(&amp;quot;      &amp;quot;, end = &amp;quot;&amp;quot;)
+    for j, chunk2 in enumerate(dd.chunks([], &amp;quot;spatial&amp;quot;)):
+        print(chunk2._current_chunk.objs, end = &amp;quot; &amp;quot;)
+    print()
+    print()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Chunk  0 5
+      [EnzoGrid_0001] [EnzoGrid_0075] [EnzoGrid_0076] [EnzoGrid_0082] [EnzoGrid_0110] 
+
+Chunk  1 1
+      [EnzoGrid_0073] 
+
+Chunk  2 20
+      [EnzoGrid_0009] [EnzoGrid_0010] [EnzoGrid_0011] [EnzoGrid_0012] [EnzoGrid_0013] [EnzoGrid_0014] [EnzoGrid_0015] [EnzoGrid_0016] [EnzoGrid_0017] [EnzoGrid_0018] [EnzoGrid_0019] [EnzoGrid_0020] [EnzoGrid_0021] [EnzoGrid_0022] [EnzoGrid_0023] [EnzoGrid_0024] [EnzoGrid_0025] [EnzoGrid_0026] [EnzoGrid_0027] [EnzoGrid_0028] 
+
+Chunk  3 28
+      [EnzoGrid_0008] [EnzoGrid_0029] [EnzoGrid_0030] [EnzoGrid_0031] [EnzoGrid_0032] [EnzoGrid_0033] [EnzoGrid_0034] [EnzoGrid_0035] [EnzoGrid_0036] [EnzoGrid_0037] [EnzoGrid_0038] [EnzoGrid_0039] [EnzoGrid_0040] [EnzoGrid_0041] [EnzoGrid_0042] [EnzoGrid_0043] [EnzoGrid_0044] [EnzoGrid_0045] [EnzoGrid_0046] [EnzoGrid_0047] [EnzoGrid_0048] [EnzoGrid_0049] [EnzoGrid_0050] [EnzoGrid_0051] [EnzoGrid_0052] [EnzoGrid_0053] [EnzoGrid_0054] [EnzoGrid_0055] 
+
+Chunk  4 20
+      [EnzoGrid_0007] [EnzoGrid_0056] [EnzoGrid_0057] [EnzoGrid_0058] [EnzoGrid_0059] [EnzoGrid_0060] [EnzoGrid_0061] [EnzoGrid_0062] [EnzoGrid_0063] [EnzoGrid_0064] [EnzoGrid_0065] [EnzoGrid_0066] [EnzoGrid_0067] [EnzoGrid_0068] [EnzoGrid_0069] [EnzoGrid_0070] [EnzoGrid_0071] [EnzoGrid_0072] [EnzoGrid_0074] [EnzoGrid_0077] 
+
+Chunk  5 16
+      [EnzoGrid_0006] [EnzoGrid_0078] [EnzoGrid_0079] [EnzoGrid_0080] [EnzoGrid_0081] [EnzoGrid_0083] [EnzoGrid_0084] [EnzoGrid_0085] [EnzoGrid_0086] [EnzoGrid_0087] [EnzoGrid_0088] [EnzoGrid_0089] [EnzoGrid_0090] [EnzoGrid_0091] [EnzoGrid_0092] [EnzoGrid_0093] 
+
+Chunk  6 13
+      [EnzoGrid_0005] [EnzoGrid_0094] [EnzoGrid_0095] [EnzoGrid_0096] [EnzoGrid_0097] [EnzoGrid_0098] [EnzoGrid_0099] [EnzoGrid_0100] [EnzoGrid_0101] [EnzoGrid_0102] [EnzoGrid_0103] [EnzoGrid_0104] [EnzoGrid_0105] 
+
+Chunk  7 14
+      [EnzoGrid_0004] [EnzoGrid_0106] [EnzoGrid_0107] [EnzoGrid_0108] [EnzoGrid_0109] [EnzoGrid_0111] [EnzoGrid_0112] [EnzoGrid_0113] [EnzoGrid_0114] [EnzoGrid_0115] [EnzoGrid_0116] [EnzoGrid_0117] [EnzoGrid_0118] [EnzoGrid_0119] 
+
+Chunk  8 26
+      [EnzoGrid_0003] [EnzoGrid_0120] [EnzoGrid_0121] [EnzoGrid_0122] [EnzoGrid_0123] [EnzoGrid_0124] [EnzoGrid_0125] [EnzoGrid_0126] [EnzoGrid_0127] [EnzoGrid_0128] [EnzoGrid_0129] [EnzoGrid_0130] [EnzoGrid_0131] [EnzoGrid_0132] [EnzoGrid_0133] [EnzoGrid_0134] [EnzoGrid_0135] [EnzoGrid_0136] [EnzoGrid_0137] [EnzoGrid_0138] [EnzoGrid_0139] [EnzoGrid_0140] [EnzoGrid_0141] [EnzoGrid_0142] [EnzoGrid_0143] [EnzoGrid_0144] 
+
+Chunk  9 30
+      [EnzoGrid_0002] [EnzoGrid_0145] [EnzoGrid_0146] [EnzoGrid_0147] [EnzoGrid_0148] [EnzoGrid_0149] [EnzoGrid_0150] [EnzoGrid_0151] [EnzoGrid_0152] [EnzoGrid_0153] [EnzoGrid_0154] [EnzoGrid_0155] [EnzoGrid_0156] [EnzoGrid_0157] [EnzoGrid_0158] [EnzoGrid_0159] [EnzoGrid_0160] [EnzoGrid_0161] [EnzoGrid_0162] [EnzoGrid_0163] [EnzoGrid_0164] [EnzoGrid_0165] [EnzoGrid_0166] [EnzoGrid_0167] [EnzoGrid_0168] [EnzoGrid_0169] [EnzoGrid_0170] [EnzoGrid_0171] [EnzoGrid_0172] [EnzoGrid_0173] 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(In general, this is about as deep as it goes, although in principle we could do lots more sub-chunking.)  This lets you chunk over IO, then chunk over individual objects, and even request things like the number of ghost zones you need in that sub-chunking.&lt;/p&gt;
+
+&lt;h3 id=&#34;chunks-can-retain-state-during-a-long-lived-io-task&#34;&gt;Chunks can retain state during a long-lived IO task&lt;/h3&gt;
+
+&lt;p&gt;We can also store field parameters and reset them during an individual chunking operation.  So for instance, we could have a custom field that requires one field parameter that is then swapped out during the next level of chunking.&lt;/p&gt;
+
+&lt;p&gt;This feature is probably not used much.&lt;/p&gt;
+
+&lt;h2 id=&#34;iteration-and-chunks&#34;&gt;Iteration and Chunks&lt;/h2&gt;
+
+&lt;p&gt;But here&amp;rsquo;s the issue we run into, which actually shows up whenever an error is raised during a chunking operation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;All of this is done via generator expressions.&lt;/strong&gt;  This seemed like the right thing to do!  Just &lt;code&gt;yield&lt;/code&gt; everywhere! It was so hip.&lt;/p&gt;
+
+&lt;p&gt;But, there&amp;rsquo;s an even more problematic part: &lt;strong&gt;often, the generator expressions get unrolled into lists anyway.&lt;/strong&gt;  And, it turns out, I can&amp;rsquo;t blame anybody else for this: this particular core element of yt was something I not only put in, but something I felt rather self-satisfied about.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at this in the routine that does chunking for the &lt;code&gt;io&lt;/code&gt; type in grid index datasets:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ds.index._chunk_io??
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Signature:
+ds.index._chunk_io(
+    dobj,
+    cache=True,
+    local_only=False,
+    preload_fields=None,
+    chunk_sizing=&#39;auto&#39;,
+)
+Docstring: &amp;lt;no docstring&amp;gt;
+Source:   
+    def _chunk_io(self, dobj, cache=True, local_only=False,
+                  preload_fields=None, chunk_sizing=&amp;quot;auto&amp;quot;):
+        # local_only is only useful for inline datasets and requires
+        # implementation by subclasses.
+        if preload_fields is None:
+            preload_fields = []
+        preload_fields, _ = self._split_fields(preload_fields)
+        gfiles = defaultdict(list)
+        gobjs = getattr(dobj._current_chunk, &amp;quot;objs&amp;quot;, dobj._chunk_info)
+        fast_index = dobj._current_chunk._fast_index
+        for g in gobjs:
+            # Force to be a string because sometimes g.filename is None.
+            gfiles[str(g.filename)].append(g)
+        # We can apply a heuristic here to make sure we aren&#39;t loading too
+        # many grids all at once.
+        if chunk_sizing == &amp;quot;auto&amp;quot;:
+            chunk_ngrids = len(gobjs)
+            if chunk_ngrids &amp;gt; 0:
+                nproc = np.float(ytcfg.getint(&amp;quot;yt&amp;quot;, &amp;quot;__global_parallel_size&amp;quot;))
+                chunking_factor = np.ceil(self._grid_chunksize*nproc/chunk_ngrids).astype(&amp;quot;int&amp;quot;)
+                size = max(self._grid_chunksize//chunking_factor, 1)
+            else:
+                size = self._grid_chunksize
+        elif chunk_sizing == &amp;quot;config_file&amp;quot;:
+            size = ytcfg.getint(&amp;quot;yt&amp;quot;, &amp;quot;chunk_size&amp;quot;)
+        elif chunk_sizing == &amp;quot;just_one&amp;quot;:
+            size = 1
+        elif chunk_sizing == &amp;quot;old&amp;quot;:
+            size = self._grid_chunksize
+        else:
+            raise RuntimeError(&amp;quot;%s is an invalid value for the &#39;chunk_sizing&#39; argument.&amp;quot; % chunk_sizing)
+        for fn in sorted(gfiles):
+            gs = gfiles[fn]
+            for grids in (gs[pos:pos + size] for pos
+                          in range(0, len(gs), size)):
+                dc = YTDataChunk(dobj, &amp;quot;io&amp;quot;, grids,
+                        self._count_selection(dobj, grids),
+                        cache = cache, fast_index = fast_index)
+                # We allow four full chunks to be included.
+                with self.io.preload(dc, preload_fields, 
+                            4.0 * size):
+                    yield dc
+File:      ~/yt/yt/yt/geometry/grid_geometry_handler.py
+Type:      method
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There&amp;rsquo;s lots going on here, so I&amp;rsquo;ll just grab a few of the most important lines.  Specifically, I want to highlight this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;        for fn in sorted(gfiles):
+            gs = gfiles[fn]
+            for grids in (gs[pos:pos + size] for pos
+                          in range(0, len(gs), size)):
+                dc = YTDataChunk(dobj, &amp;quot;io&amp;quot;, grids,
+                        self._count_selection(dobj, grids),
+                        cache = cache, fast_index = fast_index)
+                # We allow four full chunks to be included.
+                with self.io.preload(dc, preload_fields, 
+                            4.0 * size):
+                    yield dc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The upshot of this is that we first sorted our grids by which file they&amp;rsquo;re in (on the assumption that we probably want to minimize open/close operations), but then in that, we split them up based on the grid counts we want in each chunk, and then we spit out the chunks (with optional preloading of data) to whatever consumes them.&lt;/p&gt;
+
+&lt;p&gt;As long as we don&amp;rsquo;t do any preloading it&amp;rsquo;s alright for parallel IO, but we&amp;rsquo;re not going to see any of the benefits of this if we ever turn this into a list.&lt;/p&gt;
+
+&lt;p&gt;Now for the Enzo frontend specifically, let&amp;rsquo;s see how the IO routine works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ds.index.io._read_fluid_selection??
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Signature: ds.index.io._read_fluid_selection(chunks, selector, fields, size)
+Docstring: &amp;lt;no docstring&amp;gt;
+Source:   
+    def _read_fluid_selection(self, chunks, selector, fields, size):
+        # This function has an interesting history.  It previously was mandate
+        # to be defined by all of the subclasses.  But, to avoid having to
+        # rewrite a whole bunch of IO handlers all at once, and to allow a
+        # better abstraction for grid-based frontends, we&#39;re now defining it in
+        # the base class.
+        rv = {}
+        nodal_fields = []
+        for field in fields:
+            finfo = self.ds.field_info[field]
+            nodal_flag = finfo.nodal_flag
+            if np.any(nodal_flag):
+                num_nodes = 2**sum(nodal_flag)
+                rv[field] = np.empty((size, num_nodes), dtype=&amp;quot;=f8&amp;quot;)
+                nodal_fields.append(field)
+            else:
+                rv[field] = np.empty(size, dtype=&amp;quot;=f8&amp;quot;)
+        ind = {field: 0 for field in fields}
+        for field, obj, data in self.io_iter(chunks, fields):
+            if data is None:
+                continue
+            if isinstance(selector, GridSelector) and field not in nodal_fields:
+                ind[field] += data.size
+                rv[field] = data.copy()
+            else:
+                ind[field] += obj.select(selector, data, rv[field], ind[field])
+        return rv
+File:      ~/yt/yt/yt/utilities/io_handler.py
+Type:      method
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is in the base class for the IO handler; some of the grid-based frontends implement it.  In this &lt;em&gt;particular&lt;/em&gt; case we aren&amp;rsquo;t unrolling the generator, but you can see some of the issues here anyway: we need to know a fair bit about the IO method (thus the &lt;code&gt;io_iter&lt;/code&gt; method, which I will show below) and we need to do a lot of &lt;code&gt;obj.select&lt;/code&gt; and whatnot.&lt;/p&gt;
+
+&lt;p&gt;This isn&amp;rsquo;t terribly efficient, and it &lt;em&gt;also&lt;/em&gt; means that since we are yielding a generator expression from within a generator expression, we end up having a nested set of loops that don&amp;rsquo;t know their sizes or allow seeking in their stream of yields.&lt;/p&gt;
+
+&lt;p&gt;This makes interoperating with something like dask &amp;ndash; which works best when it knows the sizes and shapes and can do its own distribution &amp;ndash; much more challenging.  And it also means that we have a few layers of relatively opaque routines that conspire to keep us a ways from the file-based abstraction.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at the &lt;code&gt;io_iter&lt;/code&gt; function to see how it works for Enzo.  You can see that it does do a few fun things; most importantly, it keeps the file handle open if it can.  This can save a surprising amount of time on parallel file systems, as it reduces the number of metadata lookups necessary.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ds.index.io.io_iter??
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Signature: ds.index.io.io_iter(chunks, fields)
+Docstring: &amp;lt;no docstring&amp;gt;
+Source:   
+    def io_iter(self, chunks, fields):
+        h5_dtype = self._field_dtype
+        for chunk in chunks:
+            fid = None
+            filename = -1
+            for obj in chunk.objs:
+                if obj.filename is None: continue
+                if obj.filename != filename:
+                    # Note one really important thing here: even if we do
+                    # implement LRU caching in the _read_obj_field function,
+                    # we&#39;ll still be doing file opening and whatnot.  This is a
+                    # problem, but one we can return to.
+                    if fid is not None:
+                        fid.close()
+                    fid = h5py.h5f.open(b(obj.filename), h5py.h5f.ACC_RDONLY)
+                    filename = obj.filename
+                for field in fields:
+                    nodal_flag = self.ds.field_info[field].nodal_flag
+                    dims = obj.ActiveDimensions[::-1] + nodal_flag[::-1]
+                    data = np.empty(dims, dtype=h5_dtype)
+                    yield field, obj, self._read_obj_field(
+                        obj, field, (fid, data))
+        if fid is not None:
+            fid.close()
+File:      ~/yt/yt/yt/frontends/enzo/io.py
+Type:      method
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So to recap, right now: making chunks work nicely with non-yt operations is tricky because of some early design decisions&lt;/p&gt;
+
+&lt;h2 id=&#34;next-up&#34;&gt;Next Up&lt;/h2&gt;
+
+&lt;p&gt;In the next blog post, I&amp;rsquo;m going to present a bit about:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How particle IO is handled &amp;ndash; and the differences between grid IO (which has lots of differently-&lt;em&gt;shaped&lt;/em&gt; chunks) and particle IO&lt;/li&gt;
+&lt;li&gt;Some efforts to refactor particle IO (before it gets released!)&lt;/li&gt;
+&lt;li&gt;A future for how to make all this stuff work better with dask (yes, really, I promise)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Refactoring yt Frontends - Part 2</title>
@@ -698,7 +1074,7 @@ sp2 =&amp;gt;  12 3673 480 29 146 200 77 419 3697 400
     <item>
       <title>DDD Update</title>
       <link>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 -0400</pubDate>
       
       <guid>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</guid>
       <description></description>
