@@ -11,6 +11,17 @@
     
     
     <item>
+      <title>Kaitai Struct and Scientific Data</title>
+      <link>https://matthewturk.github.io/post/kaitai-struct-scientific-data/</link>
+      <pubDate>Thu, 20 Jun 2019 13:15:41 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/kaitai-struct-scientific-data/</guid>
+      <description>tl;dr: kaitai struct is awesome.
+File formats can be pretty annoying &amp;ndash; especially when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.
+What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&amp;rsquo;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way.</description>
+    </item>
+    
+    <item>
       <title>Refactoring yt Frontends - Part 3</title>
       <link>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</link>
       <pubDate>Mon, 17 Jun 2019 22:32:09 -0400</pubDate>

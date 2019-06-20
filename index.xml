@@ -6,10 +6,264 @@
     <description>Recent content on mjt</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jun 2019 13:06:02 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 20 Jun 2019 13:15:41 -0500</lastBuildDate>
     
 	    <atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kaitai Struct and Scientific Data</title>
+      <link>https://matthewturk.github.io/post/kaitai-struct-scientific-data/</link>
+      <pubDate>Thu, 20 Jun 2019 13:15:41 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/kaitai-struct-scientific-data/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;: kaitai struct is awesome.&lt;/p&gt;
+
+&lt;p&gt;File formats can be pretty annoying &amp;ndash; &lt;em&gt;especially&lt;/em&gt; when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.&lt;/p&gt;
+
+&lt;p&gt;What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO.  This means that any attempt to update things (which I&amp;rsquo;ve alluded to in &lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part1/&#34; target=&#34;_blank&#34;&gt;these&lt;/a&gt; &lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part2/&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt; &lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part3/&#34; target=&#34;_blank&#34;&gt;posts&lt;/a&gt;) requires a fair bit of care to make sure that the process is not disruptive in any way.&lt;/p&gt;
+
+&lt;p&gt;In preparation for this, I set out to start writing down some of the file formats in a flat text format by going through my old notes and the code in the various yt &lt;code&gt;io.py&lt;/code&gt; files.  Before too long, I decided to instead start utilizing &lt;a href=&#34;kaitai.io&#34; target=&#34;_blank&#34;&gt;kaitai struct&lt;/a&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve found Kaitai struct to be useful in other projects &amp;ndash; for instance, I have been using it as a method to reverse engineer the data files from an old DOS game I used to play with my brother back in the early 90s.  The combination of the simple (but reasonably flexible) syntax, the ruby-based &lt;a href=&#34;https://github.com/kaitai-io/kaitai_struct_visualizer&#34; target=&#34;_blank&#34;&gt;visualizer&lt;/a&gt; and the &lt;a href=&#34;https://ide.kaitai.io&#34; target=&#34;_blank&#34;&gt;WebIDE&lt;/a&gt; make it really good for exploratory reverse engineering.&lt;/p&gt;
+
+&lt;p&gt;And, it generates code!  You can run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ksc -t python somefile.ksy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it&amp;rsquo;ll generate a python reader.  It can also generate javascript, java, go, etc, and I think rust is in the works.&lt;/p&gt;
+
+&lt;p&gt;So the question became: could we use kaitai struct for documenting a data format like, say, the binary format from &lt;a href=&#34;https://wwwmpa.mpa-garching.mpg.de/gadget/&#34; target=&#34;_blank&#34;&gt;GADGET-2&lt;/a&gt;?  After that we can really stretch our legs and try it on more complicated ones, but let&amp;rsquo;s start with this one.&lt;/p&gt;
+
+&lt;h2 id=&#34;gadget-2-data-format&#34;&gt;Gadget-2 Data Format&lt;/h2&gt;
+
+&lt;p&gt;The (vanilla) Gadget-2 data format is reasonably straightforward, and it&amp;rsquo;s even described in some detail in the Gadget manual.  You have a header, then sets of records.  Each of these sets of records has a separating value (sometimes!).  According to table 3 in the user guide, the file looks something like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Header&lt;/li&gt;
+&lt;li&gt;Position&lt;/li&gt;
+&lt;li&gt;Velocity&lt;/li&gt;
+&lt;li&gt;ID&lt;/li&gt;
+&lt;li&gt;Mass (only for variable mass particles)&lt;/li&gt;
+&lt;li&gt;Energy (only for gas particles)&lt;/li&gt;
+&lt;li&gt;Density (Only for gas particles)&lt;/li&gt;
+&lt;li&gt;Smoothing length (Only for gas particles)&lt;/li&gt;
+&lt;li&gt;Potential (if enabled in makefile)&lt;/li&gt;
+&lt;li&gt;Acceleration (if enabled in makefile)&lt;/li&gt;
+&lt;li&gt;Endtime (if enabled in makefile)&lt;/li&gt;
+&lt;li&gt;Timestep (if enabled in makefile)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gadget-2 is probably the most widely-used astrophysics simulation code, but one of its defining characteristics is that it is quite readily hackable to include additional parameters, additional particle attributes, and lots more physics.  This usually means that when you receive binary gadget data, you need to know what to expect in the file &amp;ndash; the individual file formats are typically not self-describing.&lt;/p&gt;
+
+&lt;p&gt;The header is often left unchanged, at least in the data I&amp;rsquo;ve seen.  In yt we have a simple specification system to allow for modifications to both the fields and the header, but the &amp;ldquo;vanilla&amp;rdquo; header looks something like this (in python &lt;a href=&#34;https://docs.python.org/3/library/struct.html&#34; target=&#34;_blank&#34;&gt;struct&lt;/a&gt; notation):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;default      = ((&#39;Npart&#39;, 6, &#39;i&#39;),
+                (&#39;Massarr&#39;, 6, &#39;d&#39;),
+                (&#39;Time&#39;, 1, &#39;d&#39;),
+                (&#39;Redshift&#39;, 1, &#39;d&#39;),
+                (&#39;FlagSfr&#39;, 1, &#39;i&#39;),
+                (&#39;FlagFeedback&#39;, 1, &#39;i&#39;),
+                (&#39;Nall&#39;, 6, &#39;i&#39;),
+                (&#39;FlagCooling&#39;, 1, &#39;i&#39;),
+                (&#39;NumFiles&#39;, 1, &#39;i&#39;),
+                (&#39;BoxSize&#39;, 1, &#39;d&#39;),
+                (&#39;Omega0&#39;, 1, &#39;d&#39;),
+                (&#39;OmegaLambda&#39;, 1, &#39;d&#39;),
+                (&#39;HubbleParam&#39;, 1, &#39;d&#39;),
+                (&#39;FlagAge&#39;, 1, &#39;i&#39;),
+                (&#39;FlagMetals&#39;, 1, &#39;i&#39;),
+                (&#39;NallHW&#39;, 6, &#39;i&#39;),
+                (&#39;unused&#39;, 16, &#39;i&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Before we get any further, let&amp;rsquo;s check if we can parse &lt;em&gt;just&lt;/em&gt; this with kaitai struct.&lt;/p&gt;
+
+&lt;h2 id=&#34;our-first-ksy-file&#34;&gt;Our First ksy File&lt;/h2&gt;
+
+&lt;p&gt;In its simplest form, Kaitai specifications allow specifying the format of data and the order that different types of data will arrive in.  The base data types it has are standard numerical data types, bytes, strings, arrays and so on.&lt;/p&gt;
+
+&lt;p&gt;Kaitai has a little bit of metadata we will add at the beginning, so we start with this preamble:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;meta:
+  id: gadget_format1
+  endian: le
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This gives it a name and notes it as little endian.&lt;/p&gt;
+
+&lt;p&gt;If we wanted to build a parser for the header, the most obvious thing we could do would be to parse the different items in order.  The very first item is an array of 6 integers that describes the number of particles in the simulation, separated by each particle type.  This comes in a sequence starting at the beginning of our &amp;ldquo;stream,&amp;rdquo; so we can use the &lt;code&gt;seq&lt;/code&gt; top-level type to start parsing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;seq:
+  - id: recsize_0
+    type: u4
+  - id: npart1
+    type: u4
+  - id: npart2
+    type: u4
+  - id: npart3
+    type: u4
+  - id: npart4
+    type: u4
+  - id: npart5
+    type: u4
+  - id: npart6
+    type: u4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;recsize_0&lt;/code&gt; here is because we know that our header will be preceded by a value indicating how many bytes are in it &amp;ndash; this is a common practice, but not universal.  And I&amp;rsquo;ve said that each of the variables (&lt;code&gt;npart1&lt;/code&gt; &amp;hellip; &lt;code&gt;npart6&lt;/code&gt;) is of type &lt;code&gt;u4&lt;/code&gt;, which means &amp;ldquo;unsigned four byte integers.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;This isn&amp;rsquo;t that efficient, though &amp;ndash; each particle type has its own variable.  KS provides us with the option to &lt;code&gt;repeat&lt;/code&gt; which can take an expression.  Now we can enable grabbing arrays of values, so we can use that, instead.  Let&amp;rsquo;s change this to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;seq:
+  - id: recsize_0
+    type: u4
+  - id: npart
+    type: u4
+    repeat: expr
+    repeat-expr: 6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(You can also do &lt;code&gt;repeat: eos&lt;/code&gt; for end of stream and &lt;code&gt;repeat-until&lt;/code&gt;.)  The result now is that &lt;code&gt;npart&lt;/code&gt; is an array &amp;ndash; so later on when we loop, we can look it up by using the special variable &lt;code&gt;_index&lt;/code&gt; inside another &lt;code&gt;repeat-expr&lt;/code&gt;.  We&amp;rsquo;ll look at that a bit later.&lt;/p&gt;
+
+&lt;h2 id=&#34;data-types-in-ksy&#34;&gt;Data Types in ksy&lt;/h2&gt;
+
+&lt;p&gt;Parsing the entire header in this way is certainly possible, but it also can be a bit clunky &amp;ndash; and can be harder for maintainability.  Instead of writing all of our header values out, let&amp;rsquo;s use a user-defined type.&lt;/p&gt;
+
+&lt;p&gt;The top-level key &lt;code&gt;types&lt;/code&gt; is where user-defined types are described; you can do some pretty fancy things like supply parameters to them, but we&amp;rsquo;ll just use it to hold the data we know.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;types:
+  gadget_header:
+    seq:
+      ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, in our top-level &lt;code&gt;seq&lt;/code&gt; section, we can just reference the header type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;seq:
+  -id: header
+   type: gadget_header
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;big-arrays-and-lazy-reading&#34;&gt;Big Arrays and Lazy-reading&lt;/h2&gt;
+
+&lt;p&gt;The tricky bit comes in when we get to our arrays of values.  Kaitai has several different languages it can generate for &amp;ndash; Python, C#, C++, ruby, and others.  When reading lots of little items, python can get bogged down.  For instance, this is the most obvious way of describing one of the position arrays:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;  -id: coordinates_part1
+   type: f4
+   repeat: expr
+   repeat-expr: header.npart[0] * 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The generated python code will read a series of 4-byte objects, one at a time, and append them to a list.  The combination of these things results in a lot of overhead from the python language runtime and the type system, so it ends up being rather slow.&lt;/p&gt;
+
+&lt;p&gt;One way to get around this is to use what&amp;rsquo;s called an &lt;code&gt;instance&lt;/code&gt;.  This allows parsing to happen only when requested, and it can also exist outside of the rest of the parsing structure.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Important note&lt;/strong&gt;: There are some fiddly issues with making &lt;code&gt;instance&lt;/code&gt; objects work and how they relate to substreams of IO which I&amp;rsquo;m going to sidestep here.  Let&amp;rsquo;s just assume that it works, instead!&lt;/p&gt;
+
+&lt;p&gt;By default, we can read in bytes for these individual objects; this lets us read a big block of data (which we can deal with later &amp;ndash; for instance, inside python!) and only parse into individual floats when we request.  This might look something like defining a custom type with both a &lt;code&gt;seq&lt;/code&gt; and an &lt;code&gt;instances&lt;/code&gt; section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;types:
+  f4_array_type:
+    params:
+      - id: count
+        type: u4
+    seq:
+      - id: buffer
+        size: 4 * count
+    instances:
+      values:
+        pos: 0
+        size-eos: true
+        id: entries:
+        type: f4
+        repeat: eos
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we are saying, just read the bytes.  But, if anybody asks, this is what the attribute &lt;code&gt;values&lt;/code&gt; should look like &amp;ndash; you should parse it starting at 0, go to the end of the stream, and assume it&amp;rsquo;s all &lt;code&gt;f4&lt;/code&gt;-typed items.  (I am not certain that both &lt;code&gt;size-eos&lt;/code&gt; and &lt;code&gt;repeat-eos&lt;/code&gt; are necessary.)&lt;/p&gt;
+
+&lt;p&gt;With these components, we should be able to parse our entire gadget binary file, a&lt;/p&gt;
+
+&lt;h2 id=&#34;working-implementation&#34;&gt;Working Implementation&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve gotten this to the point that it mostly works, and I&amp;rsquo;ve been committing to &lt;a href=&#34;https://github.com/data-exp-lab/astro-data-formats&#34; target=&#34;_blank&#34;&gt;data-exp-lab/astro-data-formats&lt;/a&gt;.  I ended up splitting the array stuff into its own parameterized type that I store in a separate file, so that we can potentially reuse it in other file formats.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s some of the high-level stuff:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;meta:
+  id: gadget_format1
+  endian: le
+  ks-opaque-types: true
+  imports:
+    - array_buffer
+seq:
+  - id: gadget_header
+    type: header
+  - id: coordinates
+    type: particle_fields(&#39;f4&#39;, 3)
+  - id: velocities
+    type: particle_fields(&#39;f4&#39;, 3)
+  - id: particle_ids
+    type: particle_fields(&#39;u4&#39;, 1)
+types:
+  header:
+    seq:
+      - id: recsize_0
+        type: u4
+      - id: npart
+        type: u4
+        repeat: expr
+        repeat-expr: 6
+      - id: massarr
+        type: f8
+        repeat: expr
+        repeat-expr: 6
+
+[ ... ]
+
+    particle_fields:
+    params:
+      - id: field_type
+        type: str
+      - id: components
+        type: u1
+    seq:
+      - id: magic1
+        type: u4
+      - id: fields
+        type: field(_index, components, field_type)
+        repeat: expr
+        repeat-expr: 6
+      - id: magic2
+        type: u4
+  field:
+    params:
+      - id: index
+        type: u1
+      - id: components
+        type: u1
+      - id: field_type
+        type: str
+    seq:
+      - id: field
+        size: _root.gadget_header.npart[index] * components * 4
+        type: array_buffer(field_type)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then the &lt;code&gt;array_buffer&lt;/code&gt; is an instance-based way of getting the raw bytes.  Right now this is reasonably fast, and there&amp;rsquo;s a possibility I could simplify the structure and flatten it out a bit, but it works exactly as I want it to.&lt;/p&gt;
+
+&lt;h2 id=&#34;future&#34;&gt;Future&lt;/h2&gt;
+
+&lt;p&gt;The next thing I&amp;rsquo;m going to do is work on porting the RAMSES frontend to this format.  That will enable some more exploration and validation of the different outputs, and hopefully use that as guidance for any future modifications to the IO systems.  One of the stickier wickets I&amp;rsquo;ve seen is that it&amp;rsquo;s possible to use memory-mapping, but I think there are some subtle places where data is read into memory and copied &amp;ndash; this kind of gets rid of the purpose of the memory mapping.  I hope to explore and dig more deeply into this later.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, I believe a combination of ksy files for binary formats and a ksy-&lt;em&gt;like&lt;/em&gt; dialect for describing the connection between chunks of data and physical space locations will simplify a considerable amount of data analysis.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d also like to thank @GreyCat on gitter, who was super helpful in helping me work out some of the bits I wasn&amp;rsquo;t clear on.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>OSHIW: NumFOCUS Sustainability</title>
@@ -1083,7 +1337,7 @@ sp2 =&amp;gt;  12 3673 480 29 146 200 77 419 3697 400
     <item>
       <title>DDD Update</title>
       <link>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</link>
-      <pubDate>Wed, 24 Apr 2019 00:00:00 -0400</pubDate>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 -0500</pubDate>
       
       <guid>https://matthewturk.github.io/talk/2019-04-24-ddd-update/</guid>
       <description></description>
