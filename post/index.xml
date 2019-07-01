@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Loading data in yt: Can we make it better?</title>
+      <link>https://matthewturk.github.io/post/loading_data_in_yt/</link>
+      <pubDate>Mon, 01 Jul 2019 14:47:41 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/loading_data_in_yt/</guid>
+      <description>In this blogpost, I walk through the annoying bits about loading unknown data into yt.</description>
+    </item>
+    
+    <item>
       <title>Whole Tale: Exploration, Analysis and Reproducibility</title>
       <link>https://matthewturk.github.io/post/exploration-whole-tale/</link>
       <pubDate>Fri, 28 Jun 2019 10:32:44 -0500</pubDate>
@@ -46,7 +55,8 @@ Chunks have spatial attributes Data chunks in yt have a set of special attribute
       <pubDate>Mon, 10 Jun 2019 12:59:33 -0500</pubDate>
       
       <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part2/</guid>
-      <description></description>
+      <description>SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &amp;hellip; didn&amp;rsquo;t! So it looks like there&amp;rsquo;ll be a part three in the series.
+Operations on Data Objects In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the &amp;quot;io&amp;quot; style of chunking, where the order in which data arrives is not important.</description>
     </item>
     
     <item>
