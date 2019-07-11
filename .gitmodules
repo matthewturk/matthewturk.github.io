@@ -6,5 +6,5 @@
 	url = https://github.com/rajgoel/reveal.js-plugins.git
 [submodule "public"]
 	path = public
-	url = https://github.com/matthewturk/matthewturk.github.io.git
-	branch = master
+	url = https://github.com/matthewturk/matthewturk.github.io
+	branch = gh-pages
