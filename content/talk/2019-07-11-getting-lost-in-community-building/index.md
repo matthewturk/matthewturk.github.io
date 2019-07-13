@@ -54,7 +54,7 @@ projects = []
 
 # Links (optional).
 url_pdf = ""
-url_video = ""
+url_video = "https://www.youtube.com/watch?v=rYIQv2QPPHY"
 url_code = ""
 
 # Featured image
