@@ -45,8 +45,7 @@ What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the pr
       <pubDate>Mon, 17 Jun 2019 22:32:09 -0400</pubDate>
       
       <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</guid>
-      <description>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &amp;ldquo;chunks&amp;rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&amp;rsquo;t be obvious from the previous blog posts.
-Chunks have spatial attributes Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.</description>
+      <description></description>
     </item>
     
     <item>
