@@ -3,14 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://matthewturk.github.io/talk/2019-07-11-getting-lost-in-community-building/</loc>
-    <lastmod>2019-07-13T14:38:05-05:00</lastmod>
+    <loc>https://matthewturk.github.io/</loc>
+    <lastmod>2019-07-16T14:28:36-05:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://matthewturk.github.io/</loc>
+    <loc>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</loc>
+    <lastmod>2019-07-16T14:28:36-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/talk/2019-07-11-getting-lost-in-community-building/</loc>
     <lastmod>2019-07-13T14:38:05-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

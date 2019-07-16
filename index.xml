@@ -6,10 +6,323 @@
     <description>Recent content on mjt</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jul 2019 14:02:38 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jul 2019 14:28:36 -0500</lastBuildDate>
     
 	    <atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>yt: Internal and External Ecosystems</title>
+      <link>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</link>
+      <pubDate>Tue, 16 Jul 2019 14:28:36 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</guid>
+      <description>
+
+&lt;p&gt;I think I&amp;rsquo;ve talked myself into proposing a big change in yt.  I&amp;rsquo;m not the &amp;ldquo;boss&amp;rdquo; of yt, so it might not happen, but I&amp;rsquo;ve kind of worked up my courage to make a serious suggestion.&lt;/p&gt;
+
+&lt;p&gt;This last week I have been at &lt;a href=&#34;https://scipy2019.scipy.org/&#34; target=&#34;_blank&#34;&gt;SciPy 2019&lt;/a&gt; and I had the opportunity to see a lot of talks.&lt;/p&gt;
+
+&lt;p&gt;There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&amp;rsquo;m going to stick to just one in particular.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://matthewrocklin.com/&#34; target=&#34;_blank&#34;&gt;Matt Rocklin&lt;/a&gt; gave a talk about &lt;a href=&#34;https://www.youtube.com/watch?v=Q0DsdiY-jiw&#34; target=&#34;_blank&#34;&gt;refactoring the ecosystem to prepare for heterogeneous computing&lt;/a&gt;  (you should go watch it!).  More specifically, though, what it seemed to me was that it was a talk more about an opportunity to avoid fragmentation and think more carefully about how arrays and APIs are thought of and used.  That got me thinking about something I&amp;rsquo;ve kind of touched on in previous posts (&lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part1/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part2/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://matthewturk.github.io/post/refactoring-yt-frontends-part3/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;) &amp;ndash; basically, that yt is pretty monolithic, and that&amp;rsquo;s not really the best way to evolve with the ecosystem.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll be using &lt;a href=&#34;https://github.com/mgedmin/findimports&#34; target=&#34;_blank&#34;&gt;findimports&lt;/a&gt; for exploring how monolithic it &lt;em&gt;is&lt;/em&gt; versus how monolithic it &lt;em&gt;appears to be&lt;/em&gt;.  Basically, I want to see: is it one repo with lots of interconnections, or is it essentially a couple repos?&lt;/p&gt;
+
+&lt;p&gt;(Also at the end I&amp;rsquo;ll give a pitch for why this is relevant, so if you&amp;rsquo;re even remotely intrigued, at &lt;em&gt;least&lt;/em&gt; scroll down to the section labeled &amp;ldquo;OK, the boring stuff is over.&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pickle
+import findimports
+yt_imports = pickle.load(open(&amp;quot;yt/yt/import_output.pkl&amp;quot;, &amp;quot;rb&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The structure of this is a set of keys that are strings of the filename/modulename, with values that are the objects in question.  The &lt;code&gt;findimports&lt;/code&gt; objects have an attribute &lt;code&gt;imports&lt;/code&gt; which is what we&amp;rsquo;re going to look at first, but they also have an &lt;code&gt;imported_names&lt;/code&gt; attribute which is the list of names that get imported, in the form of &lt;code&gt;ImportInfo&lt;/code&gt; objects.  These have &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;filename&lt;/code&gt;, &lt;code&gt;level&lt;/code&gt; and &lt;code&gt;lineno&lt;/code&gt; to show where and what they are.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;yt_imports[&#39;yt.visualization.plot_window&#39;].imports
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;{&#39;collections&#39;,
+ &#39;distutils.version&#39;,
+ &#39;matplotlib&#39;,
+ &#39;matplotlib.mathtext&#39;,
+ &#39;matplotlib.ticker&#39;,
+ &#39;numbers&#39;,
+ &#39;numpy&#39;,
+ &#39;pyparsing&#39;,
+ &#39;sys&#39;,
+ &#39;types&#39;,
+ &#39;unyt.exceptions&#39;,
+ &#39;yt&#39;,
+ &#39;yt.data_objects.image_array&#39;,
+ &#39;yt.frontends.ytdata.data_structures&#39;,
+ &#39;yt.funcs&#39;,
+ &#39;yt.units.unit_object&#39;,
+ &#39;yt.units.unit_registry&#39;,
+ &#39;yt.units.yt_array&#39;,
+ &#39;yt.utilities.exceptions&#39;,
+ &#39;yt.utilities.math_utils&#39;,
+ &#39;yt.utilities.orientation&#39;,
+ &#39;yt.visualization.base_plot_types&#39;,
+ &#39;yt.visualization.fixed_resolution&#39;,
+ &#39;yt.visualization.geo_plot_utils&#39;,
+ &#39;yt.visualization.plot_container&#39;,
+ &#39;yt.visualization.plot_modifications&#39;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There happen to be a fair number of things in here that are external to yt!  So, let&amp;rsquo;s set up a filtering process for those.  We&amp;rsquo;ll filter the &lt;code&gt;name&lt;/code&gt; that is imported.&lt;/p&gt;
+
+&lt;p&gt;One thing I should note is that yt does many, but not &lt;em&gt;all&lt;/em&gt;, of its imports in absolute form, which maybe isn&amp;rsquo;t &amp;hellip; so great &amp;hellip; but which lets us do this more easily.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;filter_imports = lambda a: [_ for _ in sorted(a, key=lambda b: b.name) if _.name.startswith(&amp;quot;yt.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll apply it to the &lt;code&gt;imported_names&lt;/code&gt; attribute, since we&amp;rsquo;re interested in characterizing how things are related and interweaved.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import_lists = {_ : filter_imports(yt_imports[_].imported_names) for _ in yt_imports}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import_lists[&#39;yt.visualization.plot_window&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[ImportInfo(&#39;yt.data_objects.image_array.ImageArray&#39;, &#39;yt/visualization/plot_window.py&#39;, 40, 0),
+ ImportInfo(&#39;yt.frontends.ytdata.data_structures.YTSpatialPlotDataset&#39;, &#39;yt/visualization/plot_window.py&#39;, 42, 0),
+ ImportInfo(&#39;yt.funcs.ensure_list&#39;, &#39;yt/visualization/plot_window.py&#39;, 44, 0),
+ ImportInfo(&#39;yt.funcs.fix_axis&#39;, &#39;yt/visualization/plot_window.py&#39;, 45, 0),
+ ImportInfo(&#39;yt.funcs.fix_unitary&#39;, &#39;yt/visualization/plot_window.py&#39;, 45, 0),
+ ImportInfo(&#39;yt.funcs.iterable&#39;, &#39;yt/visualization/plot_window.py&#39;, 44, 0),
+ ImportInfo(&#39;yt.funcs.mylog&#39;, &#39;yt/visualization/plot_window.py&#39;, 44, 0),
+ ImportInfo(&#39;yt.funcs.obj_length&#39;, &#39;yt/visualization/plot_window.py&#39;, 45, 0),
+ ImportInfo(&#39;yt.load&#39;, &#39;yt/visualization/plot_window.py&#39;, 737, 0),
+ ImportInfo(&#39;yt.load&#39;, &#39;yt/visualization/plot_window.py&#39;, 1373, 0),
+ ImportInfo(&#39;yt.load&#39;, &#39;yt/visualization/plot_window.py&#39;, 1557, 0),
+ ImportInfo(&#39;yt.load&#39;, &#39;yt/visualization/plot_window.py&#39;, 2067, 0),
+ ImportInfo(&#39;yt.units.unit_object.Unit&#39;, &#39;yt/visualization/plot_window.py&#39;, 47, 0),
+ ImportInfo(&#39;yt.units.unit_registry.UnitParseError&#39;, &#39;yt/visualization/plot_window.py&#39;, 49, 0),
+ ImportInfo(&#39;yt.units.yt_array.YTArray&#39;, &#39;yt/visualization/plot_window.py&#39;, 51, 0),
+ ImportInfo(&#39;yt.units.yt_array.YTQuantity&#39;, &#39;yt/visualization/plot_window.py&#39;, 51, 0),
+ ImportInfo(&#39;yt.utilities.exceptions.YTCannotParseUnitDisplayName&#39;, &#39;yt/visualization/plot_window.py&#39;, 57, 0),
+ ImportInfo(&#39;yt.utilities.exceptions.YTDataTypeUnsupported&#39;, &#39;yt/visualization/plot_window.py&#39;, 59, 0),
+ ImportInfo(&#39;yt.utilities.exceptions.YTInvalidFieldType&#39;, &#39;yt/visualization/plot_window.py&#39;, 60, 0),
+ ImportInfo(&#39;yt.utilities.exceptions.YTPlotCallbackError&#39;, &#39;yt/visualization/plot_window.py&#39;, 58, 0),
+ ImportInfo(&#39;yt.utilities.exceptions.YTUnitNotRecognized&#39;, &#39;yt/visualization/plot_window.py&#39;, 61, 0),
+ ImportInfo(&#39;yt.utilities.math_utils.ortho_find&#39;, &#39;yt/visualization/plot_window.py&#39;, 53, 0),
+ ImportInfo(&#39;yt.utilities.orientation.Orientation&#39;, &#39;yt/visualization/plot_window.py&#39;, 55, 0)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This still isn&amp;rsquo;t &lt;em&gt;incredibly&lt;/em&gt; useful, since we kind of want to look at imports at a higher level.  For instance, I want to know what &lt;code&gt;yt.visualization.plot_window&lt;/code&gt; imports from in the broad cross-section of the code base.  So let&amp;rsquo;s write something to collapse the package &lt;em&gt;under&lt;/em&gt; yt that we import from.  We used &lt;code&gt;startswith(&amp;quot;.yt&amp;quot;)&lt;/code&gt; earlier, so it&amp;rsquo;ll be safe to do a split here.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;collapse_subpackage = lambda a: set(_.name.split(&amp;quot;.&amp;quot;)[1] for _ in a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;collapse_subpackage(import_lists[&#39;yt.visualization.plot_window&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;{&#39;data_objects&#39;, &#39;frontends&#39;, &#39;funcs&#39;, &#39;load&#39;, &#39;units&#39;, &#39;utilities&#39;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Interesting.  We import from frontends?!  I guess I kind of missed that earlier.  Let&amp;rsquo;s see if we can figure out the connections between different modules to see if anything stands out.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from collections import defaultdict
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subpackage_imports = defaultdict(set)
+for fn, v in import_lists.items():
+    if not fn.startswith(&amp;quot;yt.&amp;quot;): continue # Get rid of our tests, etc.
+    subpackage = fn.split(&amp;quot;.&amp;quot;)[1]
+    subpackage_imports[subpackage].update(collapse_subpackage(v))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s break this down before we go any further &amp;ndash; for starters, not &lt;em&gt;everything&lt;/em&gt; is an absolute import.  So that makes things a bit tricky!  But we can deal with that later.  Let&amp;rsquo;s first see what all we have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subpackage_imports.keys()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;dict_keys([&#39;__init__&#39;, &#39;api&#39;, &#39;arraytypes&#39;, &#39;config&#39;, &#39;convenience&#39;, &#39;exthook&#39;, &#39;funcs&#39;, &#39;mods&#39;, &#39;pmods&#39;, &#39;startup_tasks&#39;, &#39;testing&#39;, &#39;analysis_modules&#39;, &#39;data_objects&#39;, &#39;extensions&#39;, &#39;extern&#39;, &#39;fields&#39;, &#39;frontends&#39;, &#39;geometry&#39;, &#39;tests&#39;, &#39;units&#39;, &#39;utilities&#39;, &#39;visualization&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A few things stand out right away.  Some of these we can immediately get rid of and not consider.  For instance, &lt;code&gt;pmods&lt;/code&gt; is an MPI-aware importer, &lt;code&gt;mods&lt;/code&gt; is a pretty old-school approach to yt importing, and we will just ignore &lt;code&gt;testing&lt;/code&gt;, &lt;code&gt;analysis_modules&lt;/code&gt;, &lt;code&gt;extensions&lt;/code&gt; and &lt;code&gt;extern&lt;/code&gt; since they&amp;rsquo;re (in order) testing utilities, gone, a fake hook system, and &amp;ldquo;vendored&amp;rdquo; libraries that we should probably get rid of and just make requirements anyway.  &lt;code&gt;units&lt;/code&gt; is now part of &lt;a href=&#34;https://github.com/yt-project/unyt&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;unyt&lt;/code&gt;&lt;/a&gt; and some of the others are by-design grabbing lots of stuff.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;blacklist = [&amp;quot;testing&amp;quot;, &amp;quot;analysis_modules&amp;quot;, &amp;quot;extensions&amp;quot;, &amp;quot;extern&amp;quot;, &amp;quot;pmods&amp;quot;,
+             &amp;quot;mods&amp;quot;, &amp;quot;__init__&amp;quot;, &amp;quot;api&amp;quot;, &amp;quot;arraytypes&amp;quot;, &amp;quot;config&amp;quot;, &amp;quot;convenience&amp;quot;,
+            &amp;quot;exthook&amp;quot;, &amp;quot;funcs&amp;quot;, &amp;quot;tests&amp;quot;, &amp;quot;units&amp;quot;, &amp;quot;startup_tasks&amp;quot;]
+
+list(subpackage_imports.pop(_, None) for _ in blacklist);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We just want to see the interrelationships, so we&amp;rsquo;ll look for N-by-N collisions, where N is just the values that show up as keys.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;collide_with = set(subpackage_imports.keys())
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;collisions = {_: collide_with.intersection(subpackage_imports[_]) for _ in subpackage_imports}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here we have it, the moment of truth!  What do we see &amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print({_:len(__) for _, __ in collisions.items()})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;{&#39;data_objects&#39;: 6, &#39;fields&#39;: 5, &#39;frontends&#39;: 6, &#39;geometry&#39;: 5, &#39;utilities&#39;: 6, &#39;visualization&#39;: 6}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Huh.  Well, that was not the dramatic, amazing reveal I&amp;rsquo;d hoped for.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subpackage_imports = defaultdict(set)
+for fn, v in import_lists.items():
+    if not fn.startswith(&amp;quot;yt.&amp;quot;) or &amp;quot;tests&amp;quot; in fn: continue # Get rid of our tests, etc.
+    subpackage = fn.split(&amp;quot;.&amp;quot;)[1]
+    subpackage_imports[subpackage].update(collapse_subpackage(v))
+list(subpackage_imports.pop(_, None) for _ in blacklist);
+collisions = {_: collide_with.intersection(subpackage_imports[_]) for _ in subpackage_imports}
+print({_:len(__) for _, __ in collisions.items()})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;{&#39;data_objects&#39;: 6, &#39;fields&#39;: 4, &#39;frontends&#39;: 6, &#39;geometry&#39;: 4, &#39;utilities&#39;: 5, &#39;visualization&#39;: 6}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It gets a little bit better, but honestly, not much.  Our most isolated package &amp;ndash; by this (likely flawed) method &amp;ndash; are the &lt;code&gt;geometry&lt;/code&gt; and &lt;code&gt;fields&lt;/code&gt; packages.  So let&amp;rsquo;s break down a bit more what we&amp;rsquo;re seeing, by not filtering quite as much, and by setting up a reverse mapping.  And let&amp;rsquo;s do it for both the collapsed name and the non-collapsed name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subpackage_imports = defaultdict(set)
+imported_by = defaultdict(list)
+for fn, v in import_lists.items():
+    if not fn.startswith(&amp;quot;yt.&amp;quot;) or &amp;quot;tests&amp;quot; in fn: continue # Get rid of our tests, etc.
+    subpackage = fn.split(&amp;quot;.&amp;quot;)[1]
+    subpackage_imports[subpackage].update(set(_.name for _ in v))
+    [imported_by[_.name].append(fn) for _ in v]
+    [imported_by[_].append(fn) for _ in collapse_subpackage(v)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now we might be getting somewhere.  So now we can look up for any given import which files have imported it.  Let&amp;rsquo;s see what imports the progress bar:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;imported_by[&amp;quot;yt.funcs.get_pbar&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[&#39;yt.__init__&#39;,
+ &#39;yt.data_objects.particle_trajectories&#39;,
+ &#39;yt.data_objects.level_sets.contour_finder&#39;,
+ &#39;yt.frontends.athena_pp.data_structures&#39;,
+ &#39;yt.frontends.enzo.data_structures&#39;,
+ &#39;yt.frontends.enzo_p.data_structures&#39;,
+ &#39;yt.geometry.particle_geometry_handler&#39;,
+ &#39;yt.utilities.minimal_representation&#39;,
+ &#39;yt.utilities.particle_generator&#39;,
+ &#39;yt.utilities.answer_testing.framework&#39;,
+ &#39;yt.visualization.streamlines&#39;,
+ &#39;yt.visualization.volume_rendering.old_camera&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nice.  Now, let&amp;rsquo;s look at visualization.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;imported_by[&amp;quot;yt.visualization.api.SlicePlot&amp;quot;], imported_by[&amp;quot;yt.visualization.plot_window.SlicePlot&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;([&#39;yt.__init__&#39;, &#39;yt.data_objects.analyzer_objects&#39;],
+ [&#39;yt.utilities.command_line&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;re starting to see that things might not be quite as clear-cut as we thought.  Let&amp;rsquo;s look at geometry.  And I&amp;rsquo;m going to set up a filtering method so that we can avoid lots of redundant pieces of info &amp;ndash; for instance, I don&amp;rsquo;t care about things importing themselves.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;filter_self_imports = lambda a: [_ for _ in imported_by[a] if not _.startswith(&amp;quot;yt.{}&amp;quot;.format(a))]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll only look at the first ten, because it&amp;rsquo;s really long&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;filter_self_imports(&amp;quot;geometry&amp;quot;)[:10]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[&#39;yt.data_objects.construction_data_containers&#39;,
+ &#39;yt.data_objects.data_containers&#39;,
+ &#39;yt.data_objects.grid_patch&#39;,
+ &#39;yt.data_objects.octree_subset&#39;,
+ &#39;yt.data_objects.selection_data_containers&#39;,
+ &#39;yt.data_objects.static_output&#39;,
+ &#39;yt.data_objects.unstructured_mesh&#39;,
+ &#39;yt.frontends._skeleton.data_structures&#39;,
+ &#39;yt.frontends.ahf.data_structures&#39;,
+ &#39;yt.frontends.art.data_structures&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here things are &lt;em&gt;much&lt;/em&gt; clearer.  We import geometry &lt;em&gt;once&lt;/em&gt; in the visualization subsystem, under &lt;code&gt;plot_modifications&lt;/code&gt;.  I looked it up, and here&amp;rsquo;s what it is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if not issubclass(type(index), UnstructuredIndex):
+    raise RuntimeError(&amp;quot;Mesh line annotations only work for &amp;quot;
+                        &amp;quot;unstructured or semi-structured mesh data.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is probably an anti-pattern, but even if we wanted to retain this specific behavior, we could remedy it without too much trouble by having an attribute check, or some kind of string-key check.&lt;/p&gt;
+
+&lt;p&gt;As for all the &lt;code&gt;frontends&lt;/code&gt; imports, those are all because they subclass &lt;code&gt;Index&lt;/code&gt;!  And many of the places importing it in &lt;code&gt;data_objects&lt;/code&gt; are just due to a lack of organization in the geometry/utilities/indexing code.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Historical Sidenote&lt;/strong&gt;: As I was doing this, I read the header for &lt;code&gt;grid_patch.py&lt;/code&gt; and it reads: &lt;code&gt;&amp;quot;Python-based grid handler, not to be confused with the SWIG-handler&amp;quot;&lt;/code&gt;.  I am reasonably certain that it has been &lt;em&gt;years&lt;/em&gt; since I thought about the proto-SWIG system I&amp;rsquo;d written to wrap around the Enzo C++ code.  Kinda supports the point I intend to make when I end this post, I think.&lt;/p&gt;
+
+&lt;p&gt;Back to the task at hand, let&amp;rsquo;s look at some of the other top-level packages and how they related.  I&amp;rsquo;m now specifically interested in the &lt;code&gt;visualization&lt;/code&gt; and &lt;code&gt;data_objects&lt;/code&gt; ones.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;filter_self_imports(&amp;quot;visualization&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[&#39;yt.__init__&#39;,
+ &#39;yt.data_objects.analyzer_objects&#39;,
+ &#39;yt.data_objects.construction_data_containers&#39;,
+ &#39;yt.data_objects.data_containers&#39;,
+ &#39;yt.data_objects.image_array&#39;,
+ &#39;yt.data_objects.profiles&#39;,
+ &#39;yt.data_objects.region_expression&#39;,
+ &#39;yt.data_objects.selection_data_containers&#39;,
+ &#39;yt.frontends.fits.misc&#39;,
+ &#39;yt.utilities.command_line&#39;,
+ &#39;yt.utilities.fits_image&#39;,
+ &#39;yt.utilities.answer_testing.framework&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well, that&amp;rsquo;s interesting.  A quick skim of the code suggests that &lt;code&gt;analyzer_objects&lt;/code&gt; is probably dead code to be removed, &lt;code&gt;construction_data_containers&lt;/code&gt; imports viz so that &lt;code&gt;.plot()&lt;/code&gt; will work on projections, and there are a handful of other data-object-to-viz things that get done here.&lt;/p&gt;
+
+&lt;p&gt;In short, I&amp;rsquo;m pretty sure that &lt;code&gt;visualization&lt;/code&gt; is a mostly independent subpackage.  And the same kind of goes for &lt;code&gt;geometry&lt;/code&gt;.  The story isn&amp;rsquo;t quite as clear for the others.&lt;/p&gt;
+
+&lt;h2 id=&#34;ok-the-boring-stuff-is-over&#34;&gt;OK, the boring stuff is over.&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;rsquo;s where I wanted to get this whole time: yt is a monolithic package in packaging, but it also has a couple reasonably independent sub-packages within it.  It &lt;em&gt;would&lt;/em&gt; be a target for breaking up, &lt;em&gt;if&lt;/em&gt; those subpackages were independently useful.  But as it stands, they probably aren&amp;rsquo;t, since they&amp;rsquo;re all very tightly coupled.&lt;/p&gt;
+
+&lt;p&gt;They&amp;rsquo;re coupled because they were written that way, without too much thought given to a public, externally-useful API.  This is something that&amp;rsquo;s probably not surprising, since yt was a big package that evolved, rather than many packages that interoperated.  Lots of stuff we wanted didn&amp;rsquo;t exist, and there was (we thought) really only one obvious way to do things, so why not just do it?&lt;/p&gt;
+
+&lt;p&gt;(&lt;strong&gt;Historical sidenote&lt;/strong&gt;: It was a few years ago that I remember asking at a panel what middleware developers, like I saw myself, were supposed to do in a rapidly evolving ecosystem of the array container.  (I probably didn&amp;rsquo;t phrase it very well.)  What I took away was: stick with numpy.  And we did stick with numpy, and more importantly, we &lt;em&gt;stuck with the Cython interface to numpy&lt;/em&gt;.)&lt;/p&gt;
+
+&lt;h2 id=&#34;ok-no-more-rambling-get-to-the-point&#34;&gt;OK, no more rambling, get to the point&lt;/h2&gt;
+
+&lt;p&gt;yt did a lot of stuff on its own.  It doesn&amp;rsquo;t need to anymore.  It&amp;rsquo;s effectively a medium-ly coupled system, but one that has relied on the ability to change non-public APIs all the time.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m starting to convince myself it&amp;rsquo;s time to mature as a project, and to do some combination of &lt;em&gt;jettisoning&lt;/em&gt; and &lt;em&gt;liberating&lt;/em&gt; things in yt.  I&amp;rsquo;ll make it clear that I could be wrong on this, and seeing this through will probably take more thought, time and energy than I can reasonably personally commit, but I think I&amp;rsquo;ve started to see what would be a productive path forward.&lt;/p&gt;
+
+&lt;h1 id=&#34;steps-to-integrate-better&#34;&gt;Steps to Integrate Better&lt;/h1&gt;
+
+&lt;p&gt;Here are some things that I think yt could do.  These are my thoughts, which I have &lt;em&gt;not&lt;/em&gt; presented to the steering council, written up in a YTEP, or even made any efforts toward.  In fact, the one member of the steering committee to whom I said, &amp;ldquo;I think I might blog about this&amp;rdquo; explicitly suggested I not do that thing (blog)!  But here I am a couple pages deep and I&amp;rsquo;ve always been a bit of a hoarder.&lt;/p&gt;
+
+&lt;h3 id=&#34;inventory&#34;&gt;Inventory&lt;/h3&gt;
+
+&lt;p&gt;The first step would be to take a real inventory of what is in yt, and what ought to be in yt.  I have some thoughts on things that could be gotten rid of (and I will happily note that I intend to &amp;ldquo;kill my own darlings&amp;rdquo; first, before anyone else&amp;rsquo;s) but that can come later.&lt;/p&gt;
+
+&lt;p&gt;Not everything yt does needs to be done &lt;em&gt;by yt&lt;/em&gt;.  But before we can figure that out, let&amp;rsquo;s figure out what yt is doing, and where it gets relied on.&lt;/p&gt;
+
+&lt;h3 id=&#34;indexing&#34;&gt;Indexing&lt;/h3&gt;
+
+&lt;p&gt;The thing I think we absolutely need to think about is how tightly coupled the indexing system is with everything else.  This will almost certainly be a full blog post at a later time, but the way the indexing is coupled so tightly with the frontends makes me increasingly leery.&lt;/p&gt;
+
+&lt;p&gt;I personally think that the way the grid indexing is set up is too fixed on a pre-parsing step and a finalization step, with lots of little bits in between that need to be handled, and that it could much more easily be set up with a different procedure.&lt;/p&gt;
+
+&lt;p&gt;For the particle frontends, the particle bitmap indexing has the filenames and the particle types and the coordinates and &lt;em&gt;all&lt;/em&gt; of that all wound together.  This should be decoupled, so that the notion of the particle locations is held at a higher level than the bitmap indexing.&lt;/p&gt;
+
+&lt;h3 id=&#34;consider-splitting-the-package&#34;&gt;Consider Splitting the Package&lt;/h3&gt;
+
+&lt;p&gt;This one &amp;hellip; I want to emphasize that what I think we should do is the process of considering it.  I&amp;rsquo;m not sure that it should be split.  But I think that evaluating the pros and cons will lead us to think about &lt;em&gt;how&lt;/em&gt; our packages interact.&lt;/p&gt;
+
+&lt;p&gt;If two objects call weird methods on each other, why?  Does that need to happen?  Is it a micro-optimization that makes no sense other than obfuscation?  I&amp;rsquo;m not sure, but we can&amp;rsquo;t figure it out unless we examine.&lt;/p&gt;
+
+&lt;h1 id=&#34;big-picture&#34;&gt;Big Picture&lt;/h1&gt;
+
+&lt;p&gt;yt may stay a big repository, but if we reduce the dependence on artisanal objects (why not just subclass &lt;code&gt;xarray.Dataset&lt;/code&gt; instead of have a &lt;code&gt;GridPatch&lt;/code&gt; object?  Well, okay, that one is pretty complicated, but we can talk about it later&amp;hellip;) and we think about the specifics of why we use public APIs versus private APIs, it can lead to a more robust, lightweight package.&lt;/p&gt;
+
+&lt;p&gt;And anything that keeps us more lightweight, reduces maintenance burdens, and enables us to take advantage of the astounding advances in the ecosystem is probably going to be better in the long-run.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Getting Lost in Community Building</title>

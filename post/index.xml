@@ -11,6 +11,17 @@
     
     
     <item>
+      <title>yt: Internal and External Ecosystems</title>
+      <link>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</link>
+      <pubDate>Tue, 16 Jul 2019 14:28:36 -0500</pubDate>
+      
+      <guid>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</guid>
+      <description>I think I&amp;rsquo;ve talked myself into proposing a big change in yt. I&amp;rsquo;m not the &amp;ldquo;boss&amp;rdquo; of yt, so it might not happen, but I&amp;rsquo;ve kind of worked up my courage to make a serious suggestion.
+This last week I have been at SciPy 2019 and I had the opportunity to see a lot of talks.
+There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&amp;rsquo;m going to stick to just one in particular.</description>
+    </item>
+    
+    <item>
       <title>Loading data in yt: Can we make it better?</title>
       <link>https://matthewturk.github.io/post/loading_data_in_yt/</link>
       <pubDate>Mon, 01 Jul 2019 14:47:41 -0500</pubDate>
@@ -45,7 +56,8 @@ What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the pr
       <pubDate>Mon, 17 Jun 2019 22:32:09 -0400</pubDate>
       
       <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</guid>
-      <description></description>
+      <description>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &amp;ldquo;chunks&amp;rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&amp;rsquo;t be obvious from the previous blog posts.
+Chunks have spatial attributes Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.</description>
     </item>
     
     <item>
