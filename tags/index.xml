@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>XSEDE proceedings</title>
-      <link>https://matthewturk.github.io/tags/xsede-proceedings/</link>
-      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://matthewturk.github.io/tags/xsede-proceedings/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>community</title>
       <link>https://matthewturk.github.io/tags/community/</link>
       <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
@@ -71,6 +62,15 @@
       <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
       
       <guid>https://matthewturk.github.io/tags/open-sourceauthorship/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XSEDE proceedings</title>
+      <link>https://matthewturk.github.io/tags/xsede-proceedings/</link>
+      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://matthewturk.github.io/tags/xsede-proceedings/</guid>
       <description></description>
     </item>
     

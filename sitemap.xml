@@ -3,14 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://matthewturk.github.io/talk/2019-10-30-ischool-volume-grammar/</loc>
+    <lastmod>2019-10-31T15:38:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/authors/</loc>
+    <lastmod>2019-10-31T15:38:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/authors/matthew-turk/</loc>
+    <lastmod>2019-10-31T15:38:11-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://matthewturk.github.io/</loc>
-    <lastmod>2019-07-16T14:28:36-05:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-10-31T15:38:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/authors/sam-walkow/</loc>
+    <lastmod>2019-10-31T15:38:11-05:00</lastmod>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</loc>
-    <lastmod>2019-07-16T14:28:36-05:00</lastmod>
+    <lastmod>2019-07-16T14:31:52-05:00</lastmod>
   </url>
   
   <url>
@@ -61,7 +80,6 @@
   <url>
     <loc>https://matthewturk.github.io/project/</loc>
     <lastmod>2019-05-30T15:45:34-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -77,31 +95,21 @@
   <url>
     <loc>https://matthewturk.github.io/publication_types/2/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/adam-brinckman/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/authors/</loc>
-    <lastmod>2019-05-30T21:02:23-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/bertram-lud%C3%A4scher/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/bryce-d-mecum/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -112,85 +120,71 @@
   <url>
     <loc>https://matthewturk.github.io/authors/ian-j-taylor/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/jarek-nabrzyski/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/kacper-kowalik/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/kandace-turner/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/kyle-chard/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/tags/living-publications-reproducibility-provenance-data-sharing-code-sharingauthorship/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/matthew-b-jones/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/matthew-j-turk/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/mihael-hategan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/niall-gaffney/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/publication_types/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/sivakumar-kulasekaran/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/tags/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/victoria-stodden/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -221,7 +215,6 @@
   <url>
     <loc>https://matthewturk.github.io/courses/</loc>
     <lastmod>2019-05-30T21:02:23-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -237,25 +230,21 @@
   <url>
     <loc>https://matthewturk.github.io/authors/anna-l-rosen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/tags/authorship/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/john-a-zuhone/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/nathan-j-goldbaum/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -276,13 +265,11 @@
   <url>
     <loc>https://matthewturk.github.io/tags/authorshipdxl-member-papers/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/chin-yu-cheng/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -293,13 +280,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/hsi-yu-schive/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/massimo-gaspari/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -310,31 +295,31 @@
   <url>
     <loc>https://matthewturk.github.io/authors/a-j-christensen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/amy-marshall-colon/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/andrew-j-millar/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/balaji-panneerselvam/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/bedrich-benes/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/tags/computational-framework-crop-yield-integration-model-multiscaleauthorship/</loc>
+    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
   <url>
@@ -345,215 +330,175 @@
   <url>
     <loc>https://matthewturk.github.io/authors/daniel-a-beard/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/daniel-s-katz/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/david-raila/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/diwakar-shukla/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/donna-j-cox/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/douglas-k-allen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/eberhard-o-voit/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/gabrielle-allen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/john-c-hart/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/jonathan-p-lynch/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/kavya-kannan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/mark-stitt/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/nathan-d-price/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/peter-m-hirst/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/przemyslaw-prusinkiewicz/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/rachel-g-shekar/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/stephen-p-long/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/stuti-shrivastava/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/susanne-von-caemmerer/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/venkatraman-srinivasan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/xin-guang-zhu/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/xinyou-yin/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/yu-wang/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/tags/computational-framework-crop-yield-integration-model-multiscaleauthorship/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/andrew-emerick/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/brian-w-oshea/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/britton-d-smith/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/cameron-b-hummels/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/publication/smith-2017-za/</loc>
+    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/greg-l-bryan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/john-h-wise/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/john-regan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/peter-anninos/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/sadegh-khochfar/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/simon-c-o-glover/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/tom-abel/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/publication/smith-2017-za/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
@@ -565,7 +510,6 @@
   <url>
     <loc>https://matthewturk.github.io/authors/harshil-m-kamdar/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -581,61 +525,46 @@
   <url>
     <loc>https://matthewturk.github.io/authors/robert-j-brunner/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/christopher-hayward/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/claude-andr%C3%A9-faucher-gigu%C3%A8re/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/david-ball/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/desika-narayanan/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/du%C5%A1an-kere%C5%A1/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/authors/matthew-turk/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/philip-hopkins/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/robert-feldmann/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/robert-thompson/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -646,13 +575,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/thomas-robitaille/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/m-turk/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -663,7 +590,6 @@
   <url>
     <loc>https://matthewturk.github.io/authors/daniel-e-holz/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -674,43 +600,36 @@
   <url>
     <loc>https://matthewturk.github.io/authors/michael-s-warren/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/p-m-sutter/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/risa-h-wechsler/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/samuel-w-skillman/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/publication_types/1/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/benjamin-holtzman/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/daniel-peter/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -721,13 +640,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/jason-candler/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/k-c-yu/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -738,7 +655,6 @@
   <url>
     <loc>https://matthewturk.github.io/authors/t-kwasnitschka/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -754,13 +670,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/ji-hoon-kim/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/mark-r-krumholz/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -771,43 +685,36 @@
   <url>
     <loc>https://matthewturk.github.io/authors/alexei-g-kritsuk/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/britton-smith/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/cameron-hummels/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/christine-m-simpson/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/daniel-r-reynolds/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/david-c-collins/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/elizabeth-tasker/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -818,91 +725,81 @@
   <url>
     <loc>https://matthewturk.github.io/authors/fen-zhao/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/geoffrey-c-so/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/hao-xu/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/james-bordner/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/jeffrey-s-oishi/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/michael-kuhlen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/michael-l-norman/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/nathan-goldbaum/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/oliver-hahn/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/peng-wang/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/renyue-cen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/robert-p-harkness/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/stephen-skory/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/the-enzo-collaboration/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/yuan-li/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/tags/community/</loc>
+    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
   <url>
@@ -913,7 +810,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/m-j-turk/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/tags/open-sourceauthorship/</loc>
+    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
   <url>
@@ -924,19 +825,6 @@
   <url>
     <loc>https://matthewturk.github.io/tags/xsede-proceedings/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/tags/community/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/tags/open-sourceauthorship/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -962,11 +850,15 @@
   <url>
     <loc>https://matthewturk.github.io/authors/b-d-smith/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/publication/turk-2011-ck/</loc>
+    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://matthewturk.github.io/tags/cosmology-theory-galaxies-formation-h-ii-regions-stars-formation-astrophysics-cosmology-and-nongalactic-astrophysicsauthorship/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
   </url>
   
@@ -983,37 +875,26 @@
   <url>
     <loc>https://matthewturk.github.io/authors/paul-clark/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/ralf-klessen/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/s-c-o-glover/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/t-h-greif/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/volker-bromm/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/tags/cosmology-theory-galaxies-formation-h-ii-regions-stars-formation-astrophysics-cosmology-and-nongalactic-astrophysicsauthorship/</loc>
-    <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1024,13 +905,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/a-l-coil/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/m-l-norman/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1041,13 +920,11 @@
   <url>
     <loc>https://matthewturk.github.io/authors/s-skory/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/authors/brian-oshea/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1058,7 +935,6 @@
   <url>
     <loc>https://matthewturk.github.io/authors/steinn-sigurdsson/</loc>
     <lastmod>2019-05-30T15:04:55-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1088,12 +964,10 @@
   
   <url>
     <loc>https://matthewturk.github.io/author/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matthewturk.github.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1109,12 +983,6 @@
   <url>
     <loc>https://matthewturk.github.io/talk/</loc>
     <lastmod>2019-05-06T06:26:12-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://matthewturk.github.io/authors/admin/</loc>
-    <lastmod>2019-05-30T21:02:23-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>
