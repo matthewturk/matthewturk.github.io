@@ -27,7 +27,7 @@
   
     
   
-  <meta name="description" content="Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &ldquo;chunks&rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&rsquo;t be obvious from the previous blog posts.
+  <meta name="description" content="Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &ldquo;chunks&rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&#39;t be obvious from the previous blog posts.
 Chunks have spatial attributes Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.">
 
   
@@ -90,7 +90,7 @@ Chunks have spatial attributes Data chunks in yt have a set of special attribute
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.160c9711abc197a38ee59f0961dc31dc.css">
+  <link rel="stylesheet" href="/css/academic.min.331f53d055a276ccbdada146254dc48b.css">
 
   
 
@@ -135,7 +135,7 @@ Chunks have spatial attributes Data chunks in yt have a set of special attribute
   <meta property="og:site_name" content="mjt">
   <meta property="og:url" content="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/">
   <meta property="og:title" content="Refactoring yt Frontends - Part 3 | mjt">
-  <meta property="og:description" content="Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &ldquo;chunks&rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&rsquo;t be obvious from the previous blog posts.
+  <meta property="og:description" content="Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &ldquo;chunks&rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&#39;t be obvious from the previous blog posts.
 Chunks have spatial attributes Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -541,36 +541,23 @@ Chunks have spatial attributes Data chunks in yt have a set of special attribute
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things!  This time, I am going to describe what &ldquo;chunks&rdquo; of data (<code>YTDataChunk</code>) in yt are, and a few characteristics of them that wouldn&rsquo;t be obvious from the previous blog posts.</p>
-
+      <p>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things!  This time, I am going to describe what &ldquo;chunks&rdquo; of data (<code>YTDataChunk</code>) in yt are, and a few characteristics of them that wouldn't be obvious from the previous blog posts.</p>
 <h3 id="chunks-have-spatial-attributes">Chunks have spatial attributes</h3>
-
 <p>Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.</p>
-
 <p>(This is as good a time as any to note to myself that I should probably write up a blog post about how coordinate handling works, as opposed to index handling.)</p>
-
 <p>When you receive a chunk of a data object, that chunk will have with it information about the coordinate space of the data contained within it &ndash; specifically, if it is a dataset that is volumetrically discretized in some regular way, it will have information about the centers of the individual grid cells, the sizes of those cells, and some measure of their resolution.</p>
-
 <p>For a grid dataset specifically, these attributes will always exist on a data chunk:</p>
-
 <ul>
 <li><code>fcoords</code> - the centers of the grid cells, of shape <code>(..., 3)</code></li>
 <li><code>fwidth</code> - the &ldquo;width&rdquo; of the grid cells, of shape <code>(..., 3)</code></li>
 <li><code>icoords</code> - the <em>integer</em> coordinates, with respect to the <em>current</em> resolution, of the grid cells, of shape <code>(..., 3)</code></li>
 <li><code>ires</code> - the &ldquo;level of resolution&rdquo; of a given cell; this mostly makes sense for datasets where there is some universal refinement ratio and a fixed value for the domain dimensions, of shape <code>(...,)</code></li>
 </ul>
-
-<p>There are a couple more that are specific to the individual data selection operation &ndash; for instance, <code>tcoords</code> only makes sense if there is a parameterized vector being pushed through the domain.  There&rsquo;s also <code>fcoords_vertex</code> but it is seldom used except in unstructured mesh datasets.</p>
-
-<p>Let&rsquo;s take a look at these values, and how they correspond to grid attributes:</p>
-
-<pre><code class="language-python">import yt
-ds = yt.load(&quot;data/IsolatedGalaxy/galaxy0030/galaxy0030&quot;)
-</code></pre>
-
-<pre><code>/home/matthewturk/conda-py3/lib/python3.7/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 88 from C header, got 96 from PyObject
+<p>There are a couple more that are specific to the individual data selection operation &ndash; for instance, <code>tcoords</code> only makes sense if there is a parameterized vector being pushed through the domain.  There's also <code>fcoords_vertex</code> but it is seldom used except in unstructured mesh datasets.</p>
+<p>Let's take a look at these values, and how they correspond to grid attributes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> yt
+ds <span style="color:#f92672">=</span> yt<span style="color:#f92672">.</span>load(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data/IsolatedGalaxy/galaxy0030/galaxy0030</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><pre><code>/home/matthewturk/conda-py3/lib/python3.7/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 88 from C header, got 96 from PyObject
   return f(*args, **kwds)
 yt : [INFO     ] 2019-06-17 22:23:02,723 Parameters: current_time              = 0.0060000200028298
 yt : [INFO     ] 2019-06-17 22:23:02,724 Parameters: domain_dimensions         = [32 32 32]
@@ -578,31 +565,19 @@ yt : [INFO     ] 2019-06-17 22:23:02,726 Parameters: domain_left_edge          =
 yt : [INFO     ] 2019-06-17 22:23:02,728 Parameters: domain_right_edge         = [1. 1. 1.]
 yt : [INFO     ] 2019-06-17 22:23:02,734 Parameters: cosmological_simulation   = 0.0
 </code></pre>
-
 <p>What yt is doing here is taking an individual, in-memory <em>sparse</em> index and then <em>expanding</em> that index into a fully-fledged array.  Internally, when we ask for any of these attributes, yt iterates over all the objects that belong in a given chunk and then it expands the values associated with those objects.</p>
-
 <p>We can see this if we poke a little closer at the <code>Grid</code> objects in this case.</p>
-
-<pre><code class="language-python">for g in ds.index.grids:
-    pass
-</code></pre>
-
-<pre><code>Parsing Hierarchy : 100%|██████████| 173/173 [00:00&lt;00:00, 3064.43it/s]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> g <span style="color:#f92672">in</span> ds<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>grids:
+    <span style="color:#66d9ef">pass</span>
+</code></pre></div><pre><code>Parsing Hierarchy : 100%|██████████| 173/173 [00:00&lt;00:00, 3064.43it/s]
 yt : [INFO     ] 2019-06-17 22:23:02,831 Gathering a field list (this may take a moment.)
 </code></pre>
-
-<p>This is used internally in yt whenever we want to deal with a geometric selection, or when we apply geometric processing.  For instance, the &ldquo;projection&rdquo; operator can use the integer coordinate system to very rapidly insert values into a <a href="https://en.wikipedia.org/wiki/Quadtree" target="_blank">quadtree</a>.  yt can iterate over all of the chunks that belong to a data object and insert them into the quadtree based on their <code>icoords</code>, and it can refine nodes by bit shifting the appropriate amount.</p>
-
-<p>For grid data, <code>icoords</code> also gives us some handy things for evaluating relationships between objects.  For instance, we might have a root grid with one child grid.  We can figure out their relationship by looking at their <code>icoords</code>, <code>ires</code> and the result of <code>get_global_startindex()</code>.  In our sample dataset, let&rsquo;s look at some random grid &ndash; I happen to know the first level 8 grid is index 27, so let&rsquo;s use that.</p>
-
-<pre><code class="language-python">child = ds.index.grids[27]
-parent = child.Parent
-</code></pre>
-
-<pre><code class="language-python">parent.icoords
-</code></pre>
-
-<pre><code>array([[2048, 2048, 2048],
+<p>This is used internally in yt whenever we want to deal with a geometric selection, or when we apply geometric processing.  For instance, the &ldquo;projection&rdquo; operator can use the integer coordinate system to very rapidly insert values into a <a href="https://en.wikipedia.org/wiki/Quadtree">quadtree</a>.  yt can iterate over all of the chunks that belong to a data object and insert them into the quadtree based on their <code>icoords</code>, and it can refine nodes by bit shifting the appropriate amount.</p>
+<p>For grid data, <code>icoords</code> also gives us some handy things for evaluating relationships between objects.  For instance, we might have a root grid with one child grid.  We can figure out their relationship by looking at their <code>icoords</code>, <code>ires</code> and the result of <code>get_global_startindex()</code>.  In our sample dataset, let's look at some random grid &ndash; I happen to know the first level 8 grid is index 27, so let's use that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">child <span style="color:#f92672">=</span> ds<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>grids[<span style="color:#ae81ff">27</span>]
+parent <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>Parent
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">parent<span style="color:#f92672">.</span>icoords
+</code></pre></div><pre><code>array([[2048, 2048, 2048],
        [2048, 2048, 2049],
        [2048, 2048, 2050],
        ...,
@@ -610,11 +585,8 @@ parent = child.Parent
        [2087, 2089, 2070],
        [2087, 2089, 2071]])
 </code></pre>
-
-<pre><code class="language-python">child.icoords
-</code></pre>
-
-<pre><code>array([[4096, 4096, 4096],
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">child<span style="color:#f92672">.</span>icoords
+</code></pre></div><pre><code>array([[4096, 4096, 4096],
        [4096, 4096, 4097],
        [4096, 4096, 4098],
        ...,
@@ -622,51 +594,31 @@ parent = child.Parent
        [4133, 4129, 4120],
        [4133, 4129, 4121]])
 </code></pre>
-
-<pre><code class="language-python">parent.LeftEdge, child.LeftEdge
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">parent<span style="color:#f92672">.</span>LeftEdge, child<span style="color:#f92672">.</span>LeftEdge
+</code></pre></div><pre><code>(YTArray([0.5, 0.5, 0.5]) code_length, YTArray([0.5, 0.5, 0.5]) code_length)
 </code></pre>
-
-<pre><code>(YTArray([0.5, 0.5, 0.5]) code_length, YTArray([0.5, 0.5, 0.5]) code_length)
-</code></pre>
-
 <p>They both start at the same place &ndash; so that would suggest that their minimum icoords should refer to the same location.</p>
-
-<pre><code class="language-python">difference = child.ires.min() - parent.ires.max()
-left_edge_child = child.icoords.min(axis=0)
-left_edge_parent = parent.icoords.min(axis=0)
-(left_edge_child - left_edge_parent)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">difference <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>ires<span style="color:#f92672">.</span>min() <span style="color:#f92672">-</span> parent<span style="color:#f92672">.</span>ires<span style="color:#f92672">.</span>max()
+left_edge_child <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>icoords<span style="color:#f92672">.</span>min(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+left_edge_parent <span style="color:#f92672">=</span> parent<span style="color:#f92672">.</span>icoords<span style="color:#f92672">.</span>min(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+(left_edge_child <span style="color:#f92672">-</span> left_edge_parent)
+</code></pre></div><pre><code>array([2048, 2048, 2048])
 </code></pre>
-
-<pre><code>array([2048, 2048, 2048])
-</code></pre>
-
 <p>This seems odd until we recognize that <code>ires</code> differs between the two, and in this case refers to the bit shifting we need to do to match them up.</p>
-
-<pre><code class="language-python">(left_edge_child &gt;&gt; difference) - left_edge_parent
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">(left_edge_child <span style="color:#f92672">&gt;&gt;</span> difference) <span style="color:#f92672">-</span> left_edge_parent
+</code></pre></div><pre><code>array([0, 0, 0])
 </code></pre>
-
-<pre><code>array([0, 0, 0])
-</code></pre>
-
 <p>We can do this with the next grid up, as well.</p>
-
-<pre><code class="language-python">left_edge_gparent = parent.Parent.icoords.min(axis=0)
-difference_g = child.ires.min() - parent.Parent.ires.max()
-(left_edge_child &gt;&gt; difference_g) - left_edge_gparent
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">left_edge_gparent <span style="color:#f92672">=</span> parent<span style="color:#f92672">.</span>Parent<span style="color:#f92672">.</span>icoords<span style="color:#f92672">.</span>min(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+difference_g <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>ires<span style="color:#f92672">.</span>min() <span style="color:#f92672">-</span> parent<span style="color:#f92672">.</span>Parent<span style="color:#f92672">.</span>ires<span style="color:#f92672">.</span>max()
+(left_edge_child <span style="color:#f92672">&gt;&gt;</span> difference_g) <span style="color:#f92672">-</span> left_edge_gparent
+</code></pre></div><pre><code>array([0, 0, 0])
 </code></pre>
-
-<pre><code>array([0, 0, 0])
-</code></pre>
-
-<p>There&rsquo;s more to this story &ndash; for instance, non-power-of-two differences, but the idea is consistent; both integer and float positioning can be used between chunks, sub-chunks, and so on.</p>
-
+<p>There's more to this story &ndash; for instance, non-power-of-two differences, but the idea is consistent; both integer and float positioning can be used between chunks, sub-chunks, and so on.</p>
 <p>We can also pretty easily get cell positions, and if we access data objects, we receive all the values across all sub-objects.</p>
-
-<pre><code class="language-python">sp = ds.sphere(&quot;c&quot;, 0.1)
-print(sp.fwidth)
-</code></pre>
-
-<pre><code>[[0.00024414 0.00024414 0.00024414]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sp <span style="color:#f92672">=</span> ds<span style="color:#f92672">.</span>sphere(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">0.1</span>)
+<span style="color:#66d9ef">print</span>(sp<span style="color:#f92672">.</span>fwidth)
+</code></pre></div><pre><code>[[0.00024414 0.00024414 0.00024414]
  [0.00024414 0.00024414 0.00024414]
  [0.00024414 0.00024414 0.00024414]
  ...
@@ -674,22 +626,17 @@ print(sp.fwidth)
  [0.00012207 0.00012207 0.00012207]
  [0.00012207 0.00012207 0.00012207]] code_length
 </code></pre>
-
-<h3 id="chunks-can-be-sub-chunked">Chunks can be sub-chunked</h3>
-
+<h3 id="chunks-can-be-subchunked">Chunks can be sub-chunked</h3>
 <p>The other main advantage of chunks is that they can be sub-chunked.  Usually this only means up to one level, but it means that we could in principle do something like this:</p>
-
-<pre><code class="language-python">dd = ds.all_data()
-for i, chunk1 in enumerate(dd.chunks([], &quot;io&quot;)):
-    print(&quot;Chunk &quot;, i, len(chunk1._current_chunk.objs))
-    print(&quot;      &quot;, end = &quot;&quot;)
-    for j, chunk2 in enumerate(dd.chunks([], &quot;spatial&quot;)):
-        print(chunk2._current_chunk.objs, end = &quot; &quot;)
-    print()
-    print()
-</code></pre>
-
-<pre><code>Chunk  0 5
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd <span style="color:#f92672">=</span> ds<span style="color:#f92672">.</span>all_data()
+<span style="color:#66d9ef">for</span> i, chunk1 <span style="color:#f92672">in</span> enumerate(dd<span style="color:#f92672">.</span>chunks([], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">io</span><span style="color:#e6db74">&#34;</span>)):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Chunk </span><span style="color:#e6db74">&#34;</span>, i, len(chunk1<span style="color:#f92672">.</span>_current_chunk<span style="color:#f92672">.</span>objs))
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">      </span><span style="color:#e6db74">&#34;</span>, end <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>)
+    <span style="color:#66d9ef">for</span> j, chunk2 <span style="color:#f92672">in</span> enumerate(dd<span style="color:#f92672">.</span>chunks([], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">spatial</span><span style="color:#e6db74">&#34;</span>)):
+        <span style="color:#66d9ef">print</span>(chunk2<span style="color:#f92672">.</span>_current_chunk<span style="color:#f92672">.</span>objs, end <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span>)
+    <span style="color:#66d9ef">print</span>()
+    <span style="color:#66d9ef">print</span>()
+</code></pre></div><pre><code>Chunk  0 5
       [EnzoGrid_0001] [EnzoGrid_0075] [EnzoGrid_0076] [EnzoGrid_0082] [EnzoGrid_0110] 
 
 Chunk  1 1
@@ -719,29 +666,17 @@ Chunk  8 26
 Chunk  9 30
       [EnzoGrid_0002] [EnzoGrid_0145] [EnzoGrid_0146] [EnzoGrid_0147] [EnzoGrid_0148] [EnzoGrid_0149] [EnzoGrid_0150] [EnzoGrid_0151] [EnzoGrid_0152] [EnzoGrid_0153] [EnzoGrid_0154] [EnzoGrid_0155] [EnzoGrid_0156] [EnzoGrid_0157] [EnzoGrid_0158] [EnzoGrid_0159] [EnzoGrid_0160] [EnzoGrid_0161] [EnzoGrid_0162] [EnzoGrid_0163] [EnzoGrid_0164] [EnzoGrid_0165] [EnzoGrid_0166] [EnzoGrid_0167] [EnzoGrid_0168] [EnzoGrid_0169] [EnzoGrid_0170] [EnzoGrid_0171] [EnzoGrid_0172] [EnzoGrid_0173] 
 </code></pre>
-
 <p>(In general, this is about as deep as it goes, although in principle we could do lots more sub-chunking.)  This lets you chunk over IO, then chunk over individual objects, and even request things like the number of ghost zones you need in that sub-chunking.</p>
-
-<h3 id="chunks-can-retain-state-during-a-long-lived-io-task">Chunks can retain state during a long-lived IO task</h3>
-
+<h3 id="chunks-can-retain-state-during-a-longlived-io-task">Chunks can retain state during a long-lived IO task</h3>
 <p>We can also store field parameters and reset them during an individual chunking operation.  So for instance, we could have a custom field that requires one field parameter that is then swapped out during the next level of chunking.</p>
-
 <p>This feature is probably not used much.</p>
-
 <h2 id="iteration-and-chunks">Iteration and Chunks</h2>
-
-<p>But here&rsquo;s the issue we run into, which actually shows up whenever an error is raised during a chunking operation.</p>
-
+<p>But here's the issue we run into, which actually shows up whenever an error is raised during a chunking operation.</p>
 <p><strong>All of this is done via generator expressions.</strong>  This seemed like the right thing to do!  Just <code>yield</code> everywhere! It was so hip.</p>
-
-<p>But, there&rsquo;s an even more problematic part: <strong>often, the generator expressions get unrolled into lists anyway.</strong>  And, it turns out, I can&rsquo;t blame anybody else for this: this particular core element of yt was something I not only put in, but something I felt rather self-satisfied about.</p>
-
-<p>Let&rsquo;s take a look at this in the routine that does chunking for the <code>io</code> type in grid index datasets:</p>
-
-<pre><code class="language-python">ds.index._chunk_io??
-</code></pre>
-
-<pre><code>Signature:
+<p>But, there's an even more problematic part: <strong>often, the generator expressions get unrolled into lists anyway.</strong>  And, it turns out, I can't blame anybody else for this: this particular core element of yt was something I not only put in, but something I felt rather self-satisfied about.</p>
+<p>Let's take a look at this in the routine that does chunking for the <code>io</code> type in grid index datasets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ds<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>_chunk_io<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature:
 ds.index._chunk_io(
     dobj,
     cache=True,
@@ -796,32 +731,23 @@ Source:
 File:      ~/yt/yt/yt/geometry/grid_geometry_handler.py
 Type:      method
 </code></pre>
-
-<p>There&rsquo;s lots going on here, so I&rsquo;ll just grab a few of the most important lines.  Specifically, I want to highlight this:</p>
-
-<pre><code class="language-python">        for fn in sorted(gfiles):
-            gs = gfiles[fn]
-            for grids in (gs[pos:pos + size] for pos
-                          in range(0, len(gs), size)):
-                dc = YTDataChunk(dobj, &quot;io&quot;, grids,
-                        self._count_selection(dobj, grids),
-                        cache = cache, fast_index = fast_index)
-                # We allow four full chunks to be included.
-                with self.io.preload(dc, preload_fields, 
-                            4.0 * size):
-                    yield dc
-</code></pre>
-
-<p>The upshot of this is that we first sorted our grids by which file they&rsquo;re in (on the assumption that we probably want to minimize open/close operations), but then in that, we split them up based on the grid counts we want in each chunk, and then we spit out the chunks (with optional preloading of data) to whatever consumes them.</p>
-
-<p>As long as we don&rsquo;t do any preloading it&rsquo;s alright for parallel IO, but we&rsquo;re not going to see any of the benefits of this if we ever turn this into a list.</p>
-
-<p>Now for the Enzo frontend specifically, let&rsquo;s see how the IO routine works:</p>
-
-<pre><code class="language-python">ds.index.io._read_fluid_selection??
-</code></pre>
-
-<pre><code>Signature: ds.index.io._read_fluid_selection(chunks, selector, fields, size)
+<p>There's lots going on here, so I'll just grab a few of the most important lines.  Specifically, I want to highlight this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">        <span style="color:#66d9ef">for</span> fn <span style="color:#f92672">in</span> sorted(gfiles):
+            gs <span style="color:#f92672">=</span> gfiles[fn]
+            <span style="color:#66d9ef">for</span> grids <span style="color:#f92672">in</span> (gs[pos:pos <span style="color:#f92672">+</span> size] <span style="color:#66d9ef">for</span> pos
+                          <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(gs), size)):
+                dc <span style="color:#f92672">=</span> YTDataChunk(dobj, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">io</span><span style="color:#e6db74">&#34;</span>, grids,
+                        self<span style="color:#f92672">.</span>_count_selection(dobj, grids),
+                        cache <span style="color:#f92672">=</span> cache, fast_index <span style="color:#f92672">=</span> fast_index)
+                <span style="color:#75715e"># We allow four full chunks to be included.</span>
+                <span style="color:#66d9ef">with</span> self<span style="color:#f92672">.</span>io<span style="color:#f92672">.</span>preload(dc, preload_fields, 
+                            <span style="color:#ae81ff">4.0</span> <span style="color:#f92672">*</span> size):
+                    <span style="color:#66d9ef">yield</span> dc
+</code></pre></div><p>The upshot of this is that we first sorted our grids by which file they're in (on the assumption that we probably want to minimize open/close operations), but then in that, we split them up based on the grid counts we want in each chunk, and then we spit out the chunks (with optional preloading of data) to whatever consumes them.</p>
+<p>As long as we don't do any preloading it's alright for parallel IO, but we're not going to see any of the benefits of this if we ever turn this into a list.</p>
+<p>Now for the Enzo frontend specifically, let's see how the IO routine works:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ds<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>io<span style="color:#f92672">.</span>_read_fluid_selection<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature: ds.index.io._read_fluid_selection(chunks, selector, fields, size)
 Docstring: &lt;no docstring&gt;
 Source:   
     def _read_fluid_selection(self, chunks, selector, fields, size):
@@ -854,19 +780,12 @@ Source:
 File:      ~/yt/yt/yt/utilities/io_handler.py
 Type:      method
 </code></pre>
-
-<p>This is in the base class for the IO handler; some of the grid-based frontends implement it.  In this <em>particular</em> case we aren&rsquo;t unrolling the generator, but you can see some of the issues here anyway: we need to know a fair bit about the IO method (thus the <code>io_iter</code> method, which I will show below) and we need to do a lot of <code>obj.select</code> and whatnot.</p>
-
-<p>This isn&rsquo;t terribly efficient, and it <em>also</em> means that since we are yielding a generator expression from within a generator expression, we end up having a nested set of loops that don&rsquo;t know their sizes or allow seeking in their stream of yields.</p>
-
+<p>This is in the base class for the IO handler; some of the grid-based frontends implement it.  In this <em>particular</em> case we aren't unrolling the generator, but you can see some of the issues here anyway: we need to know a fair bit about the IO method (thus the <code>io_iter</code> method, which I will show below) and we need to do a lot of <code>obj.select</code> and whatnot.</p>
+<p>This isn't terribly efficient, and it <em>also</em> means that since we are yielding a generator expression from within a generator expression, we end up having a nested set of loops that don't know their sizes or allow seeking in their stream of yields.</p>
 <p>This makes interoperating with something like dask &ndash; which works best when it knows the sizes and shapes and can do its own distribution &ndash; much more challenging.  And it also means that we have a few layers of relatively opaque routines that conspire to keep us a ways from the file-based abstraction.</p>
-
-<p>Let&rsquo;s look at the <code>io_iter</code> function to see how it works for Enzo.  You can see that it does do a few fun things; most importantly, it keeps the file handle open if it can.  This can save a surprising amount of time on parallel file systems, as it reduces the number of metadata lookups necessary.</p>
-
-<pre><code class="language-python">ds.index.io.io_iter??
-</code></pre>
-
-<pre><code>Signature: ds.index.io.io_iter(chunks, fields)
+<p>Let's look at the <code>io_iter</code> function to see how it works for Enzo.  You can see that it does do a few fun things; most importantly, it keeps the file handle open if it can.  This can save a surprising amount of time on parallel file systems, as it reduces the number of metadata lookups necessary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ds<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>io<span style="color:#f92672">.</span>io_iter<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature: ds.index.io.io_iter(chunks, fields)
 Docstring: &lt;no docstring&gt;
 Source:   
     def io_iter(self, chunks, fields):
@@ -896,13 +815,9 @@ Source:
 File:      ~/yt/yt/yt/frontends/enzo/io.py
 Type:      method
 </code></pre>
-
 <p>So to recap, right now: making chunks work nicely with non-yt operations is tricky because of some early design decisions</p>
-
 <h2 id="next-up">Next Up</h2>
-
-<p>In the next blog post, I&rsquo;m going to present a bit about:</p>
-
+<p>In the next blog post, I'm going to present a bit about:</p>
 <ul>
 <li>How particle IO is handled &ndash; and the differences between grid IO (which has lots of differently-<em>shaped</em> chunks) and particle IO</li>
 <li>Some efforts to refactor particle IO (before it gets released!)</li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on mjt</title>
@@ -16,9 +16,9 @@
       <pubDate>Tue, 16 Jul 2019 14:28:36 -0500</pubDate>
       
       <guid>https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/</guid>
-      <description>I think I&amp;rsquo;ve talked myself into proposing a big change in yt. I&amp;rsquo;m not the &amp;ldquo;boss&amp;rdquo; of yt, so it might not happen, but I&amp;rsquo;ve kind of worked up my courage to make a serious suggestion.
+      <description>I think I&#39;ve talked myself into proposing a big change in yt. I&#39;m not the &amp;ldquo;boss&amp;rdquo; of yt, so it might not happen, but I&#39;ve kind of worked up my courage to make a serious suggestion.
 This last week I have been at SciPy 2019 and I had the opportunity to see a lot of talks.
-There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&amp;rsquo;m going to stick to just one in particular.</description>
+There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&#39;m going to stick to just one in particular.</description>
     </item>
     
     <item>
@@ -47,7 +47,7 @@ There were a few that really stuck with me, but for the purposes of this rather 
       <guid>https://matthewturk.github.io/post/kaitai-struct-scientific-data/</guid>
       <description>tl;dr: kaitai struct is awesome.
 File formats can be pretty annoying &amp;ndash; especially when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.
-What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&amp;rsquo;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way.</description>
+What we&#39;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&#39;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way.</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ What we&amp;rsquo;ve ended up with in yt is a bunch of data formats where the pr
       <pubDate>Mon, 17 Jun 2019 22:32:09 -0400</pubDate>
       
       <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part3/</guid>
-      <description>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &amp;ldquo;chunks&amp;rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&amp;rsquo;t be obvious from the previous blog posts.
+      <description>Welcome to part 3 of a series on how yt deals with data and the ways that helps and hinders things! This time, I am going to describe what &amp;ldquo;chunks&amp;rdquo; of data (YTDataChunk) in yt are, and a few characteristics of them that wouldn&#39;t be obvious from the previous blog posts.
 Chunks have spatial attributes Data chunks in yt have a set of special attributes that help yt to put them in the context of the coordinate domain.</description>
     </item>
     
@@ -66,7 +66,7 @@ Chunks have spatial attributes Data chunks in yt have a set of special attribute
       <pubDate>Mon, 10 Jun 2019 12:59:33 -0500</pubDate>
       
       <guid>https://matthewturk.github.io/post/refactoring-yt-frontends-part2/</guid>
-      <description>SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &amp;hellip; didn&amp;rsquo;t! So it looks like there&amp;rsquo;ll be a part three in the series.
+      <description>SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &amp;hellip; didn&#39;t! So it looks like there&#39;ll be a part three in the series.
 Operations on Data Objects In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the &amp;quot;io&amp;quot; style of chunking, where the order in which data arrives is not important.</description>
     </item>
     

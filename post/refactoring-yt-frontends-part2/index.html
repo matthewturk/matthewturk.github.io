@@ -27,7 +27,7 @@
   
     
   
-  <meta name="description" content="SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn&rsquo;t! So it looks like there&rsquo;ll be a part three in the series.
+  <meta name="description" content="SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn&#39;t! So it looks like there&#39;ll be a part three in the series.
 Operations on Data Objects In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the &quot;io&quot; style of chunking, where the order in which data arrives is not important.">
 
   
@@ -90,7 +90,7 @@ Operations on Data Objects In my previous post, I walked through a few aspects o
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.160c9711abc197a38ee59f0961dc31dc.css">
+  <link rel="stylesheet" href="/css/academic.min.331f53d055a276ccbdada146254dc48b.css">
 
   
 
@@ -135,7 +135,7 @@ Operations on Data Objects In my previous post, I walked through a few aspects o
   <meta property="og:site_name" content="mjt">
   <meta property="og:url" content="https://matthewturk.github.io/post/refactoring-yt-frontends-part2/">
   <meta property="og:title" content="Refactoring yt Frontends - Part 2 | mjt">
-  <meta property="og:description" content="SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn&rsquo;t! So it looks like there&rsquo;ll be a part three in the series.
+  <meta property="og:description" content="SIDE NOTE: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn&#39;t! So it looks like there&#39;ll be a part three in the series.
 Operations on Data Objects In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the &quot;io&quot; style of chunking, where the order in which data arrives is not important."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -541,20 +541,13 @@ Operations on Data Objects In my previous post, I walked through a few aspects o
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p><strong>SIDE NOTE</strong>: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn&rsquo;t!  So it looks like there&rsquo;ll be a part three in the series.</p>
-
+      <p><strong>SIDE NOTE</strong>: I intended for this blog post to be a bit shorter than it turned out, and for it to cover some things it &hellip; didn't!  So it looks like there'll be a part three in the series.</p>
 <h2 id="operations-on-data-objects">Operations on Data Objects</h2>
-
 <p>In my previous post, I walked through a few aspects of how the chunking system in yt works, mostly focusing on the <code>&quot;io&quot;</code> style of chunking, where the order in which data arrives is not important.  This style of chunking lends itself very easily to parallelism, as well as dynamic chunk-sizing; we can see this in how operations such as <code>.max()</code> operate on a data object in yt.</p>
-
-<pre><code class="language-python">import yt
-ds = yt.load(&quot;data/IsolatedGalaxy/galaxy0030/galaxy0030&quot;)
-dd = ds.r[:,:,:]
-</code></pre>
-
-<pre><code>yt : [INFO     ] 2019-06-10 12:59:13,433 Parameters: current_time              = 0.0060000200028298
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> yt
+ds <span style="color:#f92672">=</span> yt<span style="color:#f92672">.</span>load(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data/IsolatedGalaxy/galaxy0030/galaxy0030</span><span style="color:#e6db74">&#34;</span>)
+dd <span style="color:#f92672">=</span> ds<span style="color:#f92672">.</span>r[:,:,:]
+</code></pre></div><pre><code>yt : [INFO     ] 2019-06-10 12:59:13,433 Parameters: current_time              = 0.0060000200028298
 yt : [INFO     ] 2019-06-10 12:59:13,434 Parameters: domain_dimensions         = [32 32 32]
 yt : [INFO     ] 2019-06-10 12:59:13,435 Parameters: domain_left_edge          = [0. 0. 0.]
 yt : [INFO     ] 2019-06-10 12:59:13,437 Parameters: domain_right_edge         = [1. 1. 1.]
@@ -562,35 +555,21 @@ yt : [INFO     ] 2019-06-10 12:59:13,439 Parameters: cosmological_simulation   =
 Parsing Hierarchy : 100%|██████████| 173/173 [00:00&lt;00:00, 5931.42it/s]
 yt : [INFO     ] 2019-06-10 12:59:13,487 Gathering a field list (this may take a moment.)
 </code></pre>
-
-<pre><code class="language-python">max_vals = dd.max([&quot;density&quot;, &quot;temperature&quot;, &quot;velocity_magnitude&quot;])
-print(max_vals)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">max_vals <span style="color:#f92672">=</span> dd<span style="color:#f92672">.</span>max([<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">density</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">temperature</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">velocity_magnitude</span><span style="color:#e6db74">&#34;</span>])
+<span style="color:#66d9ef">print</span>(max_vals)
+</code></pre></div><pre><code>(7.73426503924e-24 g/cm**3, 24826104.0 K, 86290042.8768639 cm/s)
 </code></pre>
-
-<pre><code>(7.73426503924e-24 g/cm**3, 24826104.0 K, 86290042.8768639 cm/s)
-</code></pre>
-
 <p>I want to highlight something here which sometimes slips by &ndash; if you were to access the array hanging off an object like <code>dd</code>, like this:</p>
-
-<pre><code class="language-python">dd[&quot;density&quot;]
-</code></pre>
-
-<pre><code>YTArray([4.92775113e-31, 4.94005233e-31, 4.93824694e-31, ...,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">density</span><span style="color:#e6db74">&#34;</span>]
+</code></pre></div><pre><code>YTArray([4.92775113e-31, 4.94005233e-31, 4.93824694e-31, ...,
          1.12879234e-25, 1.59561490e-25, 1.09824903e-24]) g/cm**3
 </code></pre>
-
 <p>The entire array is loaded into memory.  This is done through a different chunk style, <code>&quot;all&quot;</code>, which pre-allocates an array and then loads the whole thing into memory in a single go.  I should note that there are a few reasons that this needs to always be provided in the same order as the <code>&quot;io&quot;</code> chunking style, which has presented some fun struggles in refactoring that I may mention later on.</p>
-
-<p>But above, we aren&rsquo;t accessing <code>dd[&quot;density&quot;].max()</code> and instead are accessing <code>dd.max(&quot;density&quot;)</code> (along with two other fields, temperature and the magnitude of velocity.)  This operation, inspired by the numpy / xarray syntax, iterates over chunks and computes the running max.</p>
-
-<p>There are a few other fun operations that I mentioned last time like <code>argmax</code> and whatnot, but for now let&rsquo;s just look at <code>max</code>.  While the syntactic sugar for calling <code>dd.max()</code> is reasonably recent, the underpinning functionality dates back about a decade and has, from the start, been MPI-parallel.  It hasn&rsquo;t always been elegant, but it&rsquo;s been parallel and memory-conservative.</p>
-
-<p>So how does <code>.max()</code> (and, its older form, <code>.quantities[&quot;MaximumValue&quot;]()</code>) work?  Let&rsquo;s take a look at the source.</p>
-
-<pre><code class="language-python">dd.max??
-</code></pre>
-
-<pre><code>Signature: dd.max(field, axis=None)
+<p>But above, we aren't accessing <code>dd[&quot;density&quot;].max()</code> and instead are accessing <code>dd.max(&quot;density&quot;)</code> (along with two other fields, temperature and the magnitude of velocity.)  This operation, inspired by the numpy / xarray syntax, iterates over chunks and computes the running max.</p>
+<p>There are a few other fun operations that I mentioned last time like <code>argmax</code> and whatnot, but for now let's just look at <code>max</code>.  While the syntactic sugar for calling <code>dd.max()</code> is reasonably recent, the underpinning functionality dates back about a decade and has, from the start, been MPI-parallel.  It hasn't always been elegant, but it's been parallel and memory-conservative.</p>
+<p>So how does <code>.max()</code> (and, its older form, <code>.quantities[&quot;MaximumValue&quot;]()</code>) work?  Let's take a look at the source.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd<span style="color:#f92672">.</span>max<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature: dd.max(field, axis=None)
 Source:   
     def max(self, field, axis=None):
         r&quot;&quot;&quot;Compute the maximum of a field, optionally along an axis.
@@ -634,15 +613,10 @@ Source:
 File:      ~/yt/yt/yt/data_objects/data_containers.py
 Type:      method
 </code></pre>
-
-<p>(One fun bit here is that if you supply an axis and it&rsquo;s a spatial axis, this will project along the axis.)</p>
-
-<p>Looks like it calls <code>._compute_extrema</code> so let&rsquo;s take a look there:</p>
-
-<pre><code class="language-python">dd._compute_extrema??
-</code></pre>
-
-<pre><code>Signature: dd._compute_extrema(field)
+<p>(One fun bit here is that if you supply an axis and it's a spatial axis, this will project along the axis.)</p>
+<p>Looks like it calls <code>._compute_extrema</code> so let's take a look there:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd<span style="color:#f92672">.</span>_compute_extrema<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature: dd._compute_extrema(field)
 Docstring: &lt;no docstring&gt;
 Source:   
     def _compute_extrema(self, field):
@@ -657,17 +631,11 @@ Source:
 File:      ~/yt/yt/yt/data_objects/data_containers.py
 Type:      method
 </code></pre>
-
-<p>(Fun fact: until I saw the source code right now, I was prepared to say that it computed all the extrema in a single go.  Glad there&rsquo;s a backspace key.  I should probably file an issue.)</p>
-
-<p>This calls <code>self.quantities.extrema</code> for each field, since it&rsquo;s nearly just as cheap to do both min and max in a single pass, and sometimes folks&rsquo;ll want both.</p>
-
-<p>So we&rsquo;re starting to see the underpinnings here &ndash; <code>.quantities</code> is where lots of the fun things happen.  What is it?</p>
-
-<pre><code class="language-python">dd.quantities.extrema??
-</code></pre>
-
-<pre><code>Signature:      dd.quantities.extrema(fields, non_zero=False)
+<p>(Fun fact: until I saw the source code right now, I was prepared to say that it computed all the extrema in a single go.  Glad there's a backspace key.  I should probably file an issue.)</p>
+<p>This calls <code>self.quantities.extrema</code> for each field, since it's nearly just as cheap to do both min and max in a single pass, and sometimes folks'll want both.</p>
+<p>So we're starting to see the underpinnings here &ndash; <code>.quantities</code> is where lots of the fun things happen.  What is it?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd<span style="color:#f92672">.</span>quantities<span style="color:#f92672">.</span>extrema<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Signature:      dd.quantities.extrema(fields, non_zero=False)
 Type:           Extrema
 String form:    &lt;yt.data_objects.derived_quantities.Extrema object at 0x7db454d7a2e8&gt;
 File:           ~/yt/yt/yt/data_objects/derived_quantities.py
@@ -726,27 +694,16 @@ class Extrema(DerivedQuantity):
                 for mis, mas in zip(values[::[0;36m2], values[[0;36m1::[0;36m2])]
 Call docstring: Calculate results for the derived quantity
 </code></pre>
-
 <p>Ah, this is starting to make sense!</p>
-
 <p>All the <code>DerivedQuantity</code> objects</p>
-
 <p>What all do we have?</p>
-
-<pre><code class="language-python">dd.quantities.keys()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dd<span style="color:#f92672">.</span>quantities<span style="color:#f92672">.</span>keys()
+</code></pre></div><pre><code>dict_keys(['WeightedAverageQuantity', 'TotalQuantity', 'TotalMass', 'CenterOfMass', 'BulkVelocity', 'WeightedVariance', 'AngularMomentumVector', 'Extrema', 'SampleAtMaxFieldValues', 'MaxLocation', 'SampleAtMinFieldValues', 'MinLocation', 'SpinParameter'])
 </code></pre>
-
-<pre><code>dict_keys(['WeightedAverageQuantity', 'TotalQuantity', 'TotalMass', 'CenterOfMass', 'BulkVelocity', 'WeightedVariance', 'AngularMomentumVector', 'Extrema', 'SampleAtMaxFieldValues', 'MaxLocation', 'SampleAtMinFieldValues', 'MinLocation', 'SpinParameter'])
-</code></pre>
-
-<p>Looking at these, there&rsquo;s likely a common theme that is pretty obvious &ndash; they&rsquo;re all pretty easily parallelizable things!  Sure, there might need to be some reductions at the end, but these are all pretty straightforward combinations of fields and parameters.</p>
-
+<p>Looking at these, there's likely a common theme that is pretty obvious &ndash; they're all pretty easily parallelizable things!  Sure, there might need to be some reductions at the end, but these are all pretty straightforward combinations of fields and parameters.</p>
 <p>The way the base class works is interesting, and we can use that to break down what is going on here in a way that demonstrates how this relies on chunking:</p>
-
-<pre><code class="language-python">yt.data_objects.derived_quantities.DerivedQuantity??
-</code></pre>
-
-<pre><code>Init signature: yt.data_objects.derived_quantities.DerivedQuantity(data_source)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">yt<span style="color:#f92672">.</span>data_objects<span style="color:#f92672">.</span>derived_quantities<span style="color:#f92672">.</span>DerivedQuantity<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#960050;background-color:#1e0010">?</span>
+</code></pre></div><pre><code>Init signature: yt.data_objects.derived_quantities.DerivedQuantity(data_source)
 Docstring:      &lt;no docstring&gt;
 Source:        
 class DerivedQuantity(ParallelAnalysisInterface):
@@ -788,103 +745,59 @@ File:           ~/yt/yt/yt/data_objects/derived_quantities.py
 Type:           RegisteredDerivedQuantity
 Subclasses:     WeightedAverageQuantity, TotalQuantity, CenterOfMass, BulkVelocity, WeightedVariance, AngularMomentumVector, Extrema, SampleAtMaxFieldValues, SpinParameter
 </code></pre>
-
 <p>The key thing I want to highlight here is that this is rather simple in concept; the chunks are iterated over in parallel (via the <code>parallel_objects</code> routine, which parcels them out to different processors), processed, and then the reduction happens through <code>reduce_intermediate</code>.</p>
-
-<p>There are a few things to note here &ndash; this is actually units-aware, which means that even if you&rsquo;ve got (for some reason) <code>cm</code> for a quantity on one processor and <code>km</code> on another, it will correctly convert them.  The other is that the set up is such that only the <code>process_chunk</code> and <code>reduce_intermediate</code> operations need to be implemented, along with setting some properties.</p>
-
-<p>But, we&rsquo;re getting a bit far away from the topic at hand, which is why how chunking is set up can cause some issues with exposing data to dask.  And so I want to return to the notion of the <code>&quot;io&quot;</code> chunking and how this works for differently indexed datasets.</p>
-
-<h2 id="fine-and-coarse-grained-indexing">Fine- and Coarse-grained Indexing</h2>
-
+<p>There are a few things to note here &ndash; this is actually units-aware, which means that even if you've got (for some reason) <code>cm</code> for a quantity on one processor and <code>km</code> on another, it will correctly convert them.  The other is that the set up is such that only the <code>process_chunk</code> and <code>reduce_intermediate</code> operations need to be implemented, along with setting some properties.</p>
+<p>But, we're getting a bit far away from the topic at hand, which is why how chunking is set up can cause some issues with exposing data to dask.  And so I want to return to the notion of the <code>&quot;io&quot;</code> chunking and how this works for differently indexed datasets.</p>
+<h2 id="fine-and-coarsegrained-indexing">Fine- and Coarse-grained Indexing</h2>
 <p>What yt does during the selection of data is key to how it thinks about the processings of that data.  The way that data can be provided to yt takes several forms:</p>
-
 <ul>
-<li>Regularly structured grids and grid based data, where there may be overlapping regions (typically with one &ldquo;authoritative source of truth&rdquo; as in <a href="https://en.wikipedia.org/wiki/Adaptive_mesh_refinement" target="_blank">adaptive mesh refinement</a>)</li>
+<li>Regularly structured grids and grid based data, where there may be overlapping regions (typically with one &ldquo;authoritative source of truth&rdquo; as in <a href="https://en.wikipedia.org/wiki/Adaptive_mesh_refinement">adaptive mesh refinement</a>)</li>
 <li>Irregular grids, where the distance between points may vary along each spatial axis</li>
 <li>Unstructured mesh, where the data arrives in hexahedra, tetrahedra, etc, and there is typically a well-defined form for evaluating field values internal to each polyhedra</li>
-<li>Discrete, or particle-based datasets, where each point is sampled at some location that we don&rsquo;t know <em>a priori</em> &ndash; for instance, N-body simulations</li>
+<li>Discrete, or particle-based datasets, where each point is sampled at some location that we don't know <em>a priori</em> &ndash; for instance, N-body simulations</li>
 <li>Octree or block-structured data, which can in some cases be thought of as a special-case of grid based data but that follows a more regular form</li>
 </ul>
-
 <p>Several of these have a common trait that comes in quite handy for yt &ndash; namely, that the <em>index</em> of the data occupies considerably less memory than the data itself.</p>
-
 <h3 id="grid-indexing">Grid Indexing</h3>
-
 <p>For instance, when dealing with a grid of data, typically that grid can be defined by a set of properties such as:</p>
-
 <ul>
 <li>&ldquo;origin&rdquo; corner of the grid (&ldquo;left edge&rdquo;)</li>
 <li>&ldquo;terminal&rdquo; corner of the grid (&ldquo;right edge&rdquo;)</li>
 <li>dimensions along each axis</li>
 <li>if irregular, the cell-spacing along each axis</li>
 </ul>
-
 <p>There are of course a handful of other attributes that might be useful (and which we can sometimes deduce) but these are the basics.  If we imagine that each of these requires 64-bits per axis per value, a standard (regular) grid requires 576 bits, or 72 bytes.  If we were storing the actual value locations, each would require 3 64-bit numbers &ndash; which means that as soon as we were storing 3 of them, we would</p>
-
-<p>(Of course, one probably doesn&rsquo;t need to store dimensions as 64 bits, and there are also probably some other ways to reduce the info necessary, but as <a href="https://en.wikipedia.org/wiki/Straw_man" target="_blank">straw-person arguments</a> go, this isn&rsquo;t so bad.)</p>
-
-<p>What we can get to with this is that for grid and other regular datasets, it&rsquo;s reasonably <em>cheap</em> to index the data.  So when we create a data object, for instance:</p>
-
-<pre><code class="language-python">sp = ds.sphere(&quot;center&quot;, (100.0, &quot;kpc&quot;))
-</code></pre>
-
-<p>yt can determine <em>without touching the disk</em> how many grid cells intersect it, and thus it can pre-allocate arrays of the correct size and fill them in progressively, in whatever fashion it deems best for IO purposes.</p>
-
-<p>This isn&rsquo;t without cost &ndash; computing the intersections can be quite costly, and so we do some things to cache those.  (The cost/benefit of caching often bites us when we are dealing with large unigrid datasets, though.)  This was all designed to prevent having to call a big <code>np.concatenate</code> at some point in the operation when chunking based on <code>&quot;all&quot;</code>, but it&rsquo;s not always obvious to me that the balance was correctly struck here.</p>
-
-<p>When an object is created, no selection is conducted until a field is requested.  At some point in the call stack once a field is asked for, the function <code>index._identify_base_chunk</code> is called.  This is where things are different for particles, but we&rsquo;ll get to that later.</p>
-
+<p>(Of course, one probably doesn't need to store dimensions as 64 bits, and there are also probably some other ways to reduce the info necessary, but as <a href="https://en.wikipedia.org/wiki/Straw_man">straw-person arguments</a> go, this isn't so bad.)</p>
+<p>What we can get to with this is that for grid and other regular datasets, it's reasonably <em>cheap</em> to index the data.  So when we create a data object, for instance:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sp <span style="color:#f92672">=</span> ds<span style="color:#f92672">.</span>sphere(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">center</span><span style="color:#e6db74">&#34;</span>, (<span style="color:#ae81ff">100.0</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">kpc</span><span style="color:#e6db74">&#34;</span>))
+</code></pre></div><p>yt can determine <em>without touching the disk</em> how many grid cells intersect it, and thus it can pre-allocate arrays of the correct size and fill them in progressively, in whatever fashion it deems best for IO purposes.</p>
+<p>This isn't without cost &ndash; computing the intersections can be quite costly, and so we do some things to cache those.  (The cost/benefit of caching often bites us when we are dealing with large unigrid datasets, though.)  This was all designed to prevent having to call a big <code>np.concatenate</code> at some point in the operation when chunking based on <code>&quot;all&quot;</code>, but it's not always obvious to me that the balance was correctly struck here.</p>
+<p>When an object is created, no selection is conducted until a field is requested.  At some point in the call stack once a field is asked for, the function <code>index._identify_base_chunk</code> is called.  This is where things are different for particles, but we'll get to that later.</p>
 <h3 id="particle-indexing">Particle Indexing</h3>
-
-<p>When dealing with particles, our indexing requirements are very different.  Here, the cost of storing the index values is very high &ndash; but, we also don&rsquo;t want to have to perform too much IO.  So we&rsquo;re stuck minimizing how much IO we do, while also minimizing the amount of information we store in-memory once we &ldquo;index&rdquo; a dataset.</p>
-
+<p>When dealing with particles, our indexing requirements are very different.  Here, the cost of storing the index values is very high &ndash; but, we also don't want to have to perform too much IO.  So we're stuck minimizing how much IO we do, while also minimizing the amount of information we store in-memory once we &ldquo;index&rdquo; a dataset.</p>
 <p>In yt-4.0, we accomplish this through the use of bitmap indices, which I described a little bit in the first post.  The basic idea of this is that each &ldquo;file&rdquo; (which can be subsets of a single file, and is better thought of as an IO block of some type) is assigned some unique ID.  All the files are iterated over and for each discrete point included in that file, an index into a space-filling curve is generated.  We use a resonably coarse space filling curve for the first iteration &ndash; say, a level 2 curve &ndash; and that allows ambiguities.  This is essentially a binning operation.</p>
-
-<p>(Incidentally, we often use <a href="https://en.wikipedia.org/wiki/Z-order" target="_blank">Morton Z-Ordering</a> because it&rsquo;s just easier to explain.  We might get better compression if we used <a href="https://en.wikipedia.org/wiki/Hilbert_curve" target="_blank">Hilbert</a> since consecutive values may be more likely to be identical.)</p>
-
-<p>At the end of the first iteration, we have a key-value store of bitarrays, where the key is the file ID and the value is a set of 1&rsquo;s and 0&rsquo;s, where a 1 indicates that a particle is found in a given region identified by the space-filling curve index corresponding with that 1&rsquo;s index in the array.  So, for instance, if we had a level 3 index, we would have a set of bitarrays that looked like:</p>
-
+<p>(Incidentally, we often use <a href="https://en.wikipedia.org/wiki/Z-order">Morton Z-Ordering</a> because it's just easier to explain.  We might get better compression if we used <a href="https://en.wikipedia.org/wiki/Hilbert_curve">Hilbert</a> since consecutive values may be more likely to be identical.)</p>
+<p>At the end of the first iteration, we have a key-value store of bitarrays, where the key is the file ID and the value is a set of 1's and 0's, where a 1 indicates that a particle is found in a given region identified by the space-filling curve index corresponding with that 1's index in the array.  So, for instance, if we had a level 3 index, we would have a set of bitarrays that looked like:</p>
 <pre><code>001 000 101
 010 011 011
 ...
-</code></pre>
-
-<p>So, if we read from left-to-right, the first file has particles that live in (zero-indexed) indices 2, 6 and 8.  The second file has particles in indices 1, 4, 5, 7 and 8.</p>
-
+</code></pre><p>So, if we read from left-to-right, the first file has particles that live in (zero-indexed) indices 2, 6 and 8.  The second file has particles in indices 1, 4, 5, 7 and 8.</p>
 <p>If we know that our selector only intersects areas touched by index 2, then we only have to read from the first file.</p>
-
-<p>This would work great if we had particles that were distributed pretty homogeneously on large scales, but in many cases, we don&rsquo;t.  Sometimes when particles are written to disk they are sorted on some high-order index and then written out in that order.  What yt does is perform a secondary, as-needed indexing based on where there are &ldquo;collisions&rdquo; &ndash; i.e., ambiguities.  A set of logical operations is performed across all the bitarrays to identify where multiple files overlap; following this, a <em>second</em> round of indexing is conducted at a much higher spatial order.</p>
-
+<p>This would work great if we had particles that were distributed pretty homogeneously on large scales, but in many cases, we don't.  Sometimes when particles are written to disk they are sorted on some high-order index and then written out in that order.  What yt does is perform a secondary, as-needed indexing based on where there are &ldquo;collisions&rdquo; &ndash; i.e., ambiguities.  A set of logical operations is performed across all the bitarrays to identify where multiple files overlap; following this, a <em>second</em> round of indexing is conducted at a much higher spatial order.</p>
 <p>In doing this, we are able to pinpoint with reasonably high precision the file or files that need to be read to get data from a given selector, and minimize very precisely the amount of over-reading that is done.</p>
-
-<p>Unfortunately, this doesn&rsquo;t give us the ability to explicitly allocate arrays of the correct size.  (And, the memory overhead of regaining that ability would be quite high.)  But as we saw above, yt doesn&rsquo;t want to do big concatenation operations!  So it does the thing I really wish it didn&rsquo;t, which is &hellip; it reads all the position data in IO chunks, figures out how big it is (which only requires a running tally, not a set of allocated arrays), then allocates and fills that single big array.</p>
-
-<p>This isn&rsquo;t really that efficient, and it arises from the case where the indexing is comparatively cheap.</p>
-
+<p>Unfortunately, this doesn't give us the ability to explicitly allocate arrays of the correct size.  (And, the memory overhead of regaining that ability would be quite high.)  But as we saw above, yt doesn't want to do big concatenation operations!  So it does the thing I really wish it didn't, which is &hellip; it reads all the position data in IO chunks, figures out how big it is (which only requires a running tally, not a set of allocated arrays), then allocates and fills that single big array.</p>
+<p>This isn't really that efficient, and it arises from the case where the indexing is comparatively cheap.</p>
 <p>But all of this arises out of the design decision that we need to optimize for the case that we want a single big array, rather than a bunch of small arrays &ndash; i.e., for the case of:</p>
-
-<pre><code class="language-python">ds.r[:][&quot;density&quot;].max()
-</code></pre>
-
-<p>as opposed to</p>
-
-<pre><code class="language-python">ds.r[:].max(&quot;density&quot;)
-</code></pre>
-
-<h2 id="didn-t-you-say-you-d-be-talking-about-dask">&hellip;didn&rsquo;t you say you&rsquo;d be talking about Dask?</h2>
-
-<p>Well, this is where dask comes in!  And, it&rsquo;s also why interfacing to dask is a bit tricky &ndash; because we do a lot of work ahead of time before allocating any arrays, and then we get rid of the information generated during that work.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ds<span style="color:#f92672">.</span>r[:][<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">density</span><span style="color:#e6db74">&#34;</span>]<span style="color:#f92672">.</span>max()
+</code></pre></div><p>as opposed to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ds<span style="color:#f92672">.</span>r[:]<span style="color:#f92672">.</span>max(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">density</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><h2 id="didnt-you-say-youd-be-talking-about-dask">&hellip;didn't you say you'd be talking about Dask?</h2>
+<p>Well, this is where dask comes in!  And, it's also why interfacing to dask is a bit tricky &ndash; because we do a lot of work ahead of time before allocating any arrays, and then we get rid of the information generated during that work.</p>
 <p>In an ideal world, what we would be able to do is to export a <em>data object</em> (such as a sphere or cylinder or rectangular prism) and a <em>field-type</em> (so we knew if it was a vector, or particles, or nodal/zonal data) as a dask array.  For instance, if instead of returning an array (specifically, a <code>YTArray</code> or <code>unyt_array</code>) when we accessed <code>sp[&quot;density&quot;]</code>, it returned a <code>DaskArray</code>, we would open up a number of new and interesting techniques.</p>
-
 <p>But to do that, we need to be able to know in advance the chunk sizes, and more to the point, we need to be able to specify a function that returns each chunk <em>uniquely</em>.</p>
-
 <h2 id="next-entry-iterables-and-io">Next Entry: Iterables and IO</h2>
-
-<p>Turns out, I thought I&rsquo;d be done with this entry a lot sooner than I was!</p>
-
-<p>In the next blog post, which hopefully will take less than the 8 days this one did, I&rsquo;ll talk about why this is (currently) hard, how to fix that, and what we&rsquo;re doing to fix it.</p>
+<p>Turns out, I thought I'd be done with this entry a lot sooner than I was!</p>
+<p>In the next blog post, which hopefully will take less than the 8 days this one did, I'll talk about why this is (currently) hard, how to fix that, and what we're doing to fix it.</p>
 
     </div>
 

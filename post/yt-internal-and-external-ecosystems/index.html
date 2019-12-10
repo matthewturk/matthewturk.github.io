@@ -27,9 +27,9 @@
   
     
   
-  <meta name="description" content="I think I&rsquo;ve talked myself into proposing a big change in yt. I&rsquo;m not the &ldquo;boss&rdquo; of yt, so it might not happen, but I&rsquo;ve kind of worked up my courage to make a serious suggestion.
+  <meta name="description" content="I think I&#39;ve talked myself into proposing a big change in yt. I&#39;m not the &ldquo;boss&rdquo; of yt, so it might not happen, but I&#39;ve kind of worked up my courage to make a serious suggestion.
 This last week I have been at SciPy 2019 and I had the opportunity to see a lot of talks.
-There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&rsquo;m going to stick to just one in particular.">
+There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&#39;m going to stick to just one in particular.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/">
@@ -91,7 +91,7 @@ There were a few that really stuck with me, but for the purposes of this rather 
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.160c9711abc197a38ee59f0961dc31dc.css">
+  <link rel="stylesheet" href="/css/academic.min.331f53d055a276ccbdada146254dc48b.css">
 
   
 
@@ -136,9 +136,9 @@ There were a few that really stuck with me, but for the purposes of this rather 
   <meta property="og:site_name" content="mjt">
   <meta property="og:url" content="https://matthewturk.github.io/post/yt-internal-and-external-ecosystems/">
   <meta property="og:title" content="yt: Internal and External Ecosystems | mjt">
-  <meta property="og:description" content="I think I&rsquo;ve talked myself into proposing a big change in yt. I&rsquo;m not the &ldquo;boss&rdquo; of yt, so it might not happen, but I&rsquo;ve kind of worked up my courage to make a serious suggestion.
+  <meta property="og:description" content="I think I&#39;ve talked myself into proposing a big change in yt. I&#39;m not the &ldquo;boss&rdquo; of yt, so it might not happen, but I&#39;ve kind of worked up my courage to make a serious suggestion.
 This last week I have been at SciPy 2019 and I had the opportunity to see a lot of talks.
-There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&rsquo;m going to stick to just one in particular."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
+There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&#39;m going to stick to just one in particular."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-07-16T14:28:36-05:00">
@@ -504,31 +504,18 @@ There were a few that really stuck with me, but for the purposes of this rather 
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p>I think I&rsquo;ve talked myself into proposing a big change in yt.  I&rsquo;m not the &ldquo;boss&rdquo; of yt, so it might not happen, but I&rsquo;ve kind of worked up my courage to make a serious suggestion.</p>
-
-<p>This last week I have been at <a href="https://scipy2019.scipy.org/" target="_blank">SciPy 2019</a> and I had the opportunity to see a lot of talks.</p>
-
-<p>There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I&rsquo;m going to stick to just one in particular.</p>
-
-<p><a href="http://matthewrocklin.com/" target="_blank">Matt Rocklin</a> gave a talk about <a href="https://www.youtube.com/watch?v=Q0DsdiY-jiw" target="_blank">refactoring the ecosystem to prepare for heterogeneous computing</a>  (you should go watch it!).  More specifically, though, what it seemed to me was that it was a talk more about an opportunity to avoid fragmentation and think more carefully about how arrays and APIs are thought of and used.  That got me thinking about something I&rsquo;ve kind of touched on in previous posts (<a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part1/" target="_blank">here</a>, <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part2/" target="_blank">here</a> and <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/" target="_blank">here</a>) &ndash; basically, that yt is pretty monolithic, and that&rsquo;s not really the best way to evolve with the ecosystem.</p>
-
-<p>I&rsquo;ll be using <a href="https://github.com/mgedmin/findimports" target="_blank">findimports</a> for exploring how monolithic it <em>is</em> versus how monolithic it <em>appears to be</em>.  Basically, I want to see: is it one repo with lots of interconnections, or is it essentially a couple repos?</p>
-
-<p>(Also at the end I&rsquo;ll give a pitch for why this is relevant, so if you&rsquo;re even remotely intrigued, at <em>least</em> scroll down to the section labeled &ldquo;OK, the boring stuff is over.&rdquo;)</p>
-
-<pre><code class="language-python">import pickle
-import findimports
-yt_imports = pickle.load(open(&quot;yt/yt/import_output.pkl&quot;, &quot;rb&quot;))
-</code></pre>
-
-<p>The structure of this is a set of keys that are strings of the filename/modulename, with values that are the objects in question.  The <code>findimports</code> objects have an attribute <code>imports</code> which is what we&rsquo;re going to look at first, but they also have an <code>imported_names</code> attribute which is the list of names that get imported, in the form of <code>ImportInfo</code> objects.  These have <code>name</code>, <code>filename</code>, <code>level</code> and <code>lineno</code> to show where and what they are.</p>
-
-<pre><code class="language-python">yt_imports['yt.visualization.plot_window'].imports
-</code></pre>
-
-<pre><code>{'collections',
+      <p>I think I've talked myself into proposing a big change in yt.  I'm not the &ldquo;boss&rdquo; of yt, so it might not happen, but I've kind of worked up my courage to make a serious suggestion.</p>
+<p>This last week I have been at <a href="https://scipy2019.scipy.org/">SciPy 2019</a> and I had the opportunity to see a lot of talks.</p>
+<p>There were a few that really stuck with me, but for the purposes of this rather technically-focused blog post, I'm going to stick to just one in particular.</p>
+<p><a href="http://matthewrocklin.com/">Matt Rocklin</a> gave a talk about <a href="https://www.youtube.com/watch?v=Q0DsdiY-jiw">refactoring the ecosystem to prepare for heterogeneous computing</a>  (you should go watch it!).  More specifically, though, what it seemed to me was that it was a talk more about an opportunity to avoid fragmentation and think more carefully about how arrays and APIs are thought of and used.  That got me thinking about something I've kind of touched on in previous posts (<a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part1/">here</a>, <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part2/">here</a> and <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/">here</a>) &ndash; basically, that yt is pretty monolithic, and that's not really the best way to evolve with the ecosystem.</p>
+<p>I'll be using <a href="https://github.com/mgedmin/findimports">findimports</a> for exploring how monolithic it <em>is</em> versus how monolithic it <em>appears to be</em>.  Basically, I want to see: is it one repo with lots of interconnections, or is it essentially a couple repos?</p>
+<p>(Also at the end I'll give a pitch for why this is relevant, so if you're even remotely intrigued, at <em>least</em> scroll down to the section labeled &ldquo;OK, the boring stuff is over.&quot;)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pickle
+<span style="color:#f92672">import</span> findimports
+yt_imports <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>load(open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt/yt/import_output.pkl</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">rb</span><span style="color:#e6db74">&#34;</span>))
+</code></pre></div><p>The structure of this is a set of keys that are strings of the filename/modulename, with values that are the objects in question.  The <code>findimports</code> objects have an attribute <code>imports</code> which is what we're going to look at first, but they also have an <code>imported_names</code> attribute which is the list of names that get imported, in the form of <code>ImportInfo</code> objects.  These have <code>name</code>, <code>filename</code>, <code>level</code> and <code>lineno</code> to show where and what they are.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">yt_imports[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">yt.visualization.plot_window</span><span style="color:#e6db74">&#39;</span>]<span style="color:#f92672">.</span>imports
+</code></pre></div><pre><code>{'collections',
  'distutils.version',
  'matplotlib',
  'matplotlib.mathtext',
@@ -555,23 +542,13 @@ yt_imports = pickle.load(open(&quot;yt/yt/import_output.pkl&quot;, &quot;rb&quot
  'yt.visualization.plot_container',
  'yt.visualization.plot_modifications'}
 </code></pre>
-
-<p>There happen to be a fair number of things in here that are external to yt!  So, let&rsquo;s set up a filtering process for those.  We&rsquo;ll filter the <code>name</code> that is imported.</p>
-
-<p>One thing I should note is that yt does many, but not <em>all</em>, of its imports in absolute form, which maybe isn&rsquo;t &hellip; so great &hellip; but which lets us do this more easily.</p>
-
-<pre><code class="language-python">filter_imports = lambda a: [_ for _ in sorted(a, key=lambda b: b.name) if _.name.startswith(&quot;yt.&quot;)]
-</code></pre>
-
-<p>We&rsquo;ll apply it to the <code>imported_names</code> attribute, since we&rsquo;re interested in characterizing how things are related and interweaved.</p>
-
-<pre><code class="language-python">import_lists = {_ : filter_imports(yt_imports[_].imported_names) for _ in yt_imports}
-</code></pre>
-
-<pre><code class="language-python">import_lists['yt.visualization.plot_window']
-</code></pre>
-
-<pre><code>[ImportInfo('yt.data_objects.image_array.ImageArray', 'yt/visualization/plot_window.py', 40, 0),
+<p>There happen to be a fair number of things in here that are external to yt!  So, let's set up a filtering process for those.  We'll filter the <code>name</code> that is imported.</p>
+<p>One thing I should note is that yt does many, but not <em>all</em>, of its imports in absolute form, which maybe isn't &hellip; so great &hellip; but which lets us do this more easily.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filter_imports <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> a: [_ <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> sorted(a, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> b: b<span style="color:#f92672">.</span>name) <span style="color:#66d9ef">if</span> _<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.</span><span style="color:#e6db74">&#34;</span>)]
+</code></pre></div><p>We'll apply it to the <code>imported_names</code> attribute, since we're interested in characterizing how things are related and interweaved.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">import_lists <span style="color:#f92672">=</span> {_ : filter_imports(yt_imports[_]<span style="color:#f92672">.</span>imported_names) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> yt_imports}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">import_lists[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">yt.visualization.plot_window</span><span style="color:#e6db74">&#39;</span>]
+</code></pre></div><pre><code>[ImportInfo('yt.data_objects.image_array.ImageArray', 'yt/visualization/plot_window.py', 40, 0),
  ImportInfo('yt.frontends.ytdata.data_structures.YTSpatialPlotDataset', 'yt/visualization/plot_window.py', 42, 0),
  ImportInfo('yt.funcs.ensure_list', 'yt/visualization/plot_window.py', 44, 0),
  ImportInfo('yt.funcs.fix_axis', 'yt/visualization/plot_window.py', 45, 0),
@@ -595,96 +572,58 @@ yt_imports = pickle.load(open(&quot;yt/yt/import_output.pkl&quot;, &quot;rb&quot
  ImportInfo('yt.utilities.math_utils.ortho_find', 'yt/visualization/plot_window.py', 53, 0),
  ImportInfo('yt.utilities.orientation.Orientation', 'yt/visualization/plot_window.py', 55, 0)]
 </code></pre>
-
-<p>This still isn&rsquo;t <em>incredibly</em> useful, since we kind of want to look at imports at a higher level.  For instance, I want to know what <code>yt.visualization.plot_window</code> imports from in the broad cross-section of the code base.  So let&rsquo;s write something to collapse the package <em>under</em> yt that we import from.  We used <code>startswith(&quot;.yt&quot;)</code> earlier, so it&rsquo;ll be safe to do a split here.</p>
-
-<pre><code class="language-python">collapse_subpackage = lambda a: set(_.name.split(&quot;.&quot;)[1] for _ in a)
+<p>This still isn't <em>incredibly</em> useful, since we kind of want to look at imports at a higher level.  For instance, I want to know what <code>yt.visualization.plot_window</code> imports from in the broad cross-section of the code base.  So let's write something to collapse the package <em>under</em> yt that we import from.  We used <code>startswith(&quot;.yt&quot;)</code> earlier, so it'll be safe to do a split here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">collapse_subpackage <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> a: set(_<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>split(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.</span><span style="color:#e6db74">&#34;</span>)[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> a)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">collapse_subpackage(import_lists[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">yt.visualization.plot_window</span><span style="color:#e6db74">&#39;</span>])
+</code></pre></div><pre><code>{'data_objects', 'frontends', 'funcs', 'load', 'units', 'utilities'}
 </code></pre>
-
-<pre><code class="language-python">collapse_subpackage(import_lists['yt.visualization.plot_window'])
+<p>Interesting.  We import from frontends?!  I guess I kind of missed that earlier.  Let's see if we can figure out the connections between different modules to see if anything stands out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subpackage_imports <span style="color:#f92672">=</span> defaultdict(set)
+<span style="color:#66d9ef">for</span> fn, v <span style="color:#f92672">in</span> import_lists<span style="color:#f92672">.</span>items():
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> fn<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.</span><span style="color:#e6db74">&#34;</span>): <span style="color:#66d9ef">continue</span> <span style="color:#75715e"># Get rid of our tests, etc.</span>
+    subpackage <span style="color:#f92672">=</span> fn<span style="color:#f92672">.</span>split(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.</span><span style="color:#e6db74">&#34;</span>)[<span style="color:#ae81ff">1</span>]
+    subpackage_imports[subpackage]<span style="color:#f92672">.</span>update(collapse_subpackage(v))
+</code></pre></div><p>Let's break this down before we go any further &ndash; for starters, not <em>everything</em> is an absolute import.  So that makes things a bit tricky!  But we can deal with that later.  Let's first see what all we have:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subpackage_imports<span style="color:#f92672">.</span>keys()
+</code></pre></div><pre><code>dict_keys(['__init__', 'api', 'arraytypes', 'config', 'convenience', 'exthook', 'funcs', 'mods', 'pmods', 'startup_tasks', 'testing', 'analysis_modules', 'data_objects', 'extensions', 'extern', 'fields', 'frontends', 'geometry', 'tests', 'units', 'utilities', 'visualization'])
 </code></pre>
+<p>A few things stand out right away.  Some of these we can immediately get rid of and not consider.  For instance, <code>pmods</code> is an MPI-aware importer, <code>mods</code> is a pretty old-school approach to yt importing, and we will just ignore <code>testing</code>, <code>analysis_modules</code>, <code>extensions</code> and <code>extern</code> since they're (in order) testing utilities, gone, a fake hook system, and &ldquo;vendored&rdquo; libraries that we should probably get rid of and just make requirements anyway.  <code>units</code> is now part of <a href="https://github.com/yt-project/unyt"><code>unyt</code></a> and some of the others are by-design grabbing lots of stuff.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">blacklist <span style="color:#f92672">=</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">testing</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">analysis_modules</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">extensions</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">extern</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">pmods</span><span style="color:#e6db74">&#34;</span>,
+             <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mods</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">__init__</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">api</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">arraytypes</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">config</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">convenience</span><span style="color:#e6db74">&#34;</span>,
+            <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">exthook</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">funcs</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tests</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">units</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">startup_tasks</span><span style="color:#e6db74">&#34;</span>]
 
-<pre><code>{'data_objects', 'frontends', 'funcs', 'load', 'units', 'utilities'}
+list(subpackage_imports<span style="color:#f92672">.</span>pop(_, None) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> blacklist);
+</code></pre></div><p>We just want to see the interrelationships, so we'll look for N-by-N collisions, where N is just the values that show up as keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">collide_with <span style="color:#f92672">=</span> set(subpackage_imports<span style="color:#f92672">.</span>keys())
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">collisions <span style="color:#f92672">=</span> {_: collide_with<span style="color:#f92672">.</span>intersection(subpackage_imports[_]) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> subpackage_imports}
+</code></pre></div><p>And here we have it, the moment of truth!  What do we see &hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>({_:len(__) <span style="color:#66d9ef">for</span> _, __ <span style="color:#f92672">in</span> collisions<span style="color:#f92672">.</span>items()})
+</code></pre></div><pre><code>{'data_objects': 6, 'fields': 5, 'frontends': 6, 'geometry': 5, 'utilities': 6, 'visualization': 6}
 </code></pre>
-
-<p>Interesting.  We import from frontends?!  I guess I kind of missed that earlier.  Let&rsquo;s see if we can figure out the connections between different modules to see if anything stands out.</p>
-
-<pre><code class="language-python">from collections import defaultdict
+<p>Huh.  Well, that was not the dramatic, amazing reveal I'd hoped for.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subpackage_imports <span style="color:#f92672">=</span> defaultdict(set)
+<span style="color:#66d9ef">for</span> fn, v <span style="color:#f92672">in</span> import_lists<span style="color:#f92672">.</span>items():
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> fn<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">or</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tests</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">in</span> fn: <span style="color:#66d9ef">continue</span> <span style="color:#75715e"># Get rid of our tests, etc.</span>
+    subpackage <span style="color:#f92672">=</span> fn<span style="color:#f92672">.</span>split(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.</span><span style="color:#e6db74">&#34;</span>)[<span style="color:#ae81ff">1</span>]
+    subpackage_imports[subpackage]<span style="color:#f92672">.</span>update(collapse_subpackage(v))
+list(subpackage_imports<span style="color:#f92672">.</span>pop(_, None) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> blacklist);
+collisions <span style="color:#f92672">=</span> {_: collide_with<span style="color:#f92672">.</span>intersection(subpackage_imports[_]) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> subpackage_imports}
+<span style="color:#66d9ef">print</span>({_:len(__) <span style="color:#66d9ef">for</span> _, __ <span style="color:#f92672">in</span> collisions<span style="color:#f92672">.</span>items()})
+</code></pre></div><pre><code>{'data_objects': 6, 'fields': 4, 'frontends': 6, 'geometry': 4, 'utilities': 5, 'visualization': 6}
 </code></pre>
-
-<pre><code class="language-python">subpackage_imports = defaultdict(set)
-for fn, v in import_lists.items():
-    if not fn.startswith(&quot;yt.&quot;): continue # Get rid of our tests, etc.
-    subpackage = fn.split(&quot;.&quot;)[1]
-    subpackage_imports[subpackage].update(collapse_subpackage(v))
-</code></pre>
-
-<p>Let&rsquo;s break this down before we go any further &ndash; for starters, not <em>everything</em> is an absolute import.  So that makes things a bit tricky!  But we can deal with that later.  Let&rsquo;s first see what all we have:</p>
-
-<pre><code class="language-python">subpackage_imports.keys()
-</code></pre>
-
-<pre><code>dict_keys(['__init__', 'api', 'arraytypes', 'config', 'convenience', 'exthook', 'funcs', 'mods', 'pmods', 'startup_tasks', 'testing', 'analysis_modules', 'data_objects', 'extensions', 'extern', 'fields', 'frontends', 'geometry', 'tests', 'units', 'utilities', 'visualization'])
-</code></pre>
-
-<p>A few things stand out right away.  Some of these we can immediately get rid of and not consider.  For instance, <code>pmods</code> is an MPI-aware importer, <code>mods</code> is a pretty old-school approach to yt importing, and we will just ignore <code>testing</code>, <code>analysis_modules</code>, <code>extensions</code> and <code>extern</code> since they&rsquo;re (in order) testing utilities, gone, a fake hook system, and &ldquo;vendored&rdquo; libraries that we should probably get rid of and just make requirements anyway.  <code>units</code> is now part of <a href="https://github.com/yt-project/unyt" target="_blank"><code>unyt</code></a> and some of the others are by-design grabbing lots of stuff.</p>
-
-<pre><code class="language-python">blacklist = [&quot;testing&quot;, &quot;analysis_modules&quot;, &quot;extensions&quot;, &quot;extern&quot;, &quot;pmods&quot;,
-             &quot;mods&quot;, &quot;__init__&quot;, &quot;api&quot;, &quot;arraytypes&quot;, &quot;config&quot;, &quot;convenience&quot;,
-            &quot;exthook&quot;, &quot;funcs&quot;, &quot;tests&quot;, &quot;units&quot;, &quot;startup_tasks&quot;]
-
-list(subpackage_imports.pop(_, None) for _ in blacklist);
-</code></pre>
-
-<p>We just want to see the interrelationships, so we&rsquo;ll look for N-by-N collisions, where N is just the values that show up as keys.</p>
-
-<pre><code class="language-python">collide_with = set(subpackage_imports.keys())
-</code></pre>
-
-<pre><code class="language-python">collisions = {_: collide_with.intersection(subpackage_imports[_]) for _ in subpackage_imports}
-</code></pre>
-
-<p>And here we have it, the moment of truth!  What do we see &hellip;</p>
-
-<pre><code class="language-python">print({_:len(__) for _, __ in collisions.items()})
-</code></pre>
-
-<pre><code>{'data_objects': 6, 'fields': 5, 'frontends': 6, 'geometry': 5, 'utilities': 6, 'visualization': 6}
-</code></pre>
-
-<p>Huh.  Well, that was not the dramatic, amazing reveal I&rsquo;d hoped for.</p>
-
-<pre><code class="language-python">subpackage_imports = defaultdict(set)
-for fn, v in import_lists.items():
-    if not fn.startswith(&quot;yt.&quot;) or &quot;tests&quot; in fn: continue # Get rid of our tests, etc.
-    subpackage = fn.split(&quot;.&quot;)[1]
-    subpackage_imports[subpackage].update(collapse_subpackage(v))
-list(subpackage_imports.pop(_, None) for _ in blacklist);
-collisions = {_: collide_with.intersection(subpackage_imports[_]) for _ in subpackage_imports}
-print({_:len(__) for _, __ in collisions.items()})
-</code></pre>
-
-<pre><code>{'data_objects': 6, 'fields': 4, 'frontends': 6, 'geometry': 4, 'utilities': 5, 'visualization': 6}
-</code></pre>
-
-<p>It gets a little bit better, but honestly, not much.  Our most isolated package &ndash; by this (likely flawed) method &ndash; are the <code>geometry</code> and <code>fields</code> packages.  So let&rsquo;s break down a bit more what we&rsquo;re seeing, by not filtering quite as much, and by setting up a reverse mapping.  And let&rsquo;s do it for both the collapsed name and the non-collapsed name.</p>
-
-<pre><code class="language-python">subpackage_imports = defaultdict(set)
-imported_by = defaultdict(list)
-for fn, v in import_lists.items():
-    if not fn.startswith(&quot;yt.&quot;) or &quot;tests&quot; in fn: continue # Get rid of our tests, etc.
-    subpackage = fn.split(&quot;.&quot;)[1]
-    subpackage_imports[subpackage].update(set(_.name for _ in v))
-    [imported_by[_.name].append(fn) for _ in v]
-    [imported_by[_].append(fn) for _ in collapse_subpackage(v)]
-</code></pre>
-
-<p>And now we might be getting somewhere.  So now we can look up for any given import which files have imported it.  Let&rsquo;s see what imports the progress bar:</p>
-
-<pre><code class="language-python">imported_by[&quot;yt.funcs.get_pbar&quot;]
-</code></pre>
-
-<pre><code>['yt.__init__',
+<p>It gets a little bit better, but honestly, not much.  Our most isolated package &ndash; by this (likely flawed) method &ndash; are the <code>geometry</code> and <code>fields</code> packages.  So let's break down a bit more what we're seeing, by not filtering quite as much, and by setting up a reverse mapping.  And let's do it for both the collapsed name and the non-collapsed name.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subpackage_imports <span style="color:#f92672">=</span> defaultdict(set)
+imported_by <span style="color:#f92672">=</span> defaultdict(list)
+<span style="color:#66d9ef">for</span> fn, v <span style="color:#f92672">in</span> import_lists<span style="color:#f92672">.</span>items():
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> fn<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">or</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tests</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">in</span> fn: <span style="color:#66d9ef">continue</span> <span style="color:#75715e"># Get rid of our tests, etc.</span>
+    subpackage <span style="color:#f92672">=</span> fn<span style="color:#f92672">.</span>split(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.</span><span style="color:#e6db74">&#34;</span>)[<span style="color:#ae81ff">1</span>]
+    subpackage_imports[subpackage]<span style="color:#f92672">.</span>update(set(_<span style="color:#f92672">.</span>name <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> v))
+    [imported_by[_<span style="color:#f92672">.</span>name]<span style="color:#f92672">.</span>append(fn) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> v]
+    [imported_by[_]<span style="color:#f92672">.</span>append(fn) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> collapse_subpackage(v)]
+</code></pre></div><p>And now we might be getting somewhere.  So now we can look up for any given import which files have imported it.  Let's see what imports the progress bar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">imported_by[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.funcs.get_pbar</span><span style="color:#e6db74">&#34;</span>]
+</code></pre></div><pre><code>['yt.__init__',
  'yt.data_objects.particle_trajectories',
  'yt.data_objects.level_sets.contour_finder',
  'yt.frontends.athena_pp.data_structures',
@@ -697,27 +636,16 @@ for fn, v in import_lists.items():
  'yt.visualization.streamlines',
  'yt.visualization.volume_rendering.old_camera']
 </code></pre>
-
-<p>Nice.  Now, let&rsquo;s look at visualization.</p>
-
-<pre><code class="language-python">imported_by[&quot;yt.visualization.api.SlicePlot&quot;], imported_by[&quot;yt.visualization.plot_window.SlicePlot&quot;]
-</code></pre>
-
-<pre><code>(['yt.__init__', 'yt.data_objects.analyzer_objects'],
+<p>Nice.  Now, let's look at visualization.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">imported_by[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.visualization.api.SlicePlot</span><span style="color:#e6db74">&#34;</span>], imported_by[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.visualization.plot_window.SlicePlot</span><span style="color:#e6db74">&#34;</span>]
+</code></pre></div><pre><code>(['yt.__init__', 'yt.data_objects.analyzer_objects'],
  ['yt.utilities.command_line'])
 </code></pre>
-
-<p>We&rsquo;re starting to see that things might not be quite as clear-cut as we thought.  Let&rsquo;s look at geometry.  And I&rsquo;m going to set up a filtering method so that we can avoid lots of redundant pieces of info &ndash; for instance, I don&rsquo;t care about things importing themselves.</p>
-
-<pre><code class="language-python">filter_self_imports = lambda a: [_ for _ in imported_by[a] if not _.startswith(&quot;yt.{}&quot;.format(a))]
-</code></pre>
-
-<p>We&rsquo;ll only look at the first ten, because it&rsquo;s really long&hellip;</p>
-
-<pre><code class="language-python">filter_self_imports(&quot;geometry&quot;)[:10]
-</code></pre>
-
-<pre><code>['yt.data_objects.construction_data_containers',
+<p>We're starting to see that things might not be quite as clear-cut as we thought.  Let's look at geometry.  And I'm going to set up a filtering method so that we can avoid lots of redundant pieces of info &ndash; for instance, I don't care about things importing themselves.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filter_self_imports <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> a: [_ <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> imported_by[a] <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> _<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yt.{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(a))]
+</code></pre></div><p>We'll only look at the first ten, because it's really long&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filter_self_imports(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">geometry</span><span style="color:#e6db74">&#34;</span>)[:<span style="color:#ae81ff">10</span>]
+</code></pre></div><pre><code>['yt.data_objects.construction_data_containers',
  'yt.data_objects.data_containers',
  'yt.data_objects.grid_patch',
  'yt.data_objects.octree_subset',
@@ -728,26 +656,16 @@ for fn, v in import_lists.items():
  'yt.frontends.ahf.data_structures',
  'yt.frontends.art.data_structures']
 </code></pre>
-
-<p>Here things are <em>much</em> clearer.  We import geometry <em>once</em> in the visualization subsystem, under <code>plot_modifications</code>.  I looked it up, and here&rsquo;s what it is:</p>
-
-<pre><code class="language-python">if not issubclass(type(index), UnstructuredIndex):
-    raise RuntimeError(&quot;Mesh line annotations only work for &quot;
-                        &quot;unstructured or semi-structured mesh data.&quot;)
-</code></pre>
-
-<p>This is probably an anti-pattern, but even if we wanted to retain this specific behavior, we could remedy it without too much trouble by having an attribute check, or some kind of string-key check.</p>
-
+<p>Here things are <em>much</em> clearer.  We import geometry <em>once</em> in the visualization subsystem, under <code>plot_modifications</code>.  I looked it up, and here's what it is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> issubclass(type(index), UnstructuredIndex):
+    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Mesh line annotations only work for </span><span style="color:#e6db74">&#34;</span>
+                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">unstructured or semi-structured mesh data.</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><p>This is probably an anti-pattern, but even if we wanted to retain this specific behavior, we could remedy it without too much trouble by having an attribute check, or some kind of string-key check.</p>
 <p>As for all the <code>frontends</code> imports, those are all because they subclass <code>Index</code>!  And many of the places importing it in <code>data_objects</code> are just due to a lack of organization in the geometry/utilities/indexing code.</p>
-
-<p><strong>Historical Sidenote</strong>: As I was doing this, I read the header for <code>grid_patch.py</code> and it reads: <code>&quot;Python-based grid handler, not to be confused with the SWIG-handler&quot;</code>.  I am reasonably certain that it has been <em>years</em> since I thought about the proto-SWIG system I&rsquo;d written to wrap around the Enzo C++ code.  Kinda supports the point I intend to make when I end this post, I think.</p>
-
-<p>Back to the task at hand, let&rsquo;s look at some of the other top-level packages and how they related.  I&rsquo;m now specifically interested in the <code>visualization</code> and <code>data_objects</code> ones.</p>
-
-<pre><code class="language-python">filter_self_imports(&quot;visualization&quot;)
-</code></pre>
-
-<pre><code>['yt.__init__',
+<p><strong>Historical Sidenote</strong>: As I was doing this, I read the header for <code>grid_patch.py</code> and it reads: <code>&quot;Python-based grid handler, not to be confused with the SWIG-handler&quot;</code>.  I am reasonably certain that it has been <em>years</em> since I thought about the proto-SWIG system I'd written to wrap around the Enzo C++ code.  Kinda supports the point I intend to make when I end this post, I think.</p>
+<p>Back to the task at hand, let's look at some of the other top-level packages and how they related.  I'm now specifically interested in the <code>visualization</code> and <code>data_objects</code> ones.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filter_self_imports(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">visualization</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><pre><code>['yt.__init__',
  'yt.data_objects.analyzer_objects',
  'yt.data_objects.construction_data_containers',
  'yt.data_objects.data_containers',
@@ -760,53 +678,29 @@ for fn, v in import_lists.items():
  'yt.utilities.fits_image',
  'yt.utilities.answer_testing.framework']
 </code></pre>
-
-<p>Well, that&rsquo;s interesting.  A quick skim of the code suggests that <code>analyzer_objects</code> is probably dead code to be removed, <code>construction_data_containers</code> imports viz so that <code>.plot()</code> will work on projections, and there are a handful of other data-object-to-viz things that get done here.</p>
-
-<p>In short, I&rsquo;m pretty sure that <code>visualization</code> is a mostly independent subpackage.  And the same kind of goes for <code>geometry</code>.  The story isn&rsquo;t quite as clear for the others.</p>
-
+<p>Well, that's interesting.  A quick skim of the code suggests that <code>analyzer_objects</code> is probably dead code to be removed, <code>construction_data_containers</code> imports viz so that <code>.plot()</code> will work on projections, and there are a handful of other data-object-to-viz things that get done here.</p>
+<p>In short, I'm pretty sure that <code>visualization</code> is a mostly independent subpackage.  And the same kind of goes for <code>geometry</code>.  The story isn't quite as clear for the others.</p>
 <h2 id="ok-the-boring-stuff-is-over">OK, the boring stuff is over.</h2>
-
-<p>Here&rsquo;s where I wanted to get this whole time: yt is a monolithic package in packaging, but it also has a couple reasonably independent sub-packages within it.  It <em>would</em> be a target for breaking up, <em>if</em> those subpackages were independently useful.  But as it stands, they probably aren&rsquo;t, since they&rsquo;re all very tightly coupled.</p>
-
-<p>They&rsquo;re coupled because they were written that way, without too much thought given to a public, externally-useful API.  This is something that&rsquo;s probably not surprising, since yt was a big package that evolved, rather than many packages that interoperated.  Lots of stuff we wanted didn&rsquo;t exist, and there was (we thought) really only one obvious way to do things, so why not just do it?</p>
-
-<p>(<strong>Historical sidenote</strong>: It was a few years ago that I remember asking at a panel what middleware developers, like I saw myself, were supposed to do in a rapidly evolving ecosystem of the array container.  (I probably didn&rsquo;t phrase it very well.)  What I took away was: stick with numpy.  And we did stick with numpy, and more importantly, we <em>stuck with the Cython interface to numpy</em>.)</p>
-
+<p>Here's where I wanted to get this whole time: yt is a monolithic package in packaging, but it also has a couple reasonably independent sub-packages within it.  It <em>would</em> be a target for breaking up, <em>if</em> those subpackages were independently useful.  But as it stands, they probably aren't, since they're all very tightly coupled.</p>
+<p>They're coupled because they were written that way, without too much thought given to a public, externally-useful API.  This is something that's probably not surprising, since yt was a big package that evolved, rather than many packages that interoperated.  Lots of stuff we wanted didn't exist, and there was (we thought) really only one obvious way to do things, so why not just do it?</p>
+<p>(<strong>Historical sidenote</strong>: It was a few years ago that I remember asking at a panel what middleware developers, like I saw myself, were supposed to do in a rapidly evolving ecosystem of the array container.  (I probably didn't phrase it very well.)  What I took away was: stick with numpy.  And we did stick with numpy, and more importantly, we <em>stuck with the Cython interface to numpy</em>.)</p>
 <h2 id="ok-no-more-rambling-get-to-the-point">OK, no more rambling, get to the point</h2>
-
-<p>yt did a lot of stuff on its own.  It doesn&rsquo;t need to anymore.  It&rsquo;s effectively a medium-ly coupled system, but one that has relied on the ability to change non-public APIs all the time.</p>
-
-<p>I&rsquo;m starting to convince myself it&rsquo;s time to mature as a project, and to do some combination of <em>jettisoning</em> and <em>liberating</em> things in yt.  I&rsquo;ll make it clear that I could be wrong on this, and seeing this through will probably take more thought, time and energy than I can reasonably personally commit, but I think I&rsquo;ve started to see what would be a productive path forward.</p>
-
+<p>yt did a lot of stuff on its own.  It doesn't need to anymore.  It's effectively a medium-ly coupled system, but one that has relied on the ability to change non-public APIs all the time.</p>
+<p>I'm starting to convince myself it's time to mature as a project, and to do some combination of <em>jettisoning</em> and <em>liberating</em> things in yt.  I'll make it clear that I could be wrong on this, and seeing this through will probably take more thought, time and energy than I can reasonably personally commit, but I think I've started to see what would be a productive path forward.</p>
 <h1 id="steps-to-integrate-better">Steps to Integrate Better</h1>
-
-<p>Here are some things that I think yt could do.  These are my thoughts, which I have <em>not</em> presented to the steering council, written up in a YTEP, or even made any efforts toward.  In fact, the one member of the steering committee to whom I said, &ldquo;I think I might blog about this&rdquo; explicitly suggested I not do that thing (blog)!  But here I am a couple pages deep and I&rsquo;ve always been a bit of a hoarder.</p>
-
+<p>Here are some things that I think yt could do.  These are my thoughts, which I have <em>not</em> presented to the steering council, written up in a YTEP, or even made any efforts toward.  In fact, the one member of the steering committee to whom I said, &ldquo;I think I might blog about this&rdquo; explicitly suggested I not do that thing (blog)!  But here I am a couple pages deep and I've always been a bit of a hoarder.</p>
 <h3 id="inventory">Inventory</h3>
-
-<p>The first step would be to take a real inventory of what is in yt, and what ought to be in yt.  I have some thoughts on things that could be gotten rid of (and I will happily note that I intend to &ldquo;kill my own darlings&rdquo; first, before anyone else&rsquo;s) but that can come later.</p>
-
-<p>Not everything yt does needs to be done <em>by yt</em>.  But before we can figure that out, let&rsquo;s figure out what yt is doing, and where it gets relied on.</p>
-
+<p>The first step would be to take a real inventory of what is in yt, and what ought to be in yt.  I have some thoughts on things that could be gotten rid of (and I will happily note that I intend to &ldquo;kill my own darlings&rdquo; first, before anyone else's) but that can come later.</p>
+<p>Not everything yt does needs to be done <em>by yt</em>.  But before we can figure that out, let's figure out what yt is doing, and where it gets relied on.</p>
 <h3 id="indexing">Indexing</h3>
-
 <p>The thing I think we absolutely need to think about is how tightly coupled the indexing system is with everything else.  This will almost certainly be a full blog post at a later time, but the way the indexing is coupled so tightly with the frontends makes me increasingly leery.</p>
-
 <p>I personally think that the way the grid indexing is set up is too fixed on a pre-parsing step and a finalization step, with lots of little bits in between that need to be handled, and that it could much more easily be set up with a different procedure.</p>
-
 <p>For the particle frontends, the particle bitmap indexing has the filenames and the particle types and the coordinates and <em>all</em> of that all wound together.  This should be decoupled, so that the notion of the particle locations is held at a higher level than the bitmap indexing.</p>
-
 <h3 id="consider-splitting-the-package">Consider Splitting the Package</h3>
-
-<p>This one &hellip; I want to emphasize that what I think we should do is the process of considering it.  I&rsquo;m not sure that it should be split.  But I think that evaluating the pros and cons will lead us to think about <em>how</em> our packages interact.</p>
-
-<p>If two objects call weird methods on each other, why?  Does that need to happen?  Is it a micro-optimization that makes no sense other than obfuscation?  I&rsquo;m not sure, but we can&rsquo;t figure it out unless we examine.</p>
-
+<p>This one &hellip; I want to emphasize that what I think we should do is the process of considering it.  I'm not sure that it should be split.  But I think that evaluating the pros and cons will lead us to think about <em>how</em> our packages interact.</p>
+<p>If two objects call weird methods on each other, why?  Does that need to happen?  Is it a micro-optimization that makes no sense other than obfuscation?  I'm not sure, but we can't figure it out unless we examine.</p>
 <h1 id="big-picture">Big Picture</h1>
-
 <p>yt may stay a big repository, but if we reduce the dependence on artisanal objects (why not just subclass <code>xarray.Dataset</code> instead of have a <code>GridPatch</code> object?  Well, okay, that one is pretty complicated, but we can talk about it later&hellip;) and we think about the specifics of why we use public APIs versus private APIs, it can lead to a more robust, lightweight package.</p>
-
 <p>And anything that keeps us more lightweight, reduces maintenance burdens, and enables us to take advantage of the astounding advances in the ecosystem is probably going to be better in the long-run.</p>
 
     </div>

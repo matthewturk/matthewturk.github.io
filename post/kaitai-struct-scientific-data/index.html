@@ -29,7 +29,7 @@
   
   <meta name="description" content="tl;dr: kaitai struct is awesome.
 File formats can be pretty annoying &ndash; especially when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.
-What we&rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&rsquo;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way.">
+What we&#39;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&#39;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://matthewturk.github.io/post/kaitai-struct-scientific-data/">
@@ -91,7 +91,7 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.160c9711abc197a38ee59f0961dc31dc.css">
+  <link rel="stylesheet" href="/css/academic.min.331f53d055a276ccbdada146254dc48b.css">
 
   
 
@@ -138,7 +138,7 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
   <meta property="og:title" content="Kaitai Struct and Scientific Data | mjt">
   <meta property="og:description" content="tl;dr: kaitai struct is awesome.
 File formats can be pretty annoying &ndash; especially when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.
-What we&rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&rsquo;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
+What we&#39;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO. This means that any attempt to update things (which I&#39;ve alluded to in these blog posts) requires a fair bit of care to make sure that the process is not disruptive in any way."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-06-20T13:15:41-05:00">
@@ -543,31 +543,17 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p><strong>tl;dr</strong>: kaitai struct is awesome.</p>
-
+      <p><strong>tl;dr</strong>: kaitai struct is awesome.</p>
 <p>File formats can be pretty annoying &ndash; <em>especially</em> when you figure them out through weird combinations of reverse-engineering, hand-me-down code and trial-and-error.</p>
-
-<p>What we&rsquo;ve ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO.  This means that any attempt to update things (which I&rsquo;ve alluded to in <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part1/" target="_blank">these</a> <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part2/" target="_blank">blog</a> <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/" target="_blank">posts</a>) requires a fair bit of care to make sure that the process is not disruptive in any way.</p>
-
-<p>In preparation for this, I set out to start writing down some of the file formats in a flat text format by going through my old notes and the code in the various yt <code>io.py</code> files.  Before too long, I decided to instead start utilizing <a href="kaitai.io" target="_blank">kaitai struct</a> instead.</p>
-
-<p>I&rsquo;ve found Kaitai struct to be useful in other projects &ndash; for instance, I have been using it as a method to reverse engineer the data files from an old DOS game I used to play with my brother back in the early 90s.  The combination of the simple (but reasonably flexible) syntax, the ruby-based <a href="https://github.com/kaitai-io/kaitai_struct_visualizer" target="_blank">visualizer</a> and the <a href="https://ide.kaitai.io" target="_blank">WebIDE</a> make it really good for exploratory reverse engineering.</p>
-
+<p>What we've ended up with in yt is a bunch of data formats where the process of conducting the IO is all mixed up with the description of that IO.  This means that any attempt to update things (which I've alluded to in <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part1/">these</a> <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part2/">blog</a> <a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/">posts</a>) requires a fair bit of care to make sure that the process is not disruptive in any way.</p>
+<p>In preparation for this, I set out to start writing down some of the file formats in a flat text format by going through my old notes and the code in the various yt <code>io.py</code> files.  Before too long, I decided to instead start utilizing <a href="kaitai.io">kaitai struct</a> instead.</p>
+<p>I've found Kaitai struct to be useful in other projects &ndash; for instance, I have been using it as a method to reverse engineer the data files from an old DOS game I used to play with my brother back in the early 90s.  The combination of the simple (but reasonably flexible) syntax, the ruby-based <a href="https://github.com/kaitai-io/kaitai_struct_visualizer">visualizer</a> and the <a href="https://ide.kaitai.io">WebIDE</a> make it really good for exploratory reverse engineering.</p>
 <p>And, it generates code!  You can run:</p>
-
-<pre><code class="language-bash">$ ksc -t python somefile.ksy
-</code></pre>
-
-<p>and it&rsquo;ll generate a python reader.  It can also generate javascript, java, go, etc, and I think rust is in the works.</p>
-
-<p>So the question became: could we use kaitai struct for documenting a data format like, say, the binary format from <a href="https://wwwmpa.mpa-garching.mpg.de/gadget/" target="_blank">GADGET-2</a>?  After that we can really stretch our legs and try it on more complicated ones, but let&rsquo;s start with this one.</p>
-
-<h2 id="gadget-2-data-format">Gadget-2 Data Format</h2>
-
-<p>The (vanilla) Gadget-2 data format is reasonably straightforward, and it&rsquo;s even described in some detail in the Gadget manual.  You have a header, then sets of records.  Each of these sets of records has a separating value (sometimes!).  According to table 3 in the user guide, the file looks something like:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ksc -t python somefile.ksy
+</code></pre></div><p>and it'll generate a python reader.  It can also generate javascript, java, go, etc, and I think rust is in the works.</p>
+<p>So the question became: could we use kaitai struct for documenting a data format like, say, the binary format from <a href="https://wwwmpa.mpa-garching.mpg.de/gadget/">GADGET-2</a>?  After that we can really stretch our legs and try it on more complicated ones, but let's start with this one.</p>
+<h2 id="gadget2-data-format">Gadget-2 Data Format</h2>
+<p>The (vanilla) Gadget-2 data format is reasonably straightforward, and it's even described in some detail in the Gadget manual.  You have a header, then sets of records.  Each of these sets of records has a separating value (sometimes!).  According to table 3 in the user guide, the file looks something like:</p>
 <ul>
 <li>Header</li>
 <li>Position</li>
@@ -582,11 +568,8 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
 <li>Endtime (if enabled in makefile)</li>
 <li>Timestep (if enabled in makefile)</li>
 </ul>
-
 <p>Gadget-2 is probably the most widely-used astrophysics simulation code, but one of its defining characteristics is that it is quite readily hackable to include additional parameters, additional particle attributes, and lots more physics.  This usually means that when you receive binary gadget data, you need to know what to expect in the file &ndash; the individual file formats are typically not self-describing.</p>
-
-<p>The header is often left unchanged, at least in the data I&rsquo;ve seen.  In yt we have a simple specification system to allow for modifications to both the fields and the header, but the &ldquo;vanilla&rdquo; header looks something like this (in python <a href="https://docs.python.org/3/library/struct.html" target="_blank">struct</a> notation):</p>
-
+<p>The header is often left unchanged, at least in the data I've seen.  In yt we have a simple specification system to allow for modifications to both the fields and the header, but the &ldquo;vanilla&rdquo; header looks something like this (in python <a href="https://docs.python.org/3/library/struct.html">struct</a> notation):</p>
 <pre><code>default      = (('Npart', 6, 'i'),
                 ('Massarr', 6, 'd'),
                 ('Time', 1, 'd'),
@@ -604,26 +587,16 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
                 ('FlagMetals', 1, 'i'),
                 ('NallHW', 6, 'i'),
                 ('unused', 16, 'i'))
-</code></pre>
-
-<p>Before we get any further, let&rsquo;s check if we can parse <em>just</em> this with kaitai struct.</p>
-
+</code></pre><p>Before we get any further, let's check if we can parse <em>just</em> this with kaitai struct.</p>
 <h2 id="our-first-ksy-file">Our First ksy File</h2>
-
 <p>In its simplest form, Kaitai specifications allow specifying the format of data and the order that different types of data will arrive in.  The base data types it has are standard numerical data types, bytes, strings, arrays and so on.</p>
-
 <p>Kaitai has a little bit of metadata we will add at the beginning, so we start with this preamble:</p>
-
-<pre><code class="language-yaml">meta:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">meta:
   id: gadget_format1
   endian: le
-</code></pre>
-
-<p>This gives it a name and notes it as little endian.</p>
-
+</code></pre></div><p>This gives it a name and notes it as little endian.</p>
 <p>If we wanted to build a parser for the header, the most obvious thing we could do would be to parse the different items in order.  The very first item is an array of 6 integers that describes the number of particles in the simulation, separated by each particle type.  This comes in a sequence starting at the beginning of our &ldquo;stream,&rdquo; so we can use the <code>seq</code> top-level type to start parsing:</p>
-
-<pre><code class="language-yaml">seq:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">seq:
   - id: recsize_0
     type: u4
   - id: npart1
@@ -638,102 +611,72 @@ What we&rsquo;ve ended up with in yt is a bunch of data formats where the proces
     type: u4
   - id: npart6
     type: u4
-</code></pre>
-
-<p><code>recsize_0</code> here is because we know that our header will be preceded by a value indicating how many bytes are in it &ndash; this is a common practice, but not universal.  And I&rsquo;ve said that each of the variables (<code>npart1</code> &hellip; <code>npart6</code>) is of type <code>u4</code>, which means &ldquo;unsigned four byte integers.&rdquo;</p>
-
-<p>This isn&rsquo;t that efficient, though &ndash; each particle type has its own variable.  KS provides us with the option to <code>repeat</code> which can take an expression.  Now we can enable grabbing arrays of values, so we can use that, instead.  Let&rsquo;s change this to:</p>
-
-<pre><code class="language-yaml">seq:
+</code></pre></div><p><code>recsize_0</code> here is because we know that our header will be preceded by a value indicating how many bytes are in it &ndash; this is a common practice, but not universal.  And I've said that each of the variables (<code>npart1</code> &hellip; <code>npart6</code>) is of type <code>u4</code>, which means &ldquo;unsigned four byte integers.&rdquo;</p>
+<p>This isn't that efficient, though &ndash; each particle type has its own variable.  KS provides us with the option to <code>repeat</code> which can take an expression.  Now we can enable grabbing arrays of values, so we can use that, instead.  Let's change this to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">seq:
   - id: recsize_0
     type: u4
   - id: npart
     type: u4
     repeat: expr
-    repeat-expr: 6
-</code></pre>
-
-<p>(You can also do <code>repeat: eos</code> for end of stream and <code>repeat-until</code>.)  The result now is that <code>npart</code> is an array &ndash; so later on when we loop, we can look it up by using the special variable <code>_index</code> inside another <code>repeat-expr</code>.  We&rsquo;ll look at that a bit later.</p>
-
+    repeat-expr: <span style="color:#ae81ff">6</span>
+</code></pre></div><p>(You can also do <code>repeat: eos</code> for end of stream and <code>repeat-until</code>.)  The result now is that <code>npart</code> is an array &ndash; so later on when we loop, we can look it up by using the special variable <code>_index</code> inside another <code>repeat-expr</code>.  We'll look at that a bit later.</p>
 <h2 id="data-types-in-ksy">Data Types in ksy</h2>
-
-<p>Parsing the entire header in this way is certainly possible, but it also can be a bit clunky &ndash; and can be harder for maintainability.  Instead of writing all of our header values out, let&rsquo;s use a user-defined type.</p>
-
-<p>The top-level key <code>types</code> is where user-defined types are described; you can do some pretty fancy things like supply parameters to them, but we&rsquo;ll just use it to hold the data we know.</p>
-
-<pre><code class="language-yaml">types:
+<p>Parsing the entire header in this way is certainly possible, but it also can be a bit clunky &ndash; and can be harder for maintainability.  Instead of writing all of our header values out, let's use a user-defined type.</p>
+<p>The top-level key <code>types</code> is where user-defined types are described; you can do some pretty fancy things like supply parameters to them, but we'll just use it to hold the data we know.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">types:
   gadget_header:
     seq:
       ...
-</code></pre>
-
-<p>Now, in our top-level <code>seq</code> section, we can just reference the header type:</p>
-
-<pre><code class="language-yaml">seq:
+</code></pre></div><p>Now, in our top-level <code>seq</code> section, we can just reference the header type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">seq:
   -id: header
    type: gadget_header
-</code></pre>
-
-<h2 id="big-arrays-and-lazy-reading">Big Arrays and Lazy-reading</h2>
-
+</code></pre></div><h2 id="big-arrays-and-lazyreading">Big Arrays and Lazy-reading</h2>
 <p>The tricky bit comes in when we get to our arrays of values.  Kaitai has several different languages it can generate for &ndash; Python, C#, C++, ruby, and others.  When reading lots of little items, python can get bogged down.  For instance, this is the most obvious way of describing one of the position arrays:</p>
-
-<pre><code class="language-yaml">  -id: coordinates_part1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  -id: coordinates_part1
    type: f4
    repeat: expr
-   repeat-expr: header.npart[0] * 3
-</code></pre>
-
-<p>The generated python code will read a series of 4-byte objects, one at a time, and append them to a list.  The combination of these things results in a lot of overhead from the python language runtime and the type system, so it ends up being rather slow.</p>
-
-<p>One way to get around this is to use what&rsquo;s called an <code>instance</code>.  This allows parsing to happen only when requested, and it can also exist outside of the rest of the parsing structure.</p>
-
-<p><strong>Important note</strong>: There are some fiddly issues with making <code>instance</code> objects work and how they relate to substreams of IO which I&rsquo;m going to sidestep here.  Let&rsquo;s just assume that it works, instead!</p>
-
+   repeat-expr: header.npart[<span style="color:#ae81ff">0</span>] * <span style="color:#ae81ff">3</span>
+</code></pre></div><p>The generated python code will read a series of 4-byte objects, one at a time, and append them to a list.  The combination of these things results in a lot of overhead from the python language runtime and the type system, so it ends up being rather slow.</p>
+<p>One way to get around this is to use what's called an <code>instance</code>.  This allows parsing to happen only when requested, and it can also exist outside of the rest of the parsing structure.</p>
+<p><strong>Important note</strong>: There are some fiddly issues with making <code>instance</code> objects work and how they relate to substreams of IO which I'm going to sidestep here.  Let's just assume that it works, instead!</p>
 <p>By default, we can read in bytes for these individual objects; this lets us read a big block of data (which we can deal with later &ndash; for instance, inside python!) and only parse into individual floats when we request.  This might look something like defining a custom type with both a <code>seq</code> and an <code>instances</code> section:</p>
-
-<pre><code class="language-yaml">types:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">types:
   f4_array_type:
     params:
       - id: count
         type: u4
     seq:
       - id: buffer
-        size: 4 * count
+        size: <span style="color:#ae81ff">4</span> * count
     instances:
       values:
-        pos: 0
-        size-eos: true
+        pos: <span style="color:#ae81ff">0</span>
+        size-eos: <span style="color:#66d9ef">true</span>
         id: entries:
         type: f4
         repeat: eos
-</code></pre>
-
-<p>Here we are saying, just read the bytes.  But, if anybody asks, this is what the attribute <code>values</code> should look like &ndash; you should parse it starting at 0, go to the end of the stream, and assume it&rsquo;s all <code>f4</code>-typed items.  (I am not certain that both <code>size-eos</code> and <code>repeat-eos</code> are necessary.)</p>
-
+</code></pre></div><p>Here we are saying, just read the bytes.  But, if anybody asks, this is what the attribute <code>values</code> should look like &ndash; you should parse it starting at 0, go to the end of the stream, and assume it's all <code>f4</code>-typed items.  (I am not certain that both <code>size-eos</code> and <code>repeat-eos</code> are necessary.)</p>
 <p>With these components, we should be able to parse our entire gadget binary file, a</p>
-
 <h2 id="working-implementation">Working Implementation</h2>
-
-<p>I&rsquo;ve gotten this to the point that it mostly works, and I&rsquo;ve been committing to <a href="https://github.com/data-exp-lab/astro-data-formats" target="_blank">data-exp-lab/astro-data-formats</a>.  I ended up splitting the array stuff into its own parameterized type that I store in a separate file, so that we can potentially reuse it in other file formats.</p>
-
-<p>Here&rsquo;s some of the high-level stuff:</p>
-
-<pre><code class="language-yaml">meta:
+<p>I've gotten this to the point that it mostly works, and I've been committing to <a href="https://github.com/data-exp-lab/astro-data-formats">data-exp-lab/astro-data-formats</a>.  I ended up splitting the array stuff into its own parameterized type that I store in a separate file, so that we can potentially reuse it in other file formats.</p>
+<p>Here's some of the high-level stuff:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">meta:
   id: gadget_format1
   endian: le
-  ks-opaque-types: true
+  ks-opaque-types: <span style="color:#66d9ef">true</span>
   imports:
     - array_buffer
 seq:
   - id: gadget_header
     type: header
   - id: coordinates
-    type: particle_fields('f4', 3)
+    type: particle_fields(<span style="color:#e6db74">&#39;f4&#39;</span>, <span style="color:#ae81ff">3</span>)
   - id: velocities
-    type: particle_fields('f4', 3)
+    type: particle_fields(<span style="color:#e6db74">&#39;f4&#39;</span>, <span style="color:#ae81ff">3</span>)
   - id: particle_ids
-    type: particle_fields('u4', 1)
+    type: particle_fields(<span style="color:#e6db74">&#39;u4&#39;</span>, <span style="color:#ae81ff">1</span>)
 types:
   header:
     seq:
@@ -742,11 +685,11 @@ types:
       - id: npart
         type: u4
         repeat: expr
-        repeat-expr: 6
+        repeat-expr: <span style="color:#ae81ff">6</span>
       - id: massarr
         type: f8
         repeat: expr
-        repeat-expr: 6
+        repeat-expr: <span style="color:#ae81ff">6</span>
 
 [ ... ]
 
@@ -762,7 +705,7 @@ types:
       - id: fields
         type: field(_index, components, field_type)
         repeat: expr
-        repeat-expr: 6
+        repeat-expr: <span style="color:#ae81ff">6</span>
       - id: magic2
         type: u4
   field:
@@ -775,19 +718,13 @@ types:
         type: str
     seq:
       - id: field
-        size: _root.gadget_header.npart[index] * components * 4
+        size: _root.gadget_header.npart[index] * components * <span style="color:#ae81ff">4</span>
         type: array_buffer(field_type)
-</code></pre>
-
-<p>And then the <code>array_buffer</code> is an instance-based way of getting the raw bytes.  Right now this is reasonably fast, and there&rsquo;s a possibility I could simplify the structure and flatten it out a bit, but it works exactly as I want it to.</p>
-
+</code></pre></div><p>And then the <code>array_buffer</code> is an instance-based way of getting the raw bytes.  Right now this is reasonably fast, and there's a possibility I could simplify the structure and flatten it out a bit, but it works exactly as I want it to.</p>
 <h2 id="future">Future</h2>
-
-<p>The next thing I&rsquo;m going to do is work on porting the RAMSES frontend to this format.  That will enable some more exploration and validation of the different outputs, and hopefully use that as guidance for any future modifications to the IO systems.  One of the stickier wickets I&rsquo;ve seen is that it&rsquo;s possible to use memory-mapping, but I think there are some subtle places where data is read into memory and copied &ndash; this kind of gets rid of the purpose of the memory mapping.  I hope to explore and dig more deeply into this later.</p>
-
+<p>The next thing I'm going to do is work on porting the RAMSES frontend to this format.  That will enable some more exploration and validation of the different outputs, and hopefully use that as guidance for any future modifications to the IO systems.  One of the stickier wickets I've seen is that it's possible to use memory-mapping, but I think there are some subtle places where data is read into memory and copied &ndash; this kind of gets rid of the purpose of the memory mapping.  I hope to explore and dig more deeply into this later.</p>
 <p>Ultimately, I believe a combination of ksy files for binary formats and a ksy-<em>like</em> dialect for describing the connection between chunks of data and physical space locations will simplify a considerable amount of data analysis.</p>
-
-<p>I&rsquo;d also like to thank @GreyCat on gitter, who was super helpful in helping me work out some of the bits I wasn&rsquo;t clear on.</p>
+<p>I'd also like to thank @GreyCat on gitter, who was super helpful in helping me work out some of the bits I wasn't clear on.</p>
 
     </div>
 
