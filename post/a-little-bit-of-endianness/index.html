@@ -27,10 +27,11 @@
   
     
   
-  <meta name="description" content="Previous high-resolution cosmological simulations predicted that the first stars to appear in the early universe were very massive and formed in isolation. Here, we discuss a cosmological simulation in which the central 50 M(o) (where M(o) is the mass of the Sun) clump breaks up into two cores having a mass ratio of two to one, with one fragment collapsing to densities of 10(-8) grams per cubic centimeter. The second fragment, at a distance of approximately 800 astronomical units, is also optically thick to its own cooling radiation from molecular hydrogen lines but is still able to cool via collision-induced emission. The two dense peaks will continue to accrete from the surrounding cold gas reservoir over a period of approximately 10(5) years and will likely form a binary star system.">
+  <meta name="description" content="(Confession time: I did not even realize I was mildly-punning in that title.)
+Over the last few months, my hobby-time has mostly been focused on some reverse engineering of old DOS games I played as a kid. The fruits of that will wait for another blog post, but this has led to some very fun investigations using the DOSbox debugger, Ghidra and learning the Ghidra API to decompile MS-DOS system calls (especially int 21h) properly.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://matthewturk.github.io/publication/turk-2009-fl/">
+  <link rel="alternate" hreflang="en-us" href="https://matthewturk.github.io/post/a-little-bit-of-endianness/">
 
   
 
@@ -117,7 +118,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="https://matthewturk.github.io/publication/turk-2009-fl/">
+  <link rel="canonical" href="https://matthewturk.github.io/post/a-little-bit-of-endianness/">
 
   
   
@@ -132,14 +133,15 @@
   <meta property="twitter:creator" content="@powersoffour">
   
   <meta property="og:site_name" content="mjt">
-  <meta property="og:url" content="https://matthewturk.github.io/publication/turk-2009-fl/">
-  <meta property="og:title" content="The formation of Population III binaries from cosmological initial conditions | mjt">
-  <meta property="og:description" content="Previous high-resolution cosmological simulations predicted that the first stars to appear in the early universe were very massive and formed in isolation. Here, we discuss a cosmological simulation in which the central 50 M(o) (where M(o) is the mass of the Sun) clump breaks up into two cores having a mass ratio of two to one, with one fragment collapsing to densities of 10(-8) grams per cubic centimeter. The second fragment, at a distance of approximately 800 astronomical units, is also optically thick to its own cooling radiation from molecular hydrogen lines but is still able to cool via collision-induced emission. The two dense peaks will continue to accrete from the surrounding cold gas reservoir over a period of approximately 10(5) years and will likely form a binary star system."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
+  <meta property="og:url" content="https://matthewturk.github.io/post/a-little-bit-of-endianness/">
+  <meta property="og:title" content="A Little Bit of Endianness | mjt">
+  <meta property="og:description" content="(Confession time: I did not even realize I was mildly-punning in that title.)
+Over the last few months, my hobby-time has mostly been focused on some reverse engineering of old DOS games I played as a kid. The fruits of that will wait for another blog post, but this has led to some very fun investigations using the DOSbox debugger, Ghidra and learning the Ghidra API to decompile MS-DOS system calls (especially int 21h) properly."><meta property="og:image" content="https://matthewturk.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-05-30T20:07:09&#43;00:00">
+  <meta property="article:published_time" content="2020-01-23T16:28:15-06:00">
   
-  <meta property="article:modified_time" content="2019-05-30T15:04:55-05:00">
+  <meta property="article:modified_time" content="2020-01-23T16:30:58-06:00">
   
 
   
@@ -172,7 +174,7 @@
 
   
 
-  <title>The formation of Population III binaries from cosmological initial conditions | mjt</title>
+  <title>A Little Bit of Endianness | mjt</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -405,7 +407,8 @@
   </div>
 </nav>
 
-<div class="pub" itemscope itemtype="http://schema.org/CreativeWork">
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
@@ -426,7 +429,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">The formation of Population III binaries from cosmological initial conditions</h1>
+  <h1 itemprop="name">A Little Bit of Endianness</h1>
 
   
 
@@ -435,46 +438,11 @@
 
 
 
-<meta content="2009-07-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2019-05-30 15:04:55 -0500 CDT" itemprop="dateModified">
+<meta content="2020-01-23 16:28:15 -0600 CST" itemprop="datePublished">
+<meta content="2020-01-23 16:30:58 -0600 CST" itemprop="dateModified">
 
 <div class="article-metadata">
 
-  
-  
-  
-  
-  <div>
-    
-
-
-
-  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
-      <span itemprop="name">
-        
-
-      
-      
-      <a href="/authors/matthew-j-turk/">Matthew J Turk</a></span></span>, 
-  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
-      <span itemprop="name">
-        
-
-      
-      
-      <a href="/authors/tom-abel/">Tom Abel</a></span></span>, 
-  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
-      <span itemprop="name">
-        
-
-      
-      
-      <a href="/authors/brian-oshea/">Brian O&rsquo;Shea</a></span></span>
-  
-
-
-
-  </div>
   
   
 
@@ -483,8 +451,10 @@
     
     
       
+          Last updated on
+      
     
-    <time>July 2009</time>
+    <time>Jan 23, 2020</time>
   </span>
   
 
@@ -521,53 +491,7 @@
 
 
 
-  
 
-
-
-<div class="btn-links mb-3">
-  
-  
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<a class="btn btn-outline-primary my-1 mr-1" href="http://dx.doi.org/10.1126/science.1173540" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-<button type="button" class="btn btn-outline-primary my-1 mr-1 js-cite-modal"
-        data-filename="/publication/turk-2009-fl/turk-2009-fl.bib">
-  Cite
-</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 
   
@@ -577,68 +501,100 @@
 
   <div class="article-container">
 
-    
-    <h3>Abstract</h3>
-    <p class="pub-abstract" itemprop="text">Previous high-resolution cosmological simulations predicted that the first stars to appear in the early universe were very massive and formed in isolation. Here, we discuss a cosmological simulation in which the central 50 M(o) (where M(o) is the mass of the Sun) clump breaks up into two cores having a mass ratio of two to one, with one fragment collapsing to densities of 10(-8) grams per cubic centimeter. The second fragment, at a distance of approximately 800 astronomical units, is also optically thick to its own cooling radiation from molecular hydrogen lines but is still able to cool via collision-induced emission. The two dense peaks will continue to accrete from the surrounding cold gas reservoir over a period of approximately 10(5) years and will likely form a binary star system.</p>
-    
+    <div class="article-style" itemprop="articleBody">
+      <p>(Confession time: I did not even realize I was mildly-punning in that title.)</p>
 
-    
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Type</div>
-          <div class="col-12 col-md-9">
-            
+<p>Over the last few months, my hobby-time has mostly been focused on some reverse engineering of old DOS games I played as a kid.  The fruits of that will wait for another blog post, but this has led to some very fun investigations using the <a href="https://www.vogons.org/viewtopic.php?t=3944" target="_blank">DOSbox debugger</a>, <a href="http://ghidra-sre.org/" target="_blank">Ghidra</a> and learning the Ghidra API to decompile MS-DOS system calls (especially <a href="http://bbc.nvg.org/doc/Master%20512%20Technical%20Guide/m512techb_int21.htm" target="_blank">int 21h</a>) properly.</p>
 
-            
-            
-            <a href="/publication/#2">
-              Journal article
-            </a>
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
+<p>A particularly fun aspect of doing all this, though, has been realizing just how much this has in common with the early stages of developing yt, when we had to reverse engineer file formats like it was going out of style.</p>
+
+<p>One of the things that constantly <em>constantly</em> showed up in reverse engineering these formats was making sure our endianness was right.  Since we were often dealing with 32-bit values that had uncertain units, and where the values themselves could be quite the extreme and not <em>too</em> far from the limits of representation, it wasn&rsquo;t always immediately obvious if we had it right or not.</p>
+
+<p>To be completely honest, the thing that always threw me (and sometimes still does, when I&rsquo;m thinking about ordering of numbers on the stack and in registers) is how numbers get represented as bits in memory, and more specifically, what the difference between &ldquo;big&rdquo; and &ldquo;little&rdquo; endian really is.</p>
+
+<p>Also, for a much better description and walkthrough, please feel free to visit the <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">wikipedia article</a>.  Its load time is probably comparable to the reading time of this rather brief foray into views.</p>
+
+<pre><code class="language-python">import numpy as np
+</code></pre>
+
+<p>To get started, let&rsquo;s make an array that isn&rsquo;t symmetric at the &ldquo;word&rdquo; level.  I&rsquo;ll use my favorite value offset by one to do this.  (Remember for later that we&rsquo;re using a number as our base that is greater than can be represented in two bytes, so it truncates at <code>u2</code> size.)</p>
+
+<p>We&rsquo;ll use numpy&rsquo;s ability to encode arrays using different internal representations &ndash; the first array will be in &ldquo;little&rdquo; endian, 2-byte unsigned integers, and the second will be in &ldquo;big&rdquo; endian, 2-byte integers.  We toggle between the two with the <code>&lt;</code> and <code>&gt;</code> operators before the data type specification.</p>
+
+<pre><code class="language-python">arr_little = np.array([0x4d3d3 - 1]).astype(&quot;&lt;u2&quot;)
+arr_big = arr_little.astype(&quot;&gt;u2&quot;)
+arr_big, arr_little
+</code></pre>
+
+<pre><code>(array([54226], dtype=uint16), array([54226], dtype=uint16))
+</code></pre>
+
+<p>So, they&rsquo;re definitely the same values when we print them out!  But that&rsquo;s because even though they are encoded differently internally, when we print them, we use a representation that is encoding aware.  What happens if we force the issue, though?  Let&rsquo;s try, by asking to view them in &ldquo;unsigned bytes&rdquo; format by using the <code>view</code> method with the argument <code>B</code> to indicate the dtype.</p>
+
+<pre><code class="language-python">print(&quot;Little endian: {}\nBig endian:    {}&quot;.format(arr_little.view(&quot;B&quot;), arr_big.view(&quot;B&quot;)))
+</code></pre>
+
+<pre><code>Little endian: [210 211]
+Big endian:    [211 210]
+</code></pre>
+
+<p>Interesting!  Note that the individual bytes are the same (and there are two in each one), but the order is different.</p>
+
+<p>We can make this even more clear if we look at the binary and hex representations of them:</p>
+
+<pre><code class="language-python">print(&quot;Little endian: {}\nBig endian:    {}&quot;.format(*[[bin(_)[2:] for _ in arr.view(&quot;B&quot;)] for arr in (arr_little, arr_big)]))
+</code></pre>
+
+<pre><code>Little endian: ['11010010', '11010011']
+Big endian:    ['11010011', '11010010']
+</code></pre>
+
+<pre><code class="language-python">print(&quot;Little endian: {}\nBig endian:    {}&quot;.format(*[[hex(_)[2:].upper() for _ in arr.view(&quot;B&quot;)] for arr in (arr_little, arr_big)]))
+</code></pre>
+
+<pre><code>Little endian: ['D2', 'D3']
+Big endian:    ['D3', 'D2']
+</code></pre>
+
+<p>What I always found the most difficult about endianness is that the <strong>bits</strong> aren&rsquo;t actually reversed &ndash; what is reversed is the order of the bytes, but within a given byte the bits remain the same.  This gets even more fun with 32 and 64 bit integers.</p>
+
+<pre><code class="language-python">arr_little32 = np.array([0x4d3d3 - 1]).astype(&quot;&lt;u4&quot;)
+arr_big32 = arr_little32.astype(&quot;&gt;u4&quot;)
+arr_big32, arr_little32
+</code></pre>
+
+<pre><code>(array([316370], dtype=uint32), array([316370], dtype=uint32))
+</code></pre>
+
+<pre><code class="language-python">print(&quot;Little endian: {}\nBig endian:    {}&quot;.format(*[[hex(_)[2:].upper() for _ in arr.view(&quot;B&quot;)] for arr in (arr_little32, arr_big32)]))
+</code></pre>
+
+<pre><code>Little endian: ['D2', 'D3', '4', '0']
+Big endian:    ['0', '4', 'D3', 'D2']
+</code></pre>
+
+<p>Of course, Wikipedia has an <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">awesome article</a> with a great <a href="https://en.wikipedia.org/wiki/Endianness#Illustration" target="_blank">illustration</a> that demonstrates all of this.</p>
+
     </div>
-    <div class="d-md-none space-below"></div>
-    
-
-    
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Publication</div>
-          <div class="col-12 col-md-9"><em>Science</em></div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="d-md-none space-below"></div>
-    
-
-    <div class="space-below"></div>
-
-    <div class="article-style"></div>
 
     
 
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tags/authorship/">Authorship</a>
-  
-</div>
 
+
+    
+      
+
+      
+      
+    
+
+    
 
     
 
 
   </div>
-</div>
-
-
+</article>
 
 <div class="container">
   <footer class="site-footer">
