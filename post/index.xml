@@ -1,4 +1,124 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>A Little Bit of Endianness</title><link>https://matthewturk.github.io/post/a-little-bit-of-endianness/</link><pubDate>Thu, 23 Jan 2020 16:28:15 -0600</pubDate><guid>https://matthewturk.github.io/post/a-little-bit-of-endianness/</guid><description>&lt;p>(Confession time: I did not even realize I was mildly-punning in that title.)&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>Strava in Obsidian</title><link>https://matthewturk.github.io/post/strava-in-obsidian/</link><pubDate>Mon, 24 Apr 2023 16:13:04 -0500</pubDate><guid>https://matthewturk.github.io/post/strava-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve been using
+&lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a> for almost two years now, and I&amp;rsquo;ve been finding it more and more integrated into my daily life.
+I take notes (using a variety of templates) in it, track my daily goals and some personal statistics, and I love the plugin ecosystem.
+I&amp;rsquo;ve also really enjoyed reading
+&lt;a href="https://www.eleanorkonik.com/" target="_blank" rel="noopener">Eleanor Konik&lt;/a>&amp;rsquo;s newsletter about it.
+Obsidian hasn&amp;rsquo;t really made me &amp;ldquo;10x better&amp;rdquo; or whatever, and I think there&amp;rsquo;s a lot in the &amp;ldquo;Personal Knowledge Management&amp;rdquo; space that just isn&amp;rsquo;t for me, but I have found it to be a very, very useful way to track what I&amp;rsquo;m doing.&lt;/p>
+&lt;p>The place where it wasn&amp;rsquo;t totally working for me was with tracking my runs, though.
+I&amp;rsquo;ve been running on and off for about fifteen years, but during the pandemic it really escalated; when I got injured back in February 2022, I was averaging about 50 miles a week, and I felt just amazing.
+(After about six months of rest and recuperation, I&amp;rsquo;m at a much more manageable and reasonable weekly mileage, but I have still set myself a goal of an ultra after tenure.)
+I really wanted to be able to control this information, though, and see it alongside my other daily info.&lt;/p>
+&lt;p>So I started looking at possibilities, and here&amp;rsquo;s what I&amp;rsquo;ve come up with.
+I spent a little time trying to figure out if I could build out a plugin, and while I&amp;rsquo;m &lt;em>oh-kay&lt;/em> at typescript I&amp;rsquo;m not really that great at the &amp;ldquo;last 10%&amp;rdquo; problem, so instead I&amp;rsquo;m building it out of a couple other plugins.
+Here&amp;rsquo;s what I&amp;rsquo;m using:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;a href="https://github.com/liskin/strava-offline" target="_blank" rel="noopener">strava-offline&lt;/a> for downloading Strava data in both GPX and data record (via sqlite) forms&lt;/li>
+&lt;li>
+&lt;a href="https://github.com/twibiral/obsidian-execute-code" target="_blank" rel="noopener">Obsidian Execute Code&lt;/a> for easily running my update scripts within my vault&lt;/li>
+&lt;li>
+&lt;a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="noopener">Obsidian Dataview&lt;/a> for viewing the data in table form and querying embedding-page metadata&lt;/li>
+&lt;li>
+&lt;a href="https://github.com/valentine195/obsidian-leaflet-plugin" target="_blank" rel="noopener">Obsidian Leaflet&lt;/a> for map views of the GPX files&lt;/li>
+&lt;/ul>
+&lt;p>It sounds like a lot!
+But I promise, it&amp;rsquo;s not so bad.&lt;/p>
+&lt;h3 id="getting-the-data">Getting the Data&lt;/h3>
+&lt;p>I use the Python package
+&lt;a href="https://github.com/liskin/strava-offline" target="_blank" rel="noopener">Strava Offline&lt;/a> to download my data.
+It&amp;rsquo;s &lt;code>pip&lt;/code>-installable, and has a very stable and straightforward command-line interface.
+The trickiest part is getting the &lt;code>_strava4_session&lt;/code> cookie, but the website explains exactly how to do that.&lt;/p>
+&lt;p>I use
+&lt;a href="https://github.com/twibiral/obsidian-execute-code" target="_blank" rel="noopener">Obsidian Execute Code&lt;/a> to run code snippets in my notes.
+I don&amp;rsquo;t do a &lt;em>lot&lt;/em> in there, as I&amp;rsquo;m really quite happy to use
+&lt;a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyterlab&lt;/a>, but I have a tendency to put maintenance scripts and whatnot in my vault and run them with regularity.
+Often I keep Python stuff in here (and I&amp;rsquo;ve used
+&lt;a href="https://github.com/selimrbd/py-obsidianmd" target="_blank" rel="noopener">py-obsidianmd&lt;/a> in the past, but not here) but for this I use just straight up shell commands:&lt;/p>
+&lt;pre>&lt;code>strava-offline sqlite
+strava-offline gpx --strava4-session MY_SESSION_COOKIE_HERE
+sqlite3 -header -csv ~/.local/share/strava_offline/strava.sqlite \
+&amp;quot;select id,name,start_date,moving_time,elapsed_time,distance,total_elevation_gain,type from activity&amp;quot; \
+&amp;gt; ~/Documents/Journal/projects/running/activities.csv
+cp -vn ~/.local/share/strava_offline/activities/*.gz \
+~/Documents/Journal/projects/running/gpx-files/
+&lt;/code>&lt;/pre>
+&lt;p>This executes the &lt;code>strava-offline&lt;/code> package (note that if you&amp;rsquo;re in a conda environment or something you&amp;rsquo;ll need to activate it) to update the sqlite file &lt;em>and&lt;/em> get the new GPX files.
+Then it dumps from the sqlite file into a &lt;code>.csv&lt;/code> file stored under my &lt;code>projects/running/&lt;/code> directory.
+Then I copy (with verbose mode on, and with no-clobber on, too) all the &lt;code>gpx.gz&lt;/code> files to &lt;code>projects/running/gpx-files/&lt;/code>.
+&lt;strong>Note!&lt;/strong> You can use macros like &lt;code>@vault&lt;/code> and whatnot in &lt;code>execute-code&lt;/code> to make this nicer looking.
+I&amp;rsquo;d probably recommend that.&lt;/p>
+&lt;p>So now, the GPX files and CSV file are in your Vault!
+If you use sync, and you have it syncing non-MD files, they should be picked up just fine.&lt;/p>
+&lt;h3 id="displaying-the-data">Displaying the Data&lt;/h3>
+&lt;p>I have two different views set up for my activities.
+I use
+&lt;a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="noopener">Obsidian Dataview&lt;/a> for lots and lots of queries and stuff, and it makes sense to use it here as well for an overview display.
+For detail, I use
+&lt;a href="https://github.com/valentine195/obsidian-leaflet-plugin" target="_blank" rel="noopener">Obsidian Leaflet&lt;/a> and embedded dataview views of the data.&lt;/p>
+&lt;p>I should note that as of the writing of this blog entry, my
+&lt;a href="https://github.com/blacksmithgu/obsidian-dataview/pull/1882" target="_blank" rel="noopener">pull request to dataview&lt;/a> hasn&amp;rsquo;t been accepted, but it looks like it will be.
+This enables the CSV parser to regard things as dates &amp;ndash; otherwise the dates just show up as &lt;code>fp_incr&lt;/code>.
+I also want to thank
+&lt;a href="https://github.com/javalent" target="_blank" rel="noopener">Jeremy Valentine&lt;/a> for helping me out to get the &lt;code>.gpx&lt;/code> parser in
+&lt;a href="https://github.com/javalent/obsidian-leaflet" target="_blank" rel="noopener">obsidian-leaflet&lt;/a> to
+&lt;a href="https://github.com/javalent/obsidian-leaflet/pull/319" target="_blank" rel="noopener">handle &lt;code>.gz&lt;/code>-compressed files&lt;/a>, as the file size really does make a big different for GPX files.&lt;/p>
+&lt;p>Anyway! I have a top-level file called &lt;code>Running Activities.md&lt;/code> which includes this &lt;code>dataview&lt;/code> query:&lt;/p>
+&lt;pre>&lt;code>table without id id, start_date, name, moving_time, elapsed_time, type, total_elevation_gain
+from csv(&amp;quot;activities.csv&amp;quot;)
+sort id desc
+&lt;/code>&lt;/pre>
+&lt;p>This is pretty basic, and would probably work a bit better if I were more careful about it.
+But, it&amp;rsquo;s a good start.&lt;/p>
+&lt;p>For individual runs, my setup is:&lt;/p>
+&lt;ol>
+&lt;li>A simple template for every run, and each run gets its own note.&lt;/li>
+&lt;li>An embedded dataview &amp;ldquo;view&amp;rdquo; that generates the map for each template.&lt;/li>
+&lt;li>Links to the daily notes from each of the runs, and daily notes have queries for backlinks.&lt;/li>
+&lt;/ol>
+&lt;p>My run &amp;ldquo;view&amp;rdquo; template looks like this, and I call it &lt;code>run-activity.md&lt;/code>:&lt;/p>
+&lt;pre>&lt;code>## `$= dv.current().name`
+```leaflet
+id: ACTIVITY_NAME
+zoomFeatures: true
+maxZoom: 20
+gpx:
+- [[gpx-files/ACTIVITY_ID.gpx.gz]]
+&lt;/code>&lt;/pre>
+&lt;p>This is the view that is embedded; in the main &lt;code>run.md&lt;/code> template, which is instantiated for each run, I have:&lt;/p>
+&lt;pre>&lt;code>---
+date: a
+activityId: Whatever
+aliases: []
+tags:
+- running
+- running/route
+- running/strava
+---
+## Run
+\```dataviewjs
+dv.paragraph((await dv.io.load(&amp;quot;templates/run-activity.md&amp;quot;)).replace(&amp;quot;ACTIVITY_ID&amp;quot;, dv.current().activityId));
+\```
+## Notes
+&lt;/code>&lt;/pre>
+&lt;p>But, as I&amp;rsquo;ll note below, there are some issues with this!
+I want to make it easier to do.&lt;/p>
+&lt;h3 id="future-ideas">Future Ideas&lt;/h3>
+&lt;p>In reality, there is a pretty straightforward way of making this much more streamlined.
+The Obsidian plugin template is really nice, the Strava Javascript API is really nice, and I think it could be all brought in-house to a single plugin.
+I just haven&amp;rsquo;t figured out the best way to do that, or to convince myself to do it.&lt;/p>
+&lt;p>The other thing is that the actual creation of the instances of &lt;code>run.md&lt;/code> is a little clunky.
+I want to be able to instantiate templates in
+&lt;a href="https://silentvoid13.github.io/Templater/" target="_blank" rel="noopener">Templater&lt;/a> from within the Obsidian API, but I can&amp;rsquo;t see how to do that exactly.
+It would be nice to be able to supply variables, a template input filename, and an output filename to a function, but
+&lt;a href="https://github.com/SilentVoid13/Templater/issues/1004" target="_blank" rel="noopener">it isn&amp;rsquo;t quite available as-is&lt;/a>.
+I think there might be a way to make
+&lt;a href="https://github.com/chhoumann/quickadd" target="_blank" rel="noopener">QuickAdd&lt;/a> do it, but I haven&amp;rsquo;t figured it out quite yet.
+This remains the most irritating part &amp;ndash; my template will prompt me for the activity id, but that&amp;rsquo;s really not the most efficient way to do it.
+I&amp;rsquo;d instead much rather be able to parse the CSV file on demand (maybe with a
+&lt;a href="https://github.com/shabegom/buttons" target="_blank" rel="noopener">button&lt;/a>) and any &lt;em>new&lt;/em> entries get a new instance of the template.&lt;/p>
+&lt;p>So that&amp;rsquo;s that!
+I think that this can be smoother, and it probably will be pretty soon, but here&amp;rsquo;s how I&amp;rsquo;m doing it right now, rough edges and all.
+Drop me a line if you have any suggestions or questions!&lt;/p></description></item><item><title>A Little Bit of Endianness</title><link>https://matthewturk.github.io/post/a-little-bit-of-endianness/</link><pubDate>Thu, 23 Jan 2020 16:28:15 -0600</pubDate><guid>https://matthewturk.github.io/post/a-little-bit-of-endianness/</guid><description>&lt;p>(Confession time: I did not even realize I was mildly-punning in that title.)&lt;/p>
 &lt;p>Over the last few months, my hobby-time has mostly been focused on some reverse engineering of old DOS games I played as a kid. The fruits of that will wait for another blog post, but this has led to some very fun investigations using the
 &lt;a href="https://www.vogons.org/viewtopic.php?t=3944" target="_blank" rel="noopener">DOSbox debugger&lt;/a>,
 &lt;a href="http://ghidra-sre.org/" target="_blank" rel="noopener">Ghidra&lt;/a> and learning the Ghidra API to decompile MS-DOS system calls (especially
@@ -62,7 +182,7 @@ Big endian: ['0', '4', 'D3', 'D2']
 &lt;a href="https://matthewturk.github.io/post/refactoring-yt-frontends-part3/" target="_blank" rel="noopener">here&lt;/a>) &amp;ndash; basically, that yt is pretty monolithic, and that&amp;rsquo;s not really the best way to evolve with the ecosystem.&lt;/p>
 &lt;p>I&amp;rsquo;ll be using
 &lt;a href="https://github.com/mgedmin/findimports" target="_blank" rel="noopener">findimports&lt;/a> for exploring how monolithic it &lt;em>is&lt;/em> versus how monolithic it &lt;em>appears to be&lt;/em>. Basically, I want to see: is it one repo with lots of interconnections, or is it essentially a couple repos?&lt;/p>
-&lt;p>(Also at the end I&amp;rsquo;ll give a pitch for why this is relevant, so if you&amp;rsquo;re even remotely intrigued, at &lt;em>least&lt;/em> scroll down to the section labeled &amp;ldquo;OK, the boring stuff is over.&amp;quot;)&lt;/p>
+&lt;p>(Also at the end I&amp;rsquo;ll give a pitch for why this is relevant, so if you&amp;rsquo;re even remotely intrigued, at &lt;em>least&lt;/em> scroll down to the section labeled &amp;ldquo;OK, the boring stuff is over.&amp;rdquo;)&lt;/p>
 &lt;pre>&lt;code class="language-python">import pickle
 import findimports
 yt_imports = pickle.load(open(&amp;quot;yt/yt/import_output.pkl&amp;quot;, &amp;quot;rb&amp;quot;))
