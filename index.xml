@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 24 Apr 2023 16:13:04 -0500</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>Strava in Obsidian</title><link>https://matthewturk.github.io/post/strava-in-obsidian/</link><pubDate>Mon, 24 Apr 2023 16:13:04 -0500</pubDate><guid>https://matthewturk.github.io/post/strava-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve been using
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 23 May 2023 12:03:56 -0500</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>Project Notes in Obsidian</title><link>https://matthewturk.github.io/post/project-notes-in-obsidian/</link><pubDate>Tue, 23 May 2023 12:03:56 -0500</pubDate><guid>https://matthewturk.github.io/post/project-notes-in-obsidian/</guid><description>&lt;p>As I noted in a
+&lt;a href="https://matthewturk.github.io/post/strava-in-obsidian/">previous post&lt;/a>, I&amp;rsquo;ve been using
+&lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a> for personal note taking and whatnot.
+I swear by using the
+&lt;a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="noopener">Templater&lt;/a> plugin, and I have setups for note taking for meetings and check-ins with students.&lt;/p>
+&lt;p>I recently formalized something that I do in all of them, which makes it a lot easier to set up.
+For instance, my &lt;code>meeting-notes&lt;/code> template looks like this:&lt;/p>
+&lt;pre>&lt;code>&amp;lt;%*
+let projectName = await tp.user.helpfulPrompt(tp, &amp;quot;project&amp;quot;, &amp;quot;#projects&amp;quot;, &amp;quot;Project Name?&amp;quot;);
+let slugName = tp.user.slugger(projectName);
+-%&amp;gt;
+---
+fileClass: meeting-notes
+aliases: [&amp;quot;&amp;lt;% projectName %&amp;gt;-meeting-&amp;lt;% tp.date.now() %&amp;gt;&amp;quot;]
+tags:
+- notes
+- meeting
+- projects/&amp;lt;% projectName %&amp;gt;
+project: &amp;lt;% projectName %&amp;gt;
+created: &amp;lt;% tp.date.now() %&amp;gt;
+modified: &amp;lt;% tp.date.now() %&amp;gt;
+date: &amp;lt;% tp.date.now() %&amp;gt;
+attendees:
+- Matt Turk
+- ...
+title: Notes - &amp;lt;% projectName %&amp;gt; - &amp;lt;% tp.date.now() %&amp;gt;
+---
+# Notes - &amp;lt;% projectName %&amp;gt; - &amp;lt;% tp.date.now() %&amp;gt;
+## Agenda and Notes
+1. start
+2. ...
+## Action Items
+Use the metadata `assigned` like `(assigned:: Matt Turk)` in these.
+- [ ]
+## Other
+&amp;lt;% await tp.user.safeRenamer(tp, &amp;quot;projects/&amp;quot; + projectName, slugName + &amp;quot; - notes - &amp;quot; + tp.date.now()) %&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>and my &lt;code>check-in&lt;/code> template looks like this:&lt;/p>
+&lt;pre>&lt;code>&amp;lt;%*
+let personName = await tp.user.helpfulPrompt(tp, &amp;quot;student&amp;quot;, &amp;quot;#student&amp;quot;, &amp;quot;Student Name?&amp;quot;);
+let slugName = tp.user.slugger(personName);
+-%&amp;gt;
+---
+aliases: []
+student: &amp;lt;% personName %&amp;gt;
+tags:
+- student/&amp;lt;% slugName %&amp;gt;
+- students/checkin
+modified: &amp;lt;% tp.date.now() %&amp;gt;
+created: &amp;lt;% tp.date.now() %&amp;gt;
+title: &amp;lt;% personName %&amp;gt; - Checkin - &amp;lt;% tp.date.now() %&amp;gt;
+---
+# &amp;lt;% personName %&amp;gt; - Checkin - &amp;lt;% tp.date.now() %&amp;gt;
+## Discussion
+## Notes
+## Action Items
+&amp;lt;% await tp.file.move(&amp;quot;projects/students/&amp;quot; + slugName + &amp;quot;/&amp;quot;
++ personName + &amp;quot; - Checkin - &amp;quot; + tp.date.now()) %&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>I&amp;rsquo;ve set up a couple functions in
+&lt;a href="https://silentvoid13.github.io/Templater/user-functions/script-user-functions.html" target="_blank" rel="noopener">user scripts&lt;/a> that make things a lot easier for me.
+(I just now noticed I don&amp;rsquo;t use &lt;code>safeRenamer&lt;/code> in my &lt;code>check-in&lt;/code> template, though, and I&amp;rsquo;ll have to fix that.)&lt;/p>
+&lt;p>Because I have metadata tags for &lt;code>project:&lt;/code> and &lt;code>student:&lt;/code> in the frontmatter of these templates, I can do some searching to provide an autocomplete for &lt;em>existing&lt;/em> values, and also allow for &lt;em>new&lt;/em> values to be added.&lt;/p>
+&lt;p>Here&amp;rsquo;s my &lt;code>safeRenamer&lt;/code> script, which honestly I&amp;rsquo;m not sure is exactly the right one to use, but which is working for me:&lt;/p>
+&lt;pre>&lt;code class="language-javascript">async function safeRenamer(tp, newFolder, newFilename) {
+if (!(await app.vault.exists(newFolder))) {
+await app.vault.createFolder(newFolder);
+}
+var newFullpath = `${newFolder}/${newFilename}.md`;
+var exists = await tp.file.exists(newFullpath);
+if (exists) {
+for (let i =1; i &amp;lt;= 100; i++) {
+newFullpath = `${newFolder}/${newFilename} - ${i}.md`;
+exists = await tp.file.exists(newFullpath);
+if (!exists) break;
+}
+}
+// We now have a newFullpath that probably includes the .md extension.
+// But, we don't want obsidian to use that.
+if (newFullpath.endsWith(&amp;quot;.md&amp;quot;)) {
+newFullpath = newFullpath.slice(0, -3);
+}
+return tp.file.move(newFullpath);
+}
+module.exports = safeRenamer;
+&lt;/code>&lt;/pre>
+&lt;p>And, this set of functions helps me figure out what &lt;em>already&lt;/em> exists to provide a set of options, as well as allowing for a new value to be added.
+Here is &lt;code>frontmatterKeyValues.js&lt;/code>:&lt;/p>
+&lt;pre>&lt;code class="language-javascript">// https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+function onlyUnique(value, index, array) {
+return array.indexOf(value) === index;
+}
+async function frontmatterKeyValues(key, selectionTag) {
+const dv = app.plugins.plugins[&amp;quot;dataview&amp;quot;].api;
+if (!selectionTag.startsWith(&amp;quot;#&amp;quot;)) selectionTag = `#${selectionTag}`;
+keyValues = dv.pages(selectionTag).filter( p =&amp;gt; p[key] ).map( p =&amp;gt; p[key] ).filter(onlyUnique);
+return keyValues.array();
+}
+module.exports = frontmatterKeyValues;
+&lt;/code>&lt;/pre>
+&lt;p>and, finally, &lt;code>helpfulPrompt.js&lt;/code>:&lt;/p>
+&lt;pre>&lt;code class="language-javascript">const OTHER = &amp;quot;Other&amp;quot;;
+async function helpfulPrompt(tp, key, tag, header) {
+let knownValues = await tp.user.frontmatterKeyValues(key, tag);
+knownValues.push(OTHER);
+let selectedValue = await tp.system.suggester(knownValues, knownValues, true);
+if (selectedValue === OTHER) {
+selectedValue = await tp.system.prompt(&amp;quot;Use which value?&amp;quot;, &amp;quot;&amp;quot;, true);
+}
+return selectedValue;
+}
+module.exports = helpfulPrompt;
+&lt;/code>&lt;/pre>
+&lt;p>I also wrote this up (&lt;code>tagLeafFinder.js&lt;/code>), but have not yet used it, for identifying stem values in keys:&lt;/p>
+&lt;pre>&lt;code class="language-javascript">async function tagLeafFinder(stemTag) {
+if (!stemTag.startsWith(&amp;quot;#&amp;quot;)) stemTag = `#${stemTag}`;
+if (!stemTag.endsWith(&amp;quot;/&amp;quot;)) stemTag = `${stemTag}/`;
+const tags = Object.keys( app.metadataCache.getTags() ).filter( t =&amp;gt; t.startsWith(stemTag) );
+return tags;
+}
+module.exports = tagLeafFinder
+&lt;/code>&lt;/pre>
+&lt;p>Now, whenever I start a project meeting, I hit &lt;code>Alt-n&lt;/code> and choose the project from the (on-the-fly-generated) list, and I get my meeting notes.
+And, dataview query in my overview page tells me all the todo items assigned to me across all meeting notes.&lt;/p></description></item><item><title>Strava in Obsidian</title><link>https://matthewturk.github.io/post/strava-in-obsidian/</link><pubDate>Mon, 24 Apr 2023 16:13:04 -0500</pubDate><guid>https://matthewturk.github.io/post/strava-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve been using
 &lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a> for almost two years now, and I&amp;rsquo;ve been finding it more and more integrated into my daily life.
 I take notes (using a variety of templates) in it, track my daily goals and some personal statistics, and I love the plugin ecosystem.
 I&amp;rsquo;ve also really enjoyed reading
