@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>Project Notes in Obsidian</title><link>https://matthewturk.github.io/post/project-notes-in-obsidian/</link><pubDate>Tue, 23 May 2023 12:03:56 -0500</pubDate><guid>https://matthewturk.github.io/post/project-notes-in-obsidian/</guid><description>&lt;p>As I noted in a
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>Recent Fun With yt</title><link>https://matthewturk.github.io/post/recent-fun-with-yt/</link><pubDate>Tue, 06 Jun 2023 11:54:08 -0500</pubDate><guid>https://matthewturk.github.io/post/recent-fun-with-yt/</guid><description>&lt;p>I&amp;rsquo;ve recently been having fun with
+&lt;a href="https://yt-project.org/" target="_blank" rel="noopener">yt&lt;/a> again. Really, though, I&amp;rsquo;ve been having fun exploring the ways I can use it from different perspectives, and using it to teach myself the library
+&lt;a href="https://textual.textualize.io/" target="_blank" rel="noopener">textual&lt;/a>.&lt;/p>
+&lt;p>A long, long time ago, when we were much younger (around the time Streetlight Manifesto put out their first album, &amp;ldquo;Everything Goes Numb&amp;rdquo;) I started trying to learn and use
+&lt;a href="https://enzo-project.org/" target="_blank" rel="noopener">Enzo&lt;/a>. Enzo outputs data in patch-structured refinement, so you have grids that overlap and whatnot and aren&amp;rsquo;t all the same size. The way it outputs it to disk is with a &lt;code>.hierarchy&lt;/code> file, which is essentially a serialization of the simulation code &amp;lsquo;walking&amp;rsquo; the hierarchy. So, it outputs grid information, like so:&lt;/p>
+&lt;pre>&lt;code>Grid = 1
+Task = 0
+GridRank = 3
+GridDimension = 38 38 38
+GridStartIndex = 3 3 3
+GridEndIndex = 34 34 34
+GridLeftEdge = 0 0 0
+GridRightEdge = 1 1 1
+Time = 0.0060000200028298
+SubgridsAreStatic = 0
+NumberOfBaryonFields = 24
+FieldType = 0 4 5 6 1 49 50 51 52 53 7 8 9 10 11 12 23 24 25 27 19 61 62 83
+BaryonFileName = ./DD0030/galaxy0030.cpu0000
+CourantSafetyNumber = 0.300000
+PPMFlatteningParameter = 0
+PPMDiffusionParameter = 0
+PPMSteepeningParameter = 0
+NumberOfParticles = 0
+GravityBoundaryType = 1
+Pointer: Grid[1]-&amp;gt;NextGridThisLevel = 0
+Pointer: Grid[1]-&amp;gt;NextGridNextLevel = 2
+&lt;/code>&lt;/pre>
+&lt;p>This is the first grid in my old favorite, &lt;code>IsolatedGalaxy&lt;/code>. The various parameters include things like the position of the grid in space and so forth, and then at the end, we have these two pointers to the next grid on &lt;em>this&lt;/em> level and the next grid on the &lt;em>next&lt;/em> level. These two lines are the way that Enzo communicates parentage relationships (and note that &lt;code>Level&lt;/code> is not in the block &amp;ndash; you track which level things are on by walking the hierarchy.) The first line here indicates that there are no additional grids on this level, and the second line indicates that the next level starts with grid index 2. The grids are always ordered in this way &amp;ndash; siblings first, then children. That&amp;rsquo;s how you end up with blocks like this:&lt;/p>
+&lt;pre>&lt;code>Grid = 19
+Task = 5
+GridRank = 3
+GridDimension = 14 10 14
+GridStartIndex = 3 3 3
+GridEndIndex = 10 6 10
+GridLeftEdge = 0.52734375 0.53515625 0.505859375
+GridRightEdge = 0.53515625 0.5390625 0.513671875
+Time = 0.0060000200028298
+SubgridsAreStatic = 0
+NumberOfBaryonFields = 24
+FieldType = 0 4 5 6 1 49 50 51 52 53 7 8 9 10 11 12 23 24 25 27 19 61 62 83
+BaryonFileName = ./DD0030/galaxy0030.cpu0005
+CourantSafetyNumber = 0.300000
+PPMFlatteningParameter = 0
+PPMDiffusionParameter = 0
+PPMSteepeningParameter = 0
+NumberOfParticles = 50
+ParticleFileName = ./DD0030/galaxy0030.cpu0005
+GravityBoundaryType = 2
+Pointer: Grid[19]-&amp;gt;NextGridThisLevel = 0
+Pointer: Grid[19]-&amp;gt;NextGridNextLevel = 0
+Pointer: Grid[18]-&amp;gt;NextGridNextLevel = 0
+Pointer: Grid[17]-&amp;gt;NextGridNextLevel = 0
+Pointer: Grid[16]-&amp;gt;NextGridNextLevel = 0
+Pointer: Grid[15]-&amp;gt;NextGridNextLevel = 20
+&lt;/code>&lt;/pre>
+&lt;p>Here, we are in grid 19, but it doesn&amp;rsquo;t have any &lt;em>additional&lt;/em> siblings, and it also doesn&amp;rsquo;t have any children. Grids 18, 17, and 16 also do not have any child grids, but 15 does.&lt;/p>
+&lt;p>As you might imagine, while this makes sense and is also straightforward to de-serialize into an in-memory data structure, it can be somewhat tricky to navigate if you just want info about a particular grid and its relationship to other grids.&lt;/p>
+&lt;p>Enter, Britton Smith! Britton, who I had the pleasure of attending graduate school with (and, also, continuing to work with up to and including the present day), was a really slick perl script writer.&lt;/p>
+&lt;p>(His perl implementation of battleship, including socket communication across LAN machines and a high score table, was a fixture among the PSU astro grads.)&lt;/p>
+&lt;p>Britton wrote up a tool to parse the hierarchy and, if I am remembering correctly, present a simple REPL to query for information about the individual grids. Years later he helped me port this concept to Python where it forms the initial indexing stage of the yt Enzo frontend.&lt;/p>
+&lt;p>A little while ago, I saw
+&lt;a href="https://mastodon.social/@glyph/110431920038948565" target="_blank" rel="noopener">a toot&lt;/a> by Glyph Lefkowitz that made me realize I really ought to give a look at
+&lt;a href="https://textual.textualize.io/" target="_blank" rel="noopener">textual&lt;/a> again.&lt;/p>
+&lt;p>So I built out a very simple Enzo hierarchy explorer that used yt, to try to evoke the old perl script. And it turns out, it was &amp;hellip; incredibly easy!&lt;/p>
+&lt;p>I ended up putting it on GitHub at
+&lt;a href="https://github.com/matthewturk/yt_hierarchy_browser" target="_blank" rel="noopener">matthewturk/yt_hierarchy_browser&lt;/a>. I&amp;rsquo;ve started exploring using things like
+&lt;a href="https://github.com/darrenburns/rich-pixels" target="_blank" rel="noopener">rich-pixels&lt;/a> to display grid slices, but I started to get lost in the &amp;ldquo;messages flow up and properties flow down&amp;rdquo; side of things, and making sure that I had the grid images properly stored in the right places. I will probably come back to that.&lt;/p>
+&lt;p>For now, though, the basics of the app are reasonably small &amp;ndash; three basic components. The first is the &lt;code>App&lt;/code> subclass, which sets up the tree viewer on the left and the grid info viewer on the right:&lt;/p>
+&lt;pre>&lt;code class="language-python">class DatasetBrowser(App):
+CSS_PATH = &amp;quot;yt_hierarchy_browser.css&amp;quot;
+def compose(self) -&amp;gt; ComposeResult:
+yield Header()
+yield Footer()
+yield GridHierarchyBrowser()
+yield GridViewer()
+def on_mount(self) -&amp;gt; None:
+ghv = self.query_one(GridHierarchyBrowser)
+ds = yt.load_sample(&amp;quot;IsolatedGalaxy&amp;quot;)
+assert ds is not None
+ghv.dataset = ds
+def on_tree_node_highlighted(self, event: Tree.NodeHighlighted) -&amp;gt; None:
+if event.node.data is None: return
+gv = self.query_one(GridViewer)
+gv.grid = event.node.data['grid']
+&lt;/code>&lt;/pre>
+&lt;p>(I&amp;rsquo;m not sure I&amp;rsquo;ve put my tree node highlighted event handler in the right level of the class structure, but like I said, I&amp;rsquo;m still learning!) This then creates a &lt;code>GridViewer&lt;/code> which handles the display whenever a grid is highlighted:&lt;/p>
+&lt;pre>&lt;code class="language-python">class GridViewer(Static):
+grid: reactive[AMRGridPatch | None] = reactive(None)
+def compose(self):
+yield Static(id = &amp;quot;grid_info&amp;quot;)
+yield Static(id = &amp;quot;grid_view&amp;quot;)
+def watch_grid(self, grid: AMRGridPatch) -&amp;gt; None:
+if grid is None: return
+grid_info = self.query_one(&amp;quot;#grid_info&amp;quot;)
+grid_info.update(f&amp;quot;Left Edge: {grid.LeftEdge}\n&amp;quot;
+f&amp;quot;Right Edge: {grid.RightEdge}\n&amp;quot;
+f&amp;quot;Active Dimensions: {grid.ActiveDimensions}\n&amp;quot;
+f&amp;quot;Level: {grid.Level}\n&amp;quot;)
+&lt;/code>&lt;/pre>
+&lt;p>Note here that it&amp;rsquo;s getting a grid patch, which gets updated &amp;ndash; I could also do this with the tree node data, but here I&amp;rsquo;m passing the grids so that when I do image display it&amp;rsquo;s a bit easier. And finally, the tree viewer itself:&lt;/p>
+&lt;pre>&lt;code class="language-python">class GridHierarchyBrowser(Static):
+dataset: reactive[Dataset | None] = reactive(None)
+def compose(self) -&amp;gt; ComposeResult:
+yield Tree(label = &amp;quot;Grid Hierarchy&amp;quot;, id = &amp;quot;grid_hierarchy&amp;quot;)
+def watch_dataset(self, dataset: Dataset) -&amp;gt; None:
+if dataset is None: return
+def dictify(g):
+return {'ActiveDimensions': g.ActiveDimensions,
+'LeftEdge': g.LeftEdge,
+'RightEdge': g.RightEdge,
+'Level': g.Level,
+'grid': g}
+tree: Tree[dict] = self.query_one(Tree)
+tree.root.expand()
+def add_children(node, g):
+data = dictify(g)
+if len(g.Children) == 0:
+node.add_leaf(str(g), data = data)
+else:
+n = node.add(str(g), data = data)
+for c in g.Children:
+add_children(n, c)
+for grid in dataset.index.select_grids(0):
+# These are all the root grids
+node = tree.root.add(str(grid), data = dictify(grid), expand = True)
+for c in grid.Children:
+add_children(node, c)
+&lt;/code>&lt;/pre>
+&lt;p>Again, the creation of the &lt;code>dict&lt;/code> is a bit redundant since I&amp;rsquo;m also grabbing the grid info, but later on I hope that will come in useful. This simply watches the dataset and then fills up the nodes. And, this is what it looks like:&lt;/p>
+&lt;p>![[screenshot.svg]]&lt;/p>
+&lt;p>This was a pretty fun experiment, and I&amp;rsquo;m pretty excited about exploring more with it.&lt;/p></description></item><item><title>Project Notes in Obsidian</title><link>https://matthewturk.github.io/post/project-notes-in-obsidian/</link><pubDate>Tue, 23 May 2023 12:03:56 -0500</pubDate><guid>https://matthewturk.github.io/post/project-notes-in-obsidian/</guid><description>&lt;p>As I noted in a
 &lt;a href="https://matthewturk.github.io/post/strava-in-obsidian/">previous post&lt;/a>, I&amp;rsquo;ve been using
 &lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a> for personal note taking and whatnot.
 I swear by using the
