@@ -127,7 +127,7 @@ for c in grid.Children:
 add_children(node, c)
 &lt;/code>&lt;/pre>
 &lt;p>Again, the creation of the &lt;code>dict&lt;/code> is a bit redundant since I&amp;rsquo;m also grabbing the grid info, but later on I hope that will come in useful. This simply watches the dataset and then fills up the nodes. And, this is what it looks like:&lt;/p>
-&lt;p>![[screenshot.svg]]&lt;/p>
+&lt;p>&lt;img src="screenshot.svg" alt="">&lt;/p>
 &lt;p>This was a pretty fun experiment, and I&amp;rsquo;m pretty excited about exploring more with it.&lt;/p></description></item><item><title>Project Notes in Obsidian</title><link>https://matthewturk.github.io/post/project-notes-in-obsidian/</link><pubDate>Tue, 23 May 2023 12:03:56 -0500</pubDate><guid>https://matthewturk.github.io/post/project-notes-in-obsidian/</guid><description>&lt;p>As I noted in a
 &lt;a href="https://matthewturk.github.io/post/strava-in-obsidian/">previous post&lt;/a>, I&amp;rsquo;ve been using
 &lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a> for personal note taking and whatnot.
