@@ -183,6 +183,6 @@ class GridHierarchyBrowser(Static):
 
 Again, the creation of the `dict` is a bit redundant since I'm also grabbing the grid info, but later on I hope that will come in useful.  This simply watches the dataset and then fills up the nodes.  And, this is what it looks like:
 
-![[screenshot.svg]]
+![](screenshot.svg)
 
 This was a pretty fun experiment, and I'm pretty excited about exploring more with it.
