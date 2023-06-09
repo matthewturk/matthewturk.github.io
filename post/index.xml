@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>Recent Fun With yt</title><link>https://matthewturk.github.io/post/recent-fun-with-yt/</link><pubDate>Tue, 06 Jun 2023 11:54:08 -0500</pubDate><guid>https://matthewturk.github.io/post/recent-fun-with-yt/</guid><description>&lt;p>I&amp;rsquo;ve recently been having fun with
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | mjt</title><link>https://matthewturk.github.io/post/</link><atom:link href="https://matthewturk.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>https://matthewturk.github.io/post/</link></image><item><title>Paper Annotation in Obsidian</title><link>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</link><pubDate>Fri, 09 Jun 2023 08:32:13 -0500</pubDate><guid>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve started keeping notes on papers in
+&lt;a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian&lt;/a> and I thought I&amp;rsquo;d share the workflow, which so far is pretty straightforward and easy to set up.
+This uses the
+&lt;a href="https://github.com/qawatake/obsidian-binary-file-manager-plugin" target="_blank" rel="noopener">binary file manager&lt;/a> plugin and the
+&lt;a href="https://github.com/elias-sundqvist/obsidian-annotator" target="_blank" rel="noopener">annotator&lt;/a> plugin.
+Annotator uses
+&lt;a href="https://hypothes.is/" target="_blank" rel="noopener">hypothes.is&lt;/a> with local storage (in markdown) of the annotations.&lt;/p>
+&lt;p>I set up a folder, &lt;code>attachments/papers&lt;/code>, which is where I&amp;rsquo;ll be putting all my PDFs.
+I have this template, &lt;code>templates/pdf-annotation&lt;/code>:&lt;/p>
+&lt;pre>&lt;code>---
+aliases: [&amp;quot;{{NAME}} - Annotation&amp;quot;]
+type: pdf
+fileClass: pdf-annotation
+tags:
+- pdf
+- notes
+- paper
+created: {{NOW:YYYY-MM-DD}}
+modified: {{NOW:YYYY-MM-DD}}
+annotation-target: &amp;quot;{{PATH}}&amp;quot;
+---
+# {{FULLNAME}}
+&lt;/code>&lt;/pre>
+&lt;p>In the binary file manager plugin, I turn off &lt;em>all&lt;/em> the file extensions &lt;em>except&lt;/em> PDF, and I have the &amp;ldquo;New file location&amp;rdquo; set to &lt;code>reviews/papers&lt;/code>.
+That&amp;rsquo;s where the metadata markdown files will go.
+I point at &lt;code>templates/pdf-annotation.md&lt;/code> for the template file location, and I turn on &amp;lsquo;watch.&amp;rsquo;
+(Note that there&amp;rsquo;s an
+&lt;a href="https://github.com/qawatake/obsidian-binary-file-manager-plugin/issues/6" target="_blank" rel="noopener">open issue&lt;/a> about having it only watch one particular directory, which I am going to enable if it gets implemented. Not sure I will try implementing it myself.)
+Whenever I have a PDF I want to store a local copy of, I drag it into the &lt;code>attachments/papers&lt;/code> directory, and the metadata file gets created.
+Then I open up the newly created file, and I have a side-by-side annotation view!&lt;/p>
+&lt;p>&lt;img src="annotation_screenshot.png" alt="A screenshot of an annotation view in Obsidian">&lt;/p>
+&lt;p>I &lt;em>think&lt;/em>, but I&amp;rsquo;m not totally sure, that with a little bit of work it should be possible to make this work without much change (using the same template, location, etc) for online annotations too, which I&amp;rsquo;m going to have a shot at.
+Annotator supports remote URLs, so the work would just be in making sure I can use the same template both ways.&lt;/p></description></item><item><title>Recent Fun With yt</title><link>https://matthewturk.github.io/post/recent-fun-with-yt/</link><pubDate>Tue, 06 Jun 2023 11:54:08 -0500</pubDate><guid>https://matthewturk.github.io/post/recent-fun-with-yt/</guid><description>&lt;p>I&amp;rsquo;ve recently been having fun with
 &lt;a href="https://yt-project.org/" target="_blank" rel="noopener">yt&lt;/a> again. Really, though, I&amp;rsquo;ve been having fun exploring the ways I can use it from different perspectives, and using it to teach myself the library
 &lt;a href="https://textual.textualize.io/" target="_blank" rel="noopener">textual&lt;/a>.&lt;/p>
 &lt;p>A long, long time ago, when we were much younger (around the time Streetlight Manifesto put out their first album, &amp;ldquo;Everything Goes Numb&amp;rdquo;) I started trying to learn and use
