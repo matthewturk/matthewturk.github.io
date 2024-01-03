@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 09 Jun 2023 08:32:13 -0500</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>Paper Annotation in Obsidian</title><link>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</link><pubDate>Fri, 09 Jun 2023 08:32:13 -0500</pubDate><guid>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve started keeping notes on papers in
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 03 Jan 2024 13:00:00 -0500</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>How I Rang In 2024</title><link>https://matthewturk.github.io/post/how-i-rang-in-2024/</link><pubDate>Wed, 03 Jan 2024 13:00:00 -0500</pubDate><guid>https://matthewturk.github.io/post/how-i-rang-in-2024/</guid><description>&lt;p>A project I&amp;rsquo;ve been noodling with for the last few years (okay a lot of years) has been reverse engineering the file formats for the game
+&lt;a href="https://en.wikipedia.org/wiki/The_Summoning_%28video_game%29" target="_blank" rel="noopener">The Summoning&lt;/a>. This has led to things like learning
+&lt;a href="https://kaitai.io" target="_blank" rel="noopener">kaitai.io&lt;/a>, digging into
+&lt;a href="https://github.com/matthewturk/jupyterlab_dosbox" target="_blank" rel="noopener">DOSbox&lt;/a>,
+&lt;a href="https://ghidra-sre.org/" target="_blank" rel="noopener">Ghidra&lt;/a> (and writing
+&lt;a href="https://github.com/matthewturk/ghidra-msdos-syscalls" target="_blank" rel="noopener">some scripts&lt;/a>), and exploring lots of things in a
+&lt;a href="https://github.com/matthewturk/dispersing/" target="_blank" rel="noopener">parsing library&lt;/a>. I even
+&lt;a href="https://www.youtube.com/watch?v=2v5CBW3yGi0" target="_blank" rel="noopener">live streamed&lt;/a> some reversing work and a walkthrough of my efforts a while back.&lt;/p>
+&lt;p>I played this game as a kid. It came out in 1992, and my grandfather bought it for us. It&amp;rsquo;s &amp;hellip; long. Like, really, really, &lt;em>really&lt;/em> long. And there&amp;rsquo;s a plot! With NPCs! (In fact, the person who designed the plot now runs a rather awesome
+&lt;a href="https://dreamforgemagazine.com/" target="_blank" rel="noopener">Science Fiction Magazine&lt;/a>) But it&amp;rsquo;s also kind of &amp;hellip; grindy?&lt;/p>
+&lt;p>Anyway, it has its fans online, although the spiritual sequel
+&lt;a href="https://en.wikipedia.org/wiki/Veil_of_Darkness" target="_blank" rel="noopener">Veil of Darkness&lt;/a> seems to be an awful lot more popular;
+&lt;a href="https://davidlcraddock.com/" target="_blank" rel="noopener">David L. Craddock&lt;/a> even did an oral history of it which he included in the book &lt;em>Game Dev Stories 5&lt;/em>, which seems to be rather tricky to get ahold of lately. (I snagged it in a
+&lt;a href="https://storybundle.com/books/3182" target="_blank" rel="noopener">Storybundle&lt;/a>).&lt;/p>
+&lt;p>Both The Summoning and Veil of Darkness have recently been released on
+&lt;a href="https://gog.com" target="_blank" rel="noopener">GOG&lt;/a> and
+&lt;a href="https://steampowered.com/" target="_blank" rel="noopener">Steam&lt;/a>.&lt;/p>
+&lt;p>There are still lots of mysteries for the code to give up, but I find it absolutely fascinating to dig in and learn about the different ways that the developers did things. Honestly, it&amp;rsquo;s just incredible to be able to appreciate the craft of their work &amp;ndash; and seeing how they saved space in some ways, how they used swap files, and learn about how they operated within the confines of the MS-DOS era. I&amp;rsquo;ve been tempted a few times to try to reach out to one or more of them, but have always been a bit too afraid to.&lt;/p>
+&lt;p>One of the biggest mysteries &amp;ndash; which I am certain has been discovered by others, but which I did not &amp;ndash; was how the game&amp;rsquo;s copy protection worked. When you start the game, it shows a screen like this:&lt;/p>
+&lt;p>&lt;img src="summoning-page49-copyprotection.png" alt="">&lt;/p>
+&lt;p>(In this case though I&amp;rsquo;ve put the first four faces in already.) My assumption had &lt;em>always&lt;/em> been that the &lt;em>correct&lt;/em> ordering of the faces was stored somewhere in either the executable or in one of the affiliated data files, likely in an obfuscated fashion. But finding out precisely where they were &amp;hellip; that had eluded me.&lt;/p>
+&lt;p>&lt;strong>UNTIL NOW!&lt;/strong>&lt;/p>
+&lt;p>(Using that phrasing is a joke that only hard-core TheSummoning-heads will get. Haha, right?)&lt;/p>
+&lt;p>I recently took the time to implement a script that converted references in Ghidra to segmented memory references, defaulting to pointing at the local &lt;code>DS&lt;/code> section. (Of course I don&amp;rsquo;t automate all of it &amp;ndash; I hardcode the &lt;code>DS&lt;/code>!) This really helped me understand where strings were used. And shortly after this, I was able to finally understand how the string formatting function worked, and so I found myself knowing where the string &amp;ldquo;Please turn to page&amp;rdquo; was being fed in, and the number that arrived just after it &amp;ndash; the page number. With a bit of work, I dug deeper and found a function that Ghidra decompiled into:&lt;/p>
+&lt;pre>&lt;code class="language-c"> iVar1 = page_number + 1;
+iVar2 = iVar1;
+for (iVar4 = 1; iVar4 &amp;lt; 6; iVar4 = iVar4 + 1) {
+iVar2 = (iVar4 + page_number) % 5;
+iVar3 = (iVar1 * iVar2 * iVar2 * iVar2 + iVar2 * 0x45 + iVar1 * 0x2f) % 0x8b;
+iVar2 = iVar3 / 0xc;
+*(int *)((int)&amp;amp;DAT_235b_44ec + (iVar4 + -1) * 2) = iVar3 % 0xc;
+}
+return iVar2;
+&lt;/code>&lt;/pre>
+&lt;p>Huh. This was where things got interesting. I had assumed that if things had been procedurally generated, at least one of the numbers that showed up would be the number of pages in the manual or something like that. But this &amp;hellip; was not featuring any of those.&lt;/p>
+&lt;p>And yet.&lt;/p>
+&lt;p>One of the difficult things for me is understanding how the graphics are done. I&amp;rsquo;m still learning, but I believe the software uses software interrupt 60 to signal that sprites or text or other things are ready to be written to the screen. (Maybe.) But where they were stored in memory was tricky, and so I was not entirely sure that I understood precisely where to look for memory accesses to see where the drawing would take place.&lt;/p>
+&lt;p>What grabbed my attention here was the &lt;code>0xc&lt;/code>. I&amp;rsquo;m not the kind of person who can effortlessly convert back and forth to hex, but I recognized that as 12 &amp;ndash; the same as the number of faces we have to choose from. And also, it only has one parameter &amp;ndash; the page number.&lt;/p>
+&lt;p>I coded this up in Python:&lt;/p>
+&lt;pre>&lt;code class="language-python">vals = {}
+for page_i in range(15):
+vals[page_i] = []
+iVar1 = page_i + 1
+ivar2 = iVar1
+for iVar4 in range(1, 6):
+iVar2 = (iVar4 + page_i) % 5
+iVar3 = (iVar1 * iVar2 * iVar2 * iVar2 + iVar2 * 0x45 + iVar1 * 0x2f) % 0x8b
+iVar2 = iVar3 / 0xc
+vals[page_i].append(iVar3 % 0xc)
+print(f&amp;quot;{page_i: 2d}: {vals[page_i]}&amp;quot;)
+&lt;/code>&lt;/pre>
+&lt;p>(I want to note that I left almost everything exactly as-is, rather than potentially introduce any bugs from accidental errors like reducing a factor incorrectly.) Here is the output:&lt;/p>
+&lt;pre>&lt;code> 0: [9, 6, 3, 1, 11]
+1: [1, 5, 9, 10, 2]
+2: [0, 5, 2, 2, 1]
+3: [1, 1, 2, 8, 2]
+4: [0, 7, 3, 9, 4]
+5: [7, 3, 11, 0, 4]
+&lt;/code>&lt;/pre>
+&lt;p>Even though I didn&amp;rsquo;t have a mapping from the integer to the face, comparing it to the first six pages from the manual made it immediately clear &amp;ndash; this was it.&lt;/p>
+&lt;p>&lt;img src="summoning-first6pages-copyprotection.png" alt="">&lt;/p>
+&lt;p>I know this is not a huge deal, in the grand scheme of things. I&amp;rsquo;m sure many people have figured this out before me. But to tell the truth, this was a really fun and gratifying thing to figure out, and I am pretty glad I was able to ring in the new year with it.&lt;/p></description></item><item><title>Paper Annotation in Obsidian</title><link>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</link><pubDate>Fri, 09 Jun 2023 08:32:13 -0500</pubDate><guid>https://matthewturk.github.io/post/paper-annotation-in-obsidian/</guid><description>&lt;p>I&amp;rsquo;ve started keeping notes on papers in
 &lt;a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian&lt;/a> and I thought I&amp;rsquo;d share the workflow, which so far is pretty straightforward and easy to set up.
 This uses the
 &lt;a href="https://github.com/qawatake/obsidian-binary-file-manager-plugin" target="_blank" rel="noopener">binary file manager&lt;/a> plugin and the
