@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 03 Mar 2024 12:00:00 -0500</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>Contextual Sidecar in Obsidian</title><link>https://matthewturk.github.io/post/contextual-sidecar-in-obsidian/</link><pubDate>Sun, 03 Mar 2024 12:00:00 -0500</pubDate><guid>https://matthewturk.github.io/post/contextual-sidecar-in-obsidian/</guid><description>&lt;p>As I&amp;rsquo;ve mentioned on here before, I use
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mjt</title><link>https://matthewturk.github.io/</link><atom:link href="https://matthewturk.github.io/index.xml" rel="self" type="application/rss+xml"/><description>mjt</description><generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 21 Dec 2024 14:32:23 -0600</lastBuildDate><image><url>https://matthewturk.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>mjt</title><link>https://matthewturk.github.io/</link></image><item><title>Kanban Slides in Obsidian</title><link>https://matthewturk.github.io/post/kanban-slides-in-obsidian/</link><pubDate>Sat, 21 Dec 2024 14:32:23 -0600</pubDate><guid>https://matthewturk.github.io/post/kanban-slides-in-obsidian/</guid><description>&lt;h1 id="making-slide-presentations-in-obsidian">Making Slide Presentations in Obsidian&lt;/h1>
+&lt;p>I do nearly all of my presentations in
+&lt;a href="https://revealjs.com/" target="_blank" rel="noopener">RevealJS&lt;/a>. I originally picked it up sometime just before the pandemic, but then during 2020 I went all in and decided to make it my primary or exclusive means of giving talks. (Actually, that timeline might not quite work out. But who cares? No one is going to fact check me! It&amp;rsquo;s snowing out and no one has time for that!)&lt;/p>
+&lt;p>For the longest time, I&amp;rsquo;ve wanted the ability to easily reuse slides between presentations, but also to override and modify the order, etc. I&amp;rsquo;ve had a &lt;code>figures&lt;/code> repository that I use to store the more complex figures I like to use in talks &amp;ndash; I deploy all my presentations to Github, so anything that lives on the same domain works fine for
+&lt;a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank" rel="noopener">CORS&lt;/a> etc. (Usually.)&lt;/p>
+&lt;p>But what I &lt;em>really&lt;/em> want was to have concepts that I can rearrange and put in different orders, and then use that to come up with sets of presentations. This is super handy for classes, too &amp;ndash; the entire process of modularization of presentations and learning outcomes, and then arranging them easily and exporting to a presentation.&lt;/p>
+&lt;p>A couple weeks ago, I needed to develop a presentation and it hit me that I could do exactly this, and if I tried really hard, I might be able to make it work with a
+&lt;a href="https://en.wikipedia.org/wiki/Kanban_board" target="_blank" rel="noopener">Kanban-style&lt;/a> interface. I didn&amp;rsquo;t quite have time
+&lt;a href="https://www.youtube.com/watch?v=aKUGQkyAMco" target="_blank" rel="noopener">during the development of that talk&lt;/a> to implement it fully, but I got a good start on it and completed it a few days later. I ended up building it in
+&lt;a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian&lt;/a>, out of:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;a href="https://github.com/ebullient/obsidian-slides-extended" target="_blank" rel="noopener">Slides Extended&lt;/a>, a recent fork of the original
+&lt;a href="https://mszturc.github.io/obsidian-advanced-slides/" target="_blank" rel="noopener">Advanced Slides&lt;/a> plugin&lt;/li>
+&lt;li>
+&lt;a href="https://github.com/mgmeyers/obsidian-kanban" target="_blank" rel="noopener">Obsidian Kanban&lt;/a>, a really slick kanban-style interface backed by plain markdown&lt;/li>
+&lt;li>
+&lt;a href="https://silentvoid13.github.io/Templater/introduction.html" target="_blank" rel="noopener">Templater&lt;/a>, one of the most essential plugins for any kind of automation in Obsidian&lt;/li>
+&lt;/ul>
+&lt;p>What I wanted was the ability to have one or more collections of slides that I could drag and drop into a presentation, and then to export that to a presentation file. And it turns out, implementing this was not too hard after all!&lt;/p>
+&lt;p>I set up a directory in my vault under &lt;code>projects&lt;/code> called &lt;code>talks&lt;/code>, and under it I put a directory called &lt;code>sequences&lt;/code>. Each item in &lt;code>sequences&lt;/code> is a &lt;code>.md&lt;/code> file that contains the content of the slide or slides that comprise that &amp;lsquo;sequence&amp;rsquo; or module.&lt;/p>
+&lt;blockquote>
+&lt;p>![warning]&lt;br>
+These markdown files, at least for now, &lt;em>cannot&lt;/em> include metadata or frontmatter sections. This interferes with how the inclusions are parsed in &lt;code>slides-extended&lt;/code> and it took me a while to figure that out.&lt;br>
+&lt;strong>UPDATE&lt;/strong>: Just as I was writing this, &lt;code>ebullient&lt;/code>
+&lt;a href="https://github.com/ebullient/obsidian-slides-extended/issues/69" target="_blank" rel="noopener">fixed it&lt;/a>!&lt;/p>
+&lt;/blockquote>
+&lt;p>So for example, inside my &lt;code>What is yt.md&lt;/code> file, I have:&lt;/p>
+&lt;pre>&lt;code>## Who Am I
++ Computational **astrophysicist** by training
++ Developed simulation platforms and analysis **tools** for astrophysics
++ Worked in interdisciplinary applications, study **communities** of practice in open source scientific software
++ Tenure-track at the School of Information Sciences, developing and implementing a **grammar** of volumetric analysis
+&lt;/code>&lt;/pre>
+&lt;p>The others can be more complicated, and in many I&amp;rsquo;ve included things like figures and multi-stage builds and the like.&lt;/p>
+&lt;p>Just as it is, this would allow creation of talks that are made up just by inclusions/embeddings of slides. For example, by creating a note with this:&lt;/p>
+&lt;pre>&lt;code>![[Some Slide]]
+---
+![[Another Slide]]
+&lt;/code>&lt;/pre>
+&lt;p>This views (and exports) just fine from slides-extended. This is great! But what I wanted to be able to do was to be a little more flexible and agile &amp;ndash; ideally, I&amp;rsquo;d have a Kanban board where I could drag and reorder &amp;ldquo;Some Slide&amp;rdquo; and &amp;ldquo;Another Slide&amp;rdquo; to be in a different order. And, while I&amp;rsquo;m at it, it would be nice to be able to have a &amp;ldquo;library&amp;rdquo; of slides that I can move into a list and then export.&lt;/p>
+&lt;p>With the obsidian Kanban plugin, though, it turns out this is not overly hard to set up. For instance, here is a Kanban board with a list called &amp;ldquo;Slides&amp;rdquo; and one called &amp;ldquo;Candidate Slides&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="kanban-slides.png" alt="">&lt;/p>
+&lt;p>By using templater, we can set it up to iterate over the open document&amp;rsquo;s list &amp;ldquo;Slides,&amp;rdquo; convert all &amp;ldquo;just-a-link&amp;rdquo; entries to embeddings, and export to a new file. For an added bonus, if the currently open document isn&amp;rsquo;t a Kanban board, it won&amp;rsquo;t do anything.&lt;/p>
+&lt;p>Here&amp;rsquo;s my templater template:&lt;/p>
+&lt;pre>&lt;code>---
+aliases: []
+tags:
+- talks/mine
+created: 2023-09-13
+modified: 2023-09-13
+theme: mturk-slides
+transition: none
+center: false
+fragments: true
+hash: true
+width: 1024
+height: 768
+margin: 0.02
+defaultTemplate: &amp;quot;[[blankslide]]&amp;quot;
+backgroundTransition: none
+reveald3:
+- runLastState: false
+enableTitleSlide: false
+title: TITLE GOES HERE
+presenterName: Matthew Turk
+venueName: Unknown
+talkDate: Unknown
+---
+# Title of the Talk Here
+## Matthew Turk
+&amp;lt;p data-markdown=true&amp;gt;School of Information Sciences&amp;lt;br/&amp;gt;
+University of Illinois at Urbana-Champaign&amp;lt;br/&amp;gt;
+&amp;lt;tt&amp;gt;mjturk@illinois.edu&amp;lt;/tt&amp;gt;&amp;lt;br/&amp;gt;
+&amp;lt;tt&amp;gt;matthewturk.github.io&amp;lt;/tt&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;!-- .slide: class=&amp;quot;titleslide&amp;quot; --&amp;gt;
+---
+&amp;lt;%
+const filePath = tp.config.active_file;
+const converted = [];
+if (filePath) {
+const p = dv.page(filePath.path)
+const f = p.file;
+if (p['kanban-plugin'] == 'board') {
+const items = f.tasks.filter(t =&amp;gt; t.section.subpath == &amp;quot;Slides&amp;quot;);
+items.forEach( i =&amp;gt; {
+if (i.text.startsWith(&amp;quot;[[&amp;quot;) &amp;amp;&amp;amp; i.text.endsWith(&amp;quot;]]&amp;quot;)) {
+converted.push(`!${i.text}`);
+} else {
+converted.push(i.text);
+}
+});
+}
+}
+-%&amp;gt;
+&amp;lt;% converted.join(&amp;quot;\n\n---\n\n&amp;quot;) -%&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>And just like that, I can rearrange slides, and then when I&amp;rsquo;m ready I press alt-n to create a new &lt;code>talk-template&lt;/code> instance which takes my kanban board and converts to a full markdown note suitable for exporting as a full-on RevealJS presentation.&lt;/p></description></item><item><title>Contextual Sidecar in Obsidian</title><link>https://matthewturk.github.io/post/contextual-sidecar-in-obsidian/</link><pubDate>Sun, 03 Mar 2024 12:00:00 -0500</pubDate><guid>https://matthewturk.github.io/post/contextual-sidecar-in-obsidian/</guid><description>&lt;p>As I&amp;rsquo;ve mentioned on here before, I use
 &lt;a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian&lt;/a> a lot. One thing that I&amp;rsquo;ve really come to like as of late is the
 &lt;a href="https://github.com/mProjectsCode/obsidian-meta-bind-plugin" target="_blank" rel="noopener">meta-bind&lt;/a> plugin. This let&amp;rsquo;s you add items to your notes that edit the frontmatter metadata, as well as buttons to execute actions, and special-purpose &amp;ldquo;views&amp;rdquo; of the data in your notes.&lt;/p>
 &lt;p>One of the most common types of notes I use is a
