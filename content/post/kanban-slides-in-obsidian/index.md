@@ -28,8 +28,6 @@ image:
 projects: []
 ---
 
-# Making Slide Presentations in Obsidian
-
 I do nearly all of my presentations in [RevealJS](https://revealjs.com/).  I originally picked it up sometime just before the pandemic, but then during 2020 I went all in and decided to make it my primary or exclusive means of giving talks.  (Actually, that timeline might not quite work out.  But who cares?  No one is going to fact check me!  It's snowing out and no one has time for that!)
 
 For the longest time, I've wanted the ability to easily reuse slides between presentations, but also to override and modify the order, etc.  I've had a `figures` repository that I use to store the more complex figures I like to use in talks -- I deploy all my presentations to Github, so anything that lives on the same domain works fine for [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) etc.  (Usually.)
